@@ -1,0 +1,57 @@
+<div class="card mb-3">
+    <div class="card-header-tab card-header">
+        <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+            <i class="fa fa-fw" aria-hidden="true" title="Copy to use podcast"></i>{{ 'CATEGORYLIST' | translate }}
+        </div>
+        <div class="btn-actions-pane-right">
+            <button type="button" routerLink="/dash/feature-add-Categorie" class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
+                {{ 'ADD' | translate }}
+                <span class="pl-2 align-middle opacity-7">
+                    <i class="fa fa-fw" aria-hidden="true" title="Copy to use plus"></i>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table style="width: 100%;" id="example" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 147.2px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                    #ID
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 105.2px;" aria-label="Office: activate to sort column ascending">
+                                    Libelle
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 54.2px;" aria-label="Age: activate to sort column ascending">
+                                    Description
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 110.2px;" aria-label="Start date: activate to sort column ascending">
+                                    {{ 'UPDATE_DELETE' | translate }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row" class="odd" *ngFor = "let categorie of Categories">
+                                <td class="text-center" class="sorting_1 dtr-control">{{ categorie._id }}</td>
+                                <td class="text-center">{{ categorie.libelle }}</td>
+                                <td class="text-center">{{ categorie.description }}</td>
+                                <td class="text-center">
+                                    <div role="group" class="btn-group-sm btn-group">
+                                        <a (click) = "updateCategorie(categorie._id)"  class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
+                                        <a (click) = "deleteCategorie(categorie._id)"  class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr><th rowspan="1" colspan="1">#ID</th><th rowspan="1" colspan="1">Libelle</th><th rowspan="1" colspan="1">Description</th><th rowspan="1" colspan="1">{{ 'UPDATE_DELETE' | translate }}</th></tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

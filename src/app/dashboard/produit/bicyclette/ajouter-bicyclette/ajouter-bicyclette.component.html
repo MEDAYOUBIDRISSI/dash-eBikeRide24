@@ -1,0 +1,321 @@
+<!-- <div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="fa fa-fw" aria-hidden="true" title="Copy to use podcast"></i>
+                </div>
+                <div>{{ 'BRANDADD' | translate }}
+                    
+                </div> 
+            </div>
+            <div class="page-title-actions">
+                <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
+                    class="btn-shadow mr-3 btn btn-dark">
+                    <i class="fa fa-star"></i>
+                </button>
+            </div>    
+        </div>
+    </div>        
+    <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+        <li class="nav-item">
+            <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
+                <span>{{ 'BRANDNAME' | translate }}</span>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">{{ 'LEBELLE' | translate }}</label>
+                                    <input name="libelle" [(ngModel)] = "Produit.libelle" placeholder="Between, Decatlon" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label for="exampleDescription"class="">{{ 'DESCRIPTION' | translate }}</label>
+                            <textarea name="description" id="exampleDescription" [(ngModel)] = "Produit.description" placeholder="Description ......." class="form-control"></textarea>
+                        </div>
+                        <a (click)="onSubmit()" class="mt-2 btn btn-primary">{{ 'ADD' | translate }}</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="fa fa-fw" aria-hidden="true" title="Copy to use plus-circle"></i>
+                </div>
+                <div>Form Layouts
+                    <div class="page-title-subheading">Build whatever layout you need with our Architect framework.</div>
+                </div>
+            </div>
+            <div class="page-title-actions">
+                <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
+                    class="btn-shadow mr-3 btn btn-dark">
+                    <i class="fa fa-star"></i>
+                </button>
+            </div>    
+        </div>
+    </div>        
+    <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+        <li class="nav-item">
+            <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
+                <span>Layout</span>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <h5 class="card-title">Grid Rows</h5>
+                    <form class="">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Code Bare</label>
+                                    <input name="codeBare" [(ngModel)] = "Produit.codeBare" placeholder="example : 14c8f658ds" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Hide Line</label>
+                                    <input name="hideline" [(ngModel)] = "Produit.hideline" placeholder="Product Title" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">{{ 'LEBELLE' | translate }}</label>
+                                    <input name="libelle" [(ngModel)] = "Produit.libelle" placeholder="Between, Decatlon" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Marque</label>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <select class="form-control"  [(ngModel)] ="Produit.marque"  (ngModelChange)="displyMarque($event)" [ngModelOptions]="{standalone: true}">
+                                                <option *ngFor="let marque of marques" [ngValue]="marque">{{ marque.libelle }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Categorie</label>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <select class="form-control"  [(ngModel)] ="Produit.categorie"  (ngModelChange)="displyCategorie($event)" [ngModelOptions]="{standalone: true}">
+                                                <option *ngFor="let categorie of categories" [ngValue]="categorie">{{ categorie.libelle }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Univer</label>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <select class="form-control"  [(ngModel)] ="Produit.Univer"  (ngModelChange)="displyUniver($event)" [ngModelOptions]="{standalone: true}">
+                                                <option *ngFor="let univer of univers" [ngValue]="univer">{{ univer.libelle }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label for="exampleDescription"class="">{{ 'DESCRIPTION' | translate }}</label>
+                            <textarea name="description" id="exampleDescription" [(ngModel)] = "Produit.description" placeholder="Description ......." class="form-control"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleCity" class="">Prix Achat</label>
+                                    <input name="prixAchat" [(ngModel)] = "Produit.prixAchat" placeholder="prix by MAD" type="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="position-relative form-group">
+                                    <label for="exampleState" class="">Prix de Vent</label>
+                                    <input name="prixVent" [(ngModel)] = "Produit.prixVent" placeholder="prix by MAD" type="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="position-relative form-group">
+                                    <label for="exampleZip" class="">Qte</label>
+                                    <input name="qteStock" [(ngModel)] = "Produit.qteStock" placeholder="Example : 14" type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Model</label>
+                                    <input name="anneModel" [(ngModel)] = "Produit.anneModel" placeholder="2014, 2017, 2020" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Etat de produite</label>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <select name="etat" [(ngModel)] = "Produit.etat" class="form-control">
+                                                <option>true</option>
+                                                <option>false</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <h5 class="card-title">Images</h5>
+                    <div>
+                        <div class="form-row">
+                            <div class="col-md-4">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Choiser les images</label>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <input type="file" (change)="selectFiles($event)" multiple >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="position-relative form-group">
+                                    <h4 class="timeline-title">
+                                        Something not important
+                                        <div class="avatar-wrapper mt-2 avatar-wrapper-overlap">
+                                            <div *ngFor="let url of urls" class="avatar-icon-wrapper avatar-icon-sm">
+                                                <div class="avatar-icon" style="height: 50px;width: 50px;">
+                                                    <img [src]="url" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="avatar-icon-wrapper avatar-icon-sm avatar-icon-add">
+                                                <div class="avatar-icon"><i>+</i></div>
+                                            </div>
+                                        </div>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <h5 class="card-title">Inline</h5>
+                    <div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Taille De Roue</label>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <select name="tailleRue" [(ngModel)] = "Produit.tailleRue" class="form-control">
+                                                <option>Single Speed</option>
+                                                <option>10 Speed</option>
+                                                <option>11 Speed</option>
+                                                <option>14 Speed</option>
+                                                <option>18 Speed</option>
+                                                <option>19 Speed</option>
+                                                <option>20 Speed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Nombre D'engrenages</label>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <select name="nombreDengrenages" [(ngModel)] = "Produit.nombreDengrenages" class="form-control">
+                                                <option>Single Speed</option>
+                                                <option>10 Speed</option>
+                                                <option>11 Speed</option>
+                                                <option>14 Speed</option>
+                                                <option>18 Speed</option>
+                                                <option>19 Speed</option>
+                                                <option>20 Speed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="form-row">
+                            <div class="col-md-4">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Materiau du cadre</label>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <select name="materiau_du_cadre" [(ngModel)] = "Produit.materiau_du_cadre" class="form-control">
+                                                <option>Allow</option>
+                                                <option>Carbon</option>
+                                                <option>Still</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Materiau de la fourche</label>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <select name="materiau_de_lafourche" [(ngModel)] = "Produit.materiau_de_lafourche" class="form-control">
+                                                <option>Shimano Tiagra</option>
+                                                <option>Shimano Deore</option>
+                                                <option>Microshift Mezzo</option>
+                                                <option>SRAM Red Etap</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Freins</label>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <select name="freins" [(ngModel)] = "Produit.freins" class="form-control">
+                                                <option>Hydraulic Disc Brakes</option>
+                                                <option>Mechanical Disc Brakes</option>
+                                                <option>V Brakes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a (click)="saveProduit()" class="mt-2 btn btn-primary" style="color: white;">Ajouter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<mat-drawer-container style="background-color: white">
+    <mat-drawer #drawer class="page-container iconic-view" mode="side" opened="true">
+        <div class="logo-image-small">
+        <nav class="navbar navbar-light bg-light logo-padding">
+            <a class="navbar-brand" href="#">
+            <img src="https://webassets.mongodb.com/_com_assets/cms/mongodb_logo1-76twgcu2dm.png" width="150" height="50" class="d-inline-block align-top" alt="">
+            </a>
+        </nav>
+        </div>
+        <app-left-bare></app-left-bare>
+    </mat-drawer>
+
+    <div class="page-container iconic-view">
+        <mat-toolbar style="background-color:#FAFBFC">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="swatch-holder swatch-holder-lg bg-deep-blue" id="Tooltip-13">
+                            <button mat-icon-button class="example-icon" style="position: relative; left:4px;bottom:3px" aria-label="Example icon-button with menu icon" mat-button (click)="drawer.toggle()">
+                                <mat-icon>menu</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-10 page-content">
+                        <app-nave-bare></app-nave-bare>
+                    </div>
+                </div>
+            </div>
+        </mat-toolbar>
+        <div class="page-content">
+            <div class="app-main">
+                <div class="app-main__outer">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-drawer-container>
+<!-- <div class="page-container pin-it">
+    <app-left-bare></app-left-bare>
+    <div class="page-content">
+        <app-nave-bare></app-nave-bare>
+        <div class="main-container">
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div> -->

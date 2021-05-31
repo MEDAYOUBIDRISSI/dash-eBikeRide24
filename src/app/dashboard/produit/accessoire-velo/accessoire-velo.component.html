@@ -1,0 +1,71 @@
+<div class="card mb-3">
+    <div class="card-header-tab card-header">
+        <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+            <i class="fa fa-fw" aria-hidden="true" title="Copy to use podcast"></i>{{ 'ACCESSOIREBIKELIST' | translate }}
+        </div>
+        <div class="btn-actions-pane-right">
+            <button type="button" routerLink="/dash/produits/ajouter-accessoirevelo" class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
+                {{ 'ACCESSOIREBIKEADD' | translate }}
+                <span class="pl-2 align-middle opacity-7">
+                    <i class="fa fa-fw" aria-hidden="true" title="Copy to use plus"></i>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table style="width: 100%;" id="example" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 147.2px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                    #ID
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 232.2px;" aria-label="Position: activate to sort column ascending">
+                                    Code Bare
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 105.2px;" aria-label="Office: activate to sort column ascending">
+                                    Libelle
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 54.2px;" aria-label="Age: activate to sort column ascending">
+                                    Capture
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 110.2px;" aria-label="Start date: activate to sort column ascending">
+                                    {{ 'UPDATE_DELETE' | translate }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row" class="odd" *ngFor = "let produite of Produits">
+                                <td class="text-center" class="sorting_1 dtr-control">{{ produite._id }}</td>
+                                <td class="text-center">{{ produite.codeBare }}</td>
+                                <td class="text-center">{{ produite.libelle }}</td>
+                                <td class="text-center">
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left mr-3">
+                                                <div class="widget-content-left">
+                                                    <img width="50" height="50" class="rounded-circle" [src]="produite.Image[0]" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div role="group" class="btn-group-sm btn-group">
+                                        <a (click) = "updateProduit(produite._id)"  class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
+                                        <a (click) = "deleteProduit(produite._id)"  class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr><th rowspan="1" colspan="1">#ID</th><th rowspan="1" colspan="1">Code Bare</th><th rowspan="1" colspan="1">Libelle</th><th rowspan="1" colspan="1">Capture</th><th rowspan="1" colspan="1">{{ 'UPDATE_DELETE' | translate }}</th></tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

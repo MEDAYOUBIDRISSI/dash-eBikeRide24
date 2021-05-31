@@ -34,5 +34,8 @@
     "ACCESSOIRERIDERNAME":"Cyclist Accessory Name",
     "ACCESSOIRERIDERLIST":"Cyclist Accessories List",
     "ACCESSOIRERIDERADD":"Add Cyclist Accessory",
-    "ACCESSOIRERIDERUPDATE":"Update Cyclist Accessory"
+    "ACCESSOIRERIDERUPDATE":"Update Cyclist Accessory",
+    "CHOISELANGUAGE":"choose the language",
+    "FRENSH":"Frensh",
+    "ENGLISH":"English"
 }

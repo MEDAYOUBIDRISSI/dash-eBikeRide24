@@ -19,5 +19,15 @@ export class NaveBareComponent implements OnInit {
     localStorage.setItem("lang",lang.target.value);
     window.location.reload();
   }
+  changeLanguageToEnglish()
+  {
+    localStorage.setItem("lang","en");
+    window.location.reload();
+  }
+  changeLanguageToFrensh()
+  {
+    localStorage.setItem("lang","fr");
+    window.location.reload();
+  }
 
 }

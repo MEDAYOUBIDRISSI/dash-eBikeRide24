@@ -34,5 +34,8 @@
     "ACCESSOIRERIDERNAME":" Nom d'Accessoire de Cycleste",
     "ACCESSOIRERIDERLIST":"List des Accessoires des Cyclestes",
     "ACCESSOIRERIDERADD":"Ajouter Accessoire de Cycleste",
-    "ACCESSOIRERIDERUPDATE":"Modifier Accessoire de Cycleste"
+    "ACCESSOIRERIDERUPDATE":"Modifier Accessoire de Cycleste",
+    "CHOISELANGUAGE":"choisissez la langue",
+    "FRENSH":"Français",
+    "ENGLISH":"Anglais"
 }

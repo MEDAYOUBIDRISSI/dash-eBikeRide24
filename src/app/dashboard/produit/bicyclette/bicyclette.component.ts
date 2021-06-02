@@ -34,6 +34,10 @@ export class BicycletteComponent implements OnInit {
     }, error => console.log(error));
   }
 
+  updateProduit(_id: number){ 
+    this.router.navigate(['dash/produits/modifier-bicyclette', _id]);
+  }
+
   //Supprimer
   // const index: number = this.myArray.indexOf("mes");
   // this.myArray.splice(index, 1);

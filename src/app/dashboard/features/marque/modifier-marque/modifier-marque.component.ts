@@ -21,7 +21,7 @@ export class ModifierMarqueComponent implements OnInit {
 
     this.MarqueService.getMarqueById(this._id).subscribe(data => {
       this.Marque = data.Marque;
-    }, error => console.log(error));
+    }, error => console.log(error)); 
   } 
  
   onSubmit(){

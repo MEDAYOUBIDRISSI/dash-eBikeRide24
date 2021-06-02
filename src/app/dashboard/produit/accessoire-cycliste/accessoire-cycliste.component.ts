@@ -33,4 +33,8 @@ export class AccessoireCyclisteComponent implements OnInit {
       this.getProduits();
     }, error => console.log(error));
   }
+
+  updateProduit(_id: number){ 
+    this.router.navigate(['dash/produits/modifier-accessoirecycliste', _id]);
+  }
 }

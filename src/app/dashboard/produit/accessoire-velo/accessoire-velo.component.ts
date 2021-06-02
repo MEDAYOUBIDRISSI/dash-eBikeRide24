@@ -34,4 +34,8 @@ export class AccessoireVeloComponent implements OnInit {
     }, error => console.log(error));
   }
 
+  updateProduit(_id: number){ 
+    this.router.navigate(['dash/produits/modifier-accessoirevelo', _id]);
+  }
+
 }

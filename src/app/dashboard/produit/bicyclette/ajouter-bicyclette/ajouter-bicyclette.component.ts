@@ -47,14 +47,6 @@ export class AjouterBicycletteComponent implements OnInit {
       {
         this.imagesUpload.push(this.urls[i])
       }
-      // for(var i=0;i<this.imagesUpload.length;i++)
-      // {
-      //     this.BicyletteService.createImage(this.imagesUpload[i]).subscribe( data =>{
-      //       console.log(data);
-      //       this.imagesInsert.push(data.Image)
-      //     },
-      //     error => console.log(error));
-      // }   
       this.Produit.Image=this.imagesUpload;
     }
 

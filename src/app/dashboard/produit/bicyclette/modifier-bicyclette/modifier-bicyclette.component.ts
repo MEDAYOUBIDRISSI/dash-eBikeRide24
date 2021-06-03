@@ -112,4 +112,10 @@ export class ModifierBicycletteComponent implements OnInit {
       console.log(this.urls)
     }
 
+    delete_img(url:any)
+    {
+        const index: number = this.urls.indexOf(url);
+        this.urls.splice(index, 1);
+    }
+
 }

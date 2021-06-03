@@ -3,6 +3,7 @@ import { Produit } from '../../classe/produit.class'
 import { BicyletteServiceService } from './bicylette-service.service'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-bicyclette',
@@ -12,6 +13,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class BicycletteComponent implements OnInit {
 
   Produits: Produit[]=[];
+  private pageSlice=this.Produits
 
   constructor(private BicyletteService: BicyletteServiceService,
     private router: Router) { } 
@@ -23,6 +25,7 @@ export class BicycletteComponent implements OnInit {
   getProduits(){
     this.BicyletteService.getBicyclettesList().subscribe(data => {
       this.Produits = data.products;
+      this.pageSlice=this.Produits.slice(0,10);
       console.log(this.Produits)
     }); 
   }
@@ -38,9 +41,16 @@ export class BicycletteComponent implements OnInit {
     this.router.navigate(['dash/produits/modifier-bicyclette', _id]);
   }
 
-  //Supprimer
-  // const index: number = this.myArray.indexOf("mes");
-  // this.myArray.splice(index, 1);
-
+  OnPageChange(event : PageEvent)
+  {
+      console.log(event)
+      const startIndex = event.pageIndex * event.pageSize;
+      let endIndex = startIndex + event.pageSize;
+      if(endIndex > this.Produits.length)
+      {
+          endIndex = this.Produits.length;
+      }
+      this.pageSlice=this.Produits.slice(startIndex,endIndex);
+  } 
   
 }

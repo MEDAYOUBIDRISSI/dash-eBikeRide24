@@ -153,20 +153,26 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <div class="position-relative form-group">
-                                    <h4 class="timeline-title">
-                                        Something not important
-                                        <div class="avatar-wrapper mt-2 avatar-wrapper-overlap">
-                                            <div *ngFor="let url of urls" class="avatar-icon-wrapper avatar-icon-sm">
-                                                <div class="avatar-icon" style="height: 50px;width: 50px;">
-                                                    <img [src]="url" alt="">
+                                <div class="row">
+                                    <div class="col-md-3" *ngFor="let url of urls">
+                                        <div class="list-group-item">
+                                            <div class="todo-indicator bg-info"></div>
+                                            <div class="widget-content p-0">
+                                                <div class="widget-content-wrapper">
+                                                    <div class="widget-content-left mr-3">
+                                                        <div class="widget-content-left">
+                                                            <img width="42" class="rounded" [src]="url" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content-right widget-content-actions">
+                                                        <button class="border-0 btn-transition btn btn-outline-danger" (click)="delete_img(url)">
+                                                            <i class="fa fa-trash-alt"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="avatar-icon-wrapper avatar-icon-sm avatar-icon-add">
-                                                <div class="avatar-icon"><i>+</i></div>
-                                            </div>
                                         </div>
-                                    </h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>

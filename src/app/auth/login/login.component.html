@@ -1,92 +1,51 @@
-<div class="account-pages w-100 mt-2 mb-2">
-        <div class="container">
-
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5">
-                    <div class="card mb-0">
-
-                        <div class="card-body p-4">
-
-                            <div class="account-box">
-                                <div class="account-logo-box">
-                                    <div class="text-center">
-                                        <a href="index.html">
-                                            <img src="assets/images/logo-dark.png" alt="" height="30">
-                                        </a>
-                                    </div>
-                                    <h5 class="text-uppercase mb-1 mt-4">Sign In</h5>
-                                    <p class="mb-0">Login to your Admin account</p>
+<div class="app-container app-theme-white body-tabs-shadow">
+    <div class="app-container">
+        <div class="h-100 bg-plum-plate bg-animation">
+            <div class="d-flex h-100 justify-content-center align-items-center">
+                <div class="mx-auto app-login-box col-md-8">
+                    <div class="app-logo-inverse mx-auto mb-3"></div>
+                    <div class="modal-dialog w-100 mx-auto">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="h5 modal-title text-center">
+                                    <h4 class="mt-2">
+                                        <div>Welcome back,</div>
+                                        <span>Please sign in to your account below.</span>
+                                    </h4>
                                 </div>
-
-                                <div class="account-content mt-4">
-                                    <form class="form-horizontal" action="#">
-
-                                        <div class="form-group row">
-                                            <div class="col-12">
-                                                <label for="emailaddress">Email address</label>
-                                                <input class="form-control" type="email" id="emailaddress" required="" placeholder="john@deo.com">
+                                <form class="">
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <div class="position-relative form-group">
+                                                <input name="email" [(ngModel)] = "auth.email" id="exampleEmail" placeholder="Email here..." type="email" class="form-control">
                                             </div>
                                         </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-12">
-                                                <a href="page-recoverpw.html" class="text-muted float-right"><small>Forgot your password?</small></a>
-                                                <label for="password">Password</label>
-                                                <input class="form-control" type="password" required="" id="password" placeholder="Enter your password">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-12">
-
-                                                <div class="checkbox checkbox-success">
-                                                    <input id="remember" type="checkbox" checked="">
-                                                    <label for="remember">
-                                                        Remember me
-                                                    </label>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row text-center mt-2">
-                                            <div class="col-12">
-                                                <button class="btn btn-md btn-block btn-primary waves-effect waves-light" type="submit">Sign In</button>
-                                            </div>
-                                        </div>
-
-                                    </form>
-
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="text-center">
-                                                <button type="button" class="btn mr-1 btn-facebook waves-effect waves-light">
-                                                    <i class="fab fa-facebook-f"></i>
-                                                </button>
-                                                <button type="button" class="btn mr-1 btn-googleplus waves-effect waves-light">
-                                                    <i class="fab fa-google"></i>
-                                                </button>
-                                                <button type="button" class="btn mr-1 btn-twitter waves-effect waves-light">
-                                                    <i class="fab fa-twitter"></i>
-                                                </button>
+                                        <div class="col-md-12">
+                                            <div class="position-relative form-group">
+                                                <input name="password" [(ngModel)] = "auth.password" id="examplePassword" placeholder="Password here..." type="password" class="form-control">
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="row mt-4 pt-2">
-                                        <div class="col-sm-12 text-center">
-                                            <p class="text-muted mb-0">Don't have an account? <a href="page-register.html" class="text-dark ml-1"><b>Sign Up</b></a></p>
-                                        </div>
+                                    <div class="position-relative form-check">
+                                        <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">
+                                        <label for="exampleCheck" class="form-check-label">Keep me logged in</label>
                                     </div>
-
+                                </form>
+                                <div class="divider"></div>
+                            </div>
+                            <div class="modal-footer clearfix">
+                                <div class="float-left">
+                                    <a href="javascript:void(0);" class="btn-lg btn btn-link">Recover Password</a>
+                                </div>
+                                <div class="float-right">
+                                    <button (click)="onSubmit()" class="btn btn-primary btn-lg">Login to Dashboard</button>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <!-- end card-body -->
+                    <div class="text-center text-white opacity-8 mt-3">Copyright © NGS 2021</div>
                 </div>
-                <!-- end card -->
+            </div>
         </div>
-        <!-- end row -->
     </div>
+</div>

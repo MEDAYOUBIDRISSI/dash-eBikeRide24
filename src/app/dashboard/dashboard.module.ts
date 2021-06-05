@@ -31,7 +31,7 @@ import { ModifierAccessoireVeloComponent } from './produit/accessoire-velo/modif
 
 @NgModule({
   declarations: [SupportComponent, MarqueComponent, FeaturePageComponent, AjouterMarqueComponent, ModifierMarqueComponent, CategorieComponent, UniverComponent, AjouterCategorieComponent, ModifierCategorieComponent, AjouterUniverComponent, ModifierUniverComponent, ProduitComponent, BicycletteComponent, AccessoireCyclisteComponent, AccessoireVeloComponent, AjouterBicycletteComponent, ModifierBicycletteComponent, AjouterAccessoireCyclisteComponent, ModifierAccessoireCyclisteComponent, AjouterAccessoireVeloComponent, ModifierAccessoireVeloComponent],
-  imports: [
+  imports: [ 
     CommonModule,
     DashboardRoutingModule,
     TranslateModule,

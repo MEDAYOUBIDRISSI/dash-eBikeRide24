@@ -38,6 +38,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { CookieService } from 'ngx-cookie-service';
 
 export function HttpLoaderFactory(http:HttpClient)
 {
@@ -95,7 +96,8 @@ export function HttpLoaderFactory(http:HttpClient)
     useClass: LnguageInterceptor,
     multi:true
   },
-  HttpClient
+  HttpClient,
+  CookieService
 ],
   bootstrap: [AppComponent]
 })

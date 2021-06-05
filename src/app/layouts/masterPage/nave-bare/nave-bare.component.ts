@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../../dashboard/classe/user.class'
+import { MasterServiceService } from './master-service.service'
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-nave-bare',
@@ -9,10 +13,15 @@ export class NaveBareComponent implements OnInit {
 
   lang:any;
 
-  constructor(){}
+  public User: User={nom:'',prenom:''}
+  _id: any;
+  constructor(private MasterService: MasterServiceService,
+    private router: Router,private cookieService: CookieService) { } 
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang') || 'en';
+    this._id = localStorage.getItem('jwt-IDUser')
+    this.getUserAuth()
   }
   changeLang(lang:any)
   {
@@ -30,4 +39,16 @@ export class NaveBareComponent implements OnInit {
     window.location.reload();
   }
 
+  getUserAuth(){
+    this.MasterService.getUserAuth(this._id).subscribe(data => {
+      this.User = data.User;
+    }); 
+  }
+
+  logout()
+  {
+    localStorage.removeItem('jwt-Token');
+    localStorage.removeItem('jwt-IDUser');
+    this.router.navigate(['auth/login']);
+  }
 }

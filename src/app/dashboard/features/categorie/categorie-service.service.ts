@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Categorie } from '../../classe/categorie.class';
 
-@Injectable({
+@Injectable({ 
   providedIn: 'root' 
 })
 export class CategorieServiceService {

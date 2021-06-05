@@ -445,7 +445,7 @@
                             </button>
                             <button *ngIf="lang == 'en'" type="button" tabindex="0" class="dropdown-item" (click)="changeLanguageToFrensh()">
                                 <span class="mr-3 opacity-8 flag large FR"></span> {{'FRENSH' | translate}}
-                            </button>
+                            </button> 
                         </div>
                     </div>
                 </div>
@@ -470,11 +470,11 @@
                                                                 <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">
                                                             </div>
                                                             <div class="widget-content-left">
-                                                                <div class="widget-heading">Alina Mcloughlin</div>
-                                                                <div class="widget-subheading opacity-8">A short profile description</div>
+                                                                <div class="widget-heading"> {{User.nom}} {{User.prenom}}</div>
+                                                                <div class="widget-subheading opacity-8">{{User.email}}</div>
                                                             </div>
                                                             <div class="widget-content-right mr-2">
-                                                                <button class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
+                                                                <button (click)="logout()" class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
                                                             </div>
                                                         </div>
                                                     </div>

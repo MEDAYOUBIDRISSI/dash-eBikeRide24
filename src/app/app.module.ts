@@ -39,6 +39,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CookieService } from 'ngx-cookie-service';
+import { LogoutComponent } from './layouts/masterPage/logout/logout.component';
 
 export function HttpLoaderFactory(http:HttpClient)
 {
@@ -51,7 +52,8 @@ export function HttpLoaderFactory(http:HttpClient)
     AuthLayoutComponent,
     DashboardLayoutComponent,
     LeftBareComponent,
-    NaveBareComponent
+    NaveBareComponent,
+    LogoutComponent
   ], 
   imports: [
     BrowserModule,

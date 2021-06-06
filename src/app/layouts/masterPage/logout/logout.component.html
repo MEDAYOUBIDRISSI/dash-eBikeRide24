@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Logout from BikeRide24</h2>
+<mat-dialog-content>
+  <p>Are you sure you have exited the application?.</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button class="btn-wide btn-shadow btn btn-danger" (click)="logout()" [mat-dialog-close]="true" cdkFocusInitial>Logout</button>
+</mat-dialog-actions>

@@ -3,6 +3,8 @@ import { User } from '../../../dashboard/classe/user.class'
 import { MasterServiceService } from './master-service.service'
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import {MatDialog} from '@angular/material/dialog';
+import { LogoutComponent } from '../logout/logout.component'
 
 @Component({
   selector: 'app-nave-bare',
@@ -16,7 +18,8 @@ export class NaveBareComponent implements OnInit {
   public User: User={nom:'',prenom:''}
   _id: any;
   constructor(private MasterService: MasterServiceService,
-    private router: Router,private cookieService: CookieService) { } 
+    private router: Router,private cookieService: CookieService,
+    public dialog: MatDialog) { } 
 
   ngOnInit(): void {
     this.lang = localStorage.getItem('lang') || 'en';
@@ -47,8 +50,7 @@ export class NaveBareComponent implements OnInit {
 
   logout()
   {
-    localStorage.removeItem('jwt-Token');
-    localStorage.removeItem('jwt-IDUser');
-    this.router.navigate(['auth/login']);
+    this.dialog.open(LogoutComponent);
   }
+  
 }

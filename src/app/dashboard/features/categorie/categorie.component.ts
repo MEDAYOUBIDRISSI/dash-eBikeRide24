@@ -3,6 +3,7 @@ import { Categorie } from '../../classe/categorie.class'
 import { CategorieServiceService } from './categorie-service.service'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {PageEvent} from '@angular/material/paginator';
  
 @Component({
   selector: 'app-categorie',
@@ -13,6 +14,7 @@ export class CategorieComponent implements OnInit {
 
   
   Categories: Categorie[]=[];
+  private pageSlice=this.Categories
 
   constructor(private categorieService: CategorieServiceService,
     private router: Router) { } 
@@ -24,6 +26,7 @@ export class CategorieComponent implements OnInit {
   getCategories(){
     this.categorieService.getCategoriesList().subscribe(data => {
       this.Categories = data.categories;
+      this.pageSlice=this.Categories.slice(0,10);
       console.log(this.Categories)
     }); 
   }
@@ -39,4 +42,15 @@ export class CategorieComponent implements OnInit {
         }, error => console.log(error));
   }
 
+  OnPageChange(event : PageEvent)
+  {
+      console.log(event)
+      const startIndex = event.pageIndex * event.pageSize;
+      let endIndex = startIndex + event.pageSize;
+      if(endIndex > this.Categories.length)
+      {
+          endIndex = this.Categories.length;
+      }
+      this.pageSlice=this.Categories.slice(startIndex,endIndex);
+  } 
 }

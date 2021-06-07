@@ -3,7 +3,7 @@ import { Produit } from '../../classe/produit.class'
 import { BicyletteServiceService } from './bicylette-service.service'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {PageEvent} from '@angular/material/paginator';
+import {PageEvent} from '@angular/material/paginator'; 
 
 @Component({
   selector: 'app-bicyclette',

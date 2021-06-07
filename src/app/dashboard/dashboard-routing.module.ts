@@ -15,6 +15,7 @@ import { AjouterAccessoireVeloComponent } from './produit/accessoire-velo/ajoute
 import { ModifierAccessoireVeloComponent } from './produit/accessoire-velo/modifier-accessoire-velo/modifier-accessoire-velo.component'
 import { AjouterAccessoireCyclisteComponent } from './produit/accessoire-cycliste/ajouter-accessoire-cycliste/ajouter-accessoire-cycliste.component'
 import { ModifierAccessoireCyclisteComponent } from './produit/accessoire-cycliste/modifier-accessoire-cycliste/modifier-accessoire-cycliste.component'
+import { UserPageComponent } from './users/user-page/user-page.component'
 
 const routes: Routes = [
   {
@@ -165,6 +166,16 @@ const routes: Routes = [
       {
         path:'dash',
         component:ModifierAccessoireCyclisteComponent
+      }
+    ] 
+  },
+  {
+    path:'users',
+    component:UserPageComponent,
+    children:[
+      {
+        path:'dash',
+        component:UserPageComponent
       }
     ] 
   }

@@ -3,6 +3,7 @@ import { Univer } from '../../classe/univer.class'
 import { UniverServiceService } from './univer-service.service'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-univer',
@@ -12,6 +13,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class UniverComponent implements OnInit {
 
   Univers: Univer[]=[];
+  private pageSlice=this.Univers
 
   constructor(private univerService: UniverServiceService,
     private router: Router) { } 
@@ -23,6 +25,7 @@ export class UniverComponent implements OnInit {
   getUnivers(){
     this.univerService.getUniversList().subscribe(data => {
       this.Univers = data.univers;
+      this.pageSlice=this.Univers.slice(0,10);
       console.log(this.Univers)
     }); 
   }
@@ -37,5 +40,17 @@ export class UniverComponent implements OnInit {
           this.getUnivers();
         }, error => console.log(error));
   }
+
+  OnPageChange(event : PageEvent)
+  {
+      console.log(event)
+      const startIndex = event.pageIndex * event.pageSize;
+      let endIndex = startIndex + event.pageSize;
+      if(endIndex > this.Univers.length)
+      {
+          endIndex = this.Univers.length;
+      }
+      this.pageSlice=this.Univers.slice(startIndex,endIndex);
+  } 
 
 }

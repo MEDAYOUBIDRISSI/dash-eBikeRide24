@@ -13,45 +13,49 @@
         </div>
     </div>
     <div class="card-body">
-        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
-            <div class="row">
-                <div class="col-sm-12">
-                    <table style="width: 100%;" id="example" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
-                        <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 147.2px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">
-                                    #ID
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 105.2px;" aria-label="Office: activate to sort column ascending">
-                                    Libelle
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 54.2px;" aria-label="Age: activate to sort column ascending">
-                                    Description
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 110.2px;" aria-label="Start date: activate to sort column ascending">
-                                    {{ 'UPDATE_DELETE' | translate }}
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr role="row" class="odd" *ngFor = "let univer of Univers">
-                                <td class="text-center" class="sorting_1 dtr-control">{{ univer._id }}</td>
-                                <td class="text-center">{{ univer.libelle }}</td>
-                                <td class="text-center">{{ univer.description }}</td>
-                                <td class="text-center">
-                                    <div role="group" class="btn-group-sm btn-group">
-                                        <a (click) = "updateUniver(univer._id)"  class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
-                                        <a (click) = "deleteUniver(univer._id)"  class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr><th rowspan="1" colspan="1">#ID</th><th rowspan="1" colspan="1">Libelle</th><th rowspan="1" colspan="1">Description</th><th rowspan="1" colspan="1">{{ 'UPDATE_DELETE' | translate }}</th></tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </div>
+        <table class="mb-0 table table-striped">
+            <thead>
+                <tr role="row">
+                    <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
+                        #ID
+                    </th>
+                    <th class="text-center" aria-controls="example" rowspan="1" colspan="1" >
+                        Libelle
+                    </th>
+                    <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
+                        Description
+                    </th>
+                    <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
+                        {{ 'UPDATE_DELETE' | translate }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr role="row" class="odd" *ngFor = "let univer of Univers">
+                    <td class="text-center" class="sorting_1 dtr-control">{{ univer._id }}</td>
+                    <td class="text-center">{{ univer.libelle }}</td>
+                    <td class="text-center">{{ univer.description }}</td>
+                    <td class="text-center">
+                        <div role="group" class="btn-group-sm btn-group">
+                            <a (click) = "updateUniver(univer._id)"  class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
+                            <a (click) = "deleteUniver(univer._id)"  class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="text-center" rowspan="1" colspan="1">#ID</th>
+                    <th class="text-center" rowspan="1" colspan="1">Libelle</th>
+                    <th class="text-center" rowspan="1" colspan="1">Description</th>
+                    <th class="text-center" rowspan="1" colspan="1">{{ 'UPDATE_DELETE' | translate }}</th>
+                </tr>
+            </tfoot>
+        </table>
+        <mat-paginator [length]="this.Univers.length"
+                        [pageSize]="10"
+                        [pageSizeOptions]="[10, 20, 50, 100, 250, 500, 1000]"
+                        (page)="OnPageChange($event)">
+        </mat-paginator>
     </div>
 </div>

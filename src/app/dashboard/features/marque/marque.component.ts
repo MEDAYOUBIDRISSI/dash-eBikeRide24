@@ -3,7 +3,8 @@ import { Marque } from '../../classe/marque.class'
 import { MarqueServiceService } from './marque-service.service'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
- 
+import {PageEvent} from '@angular/material/paginator';
+
 @Component({
   selector: 'app-marque',
   templateUrl: './marque.component.html',
@@ -12,6 +13,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class MarqueComponent implements OnInit {
 
   Marques: Marque[]=[];
+  private pageSlice=this.Marques
 
   constructor(private marqueService: MarqueServiceService,
     private router: Router) { } 
@@ -23,6 +25,7 @@ export class MarqueComponent implements OnInit {
   getMarques(){
     this.marqueService.getMarquesList().subscribe(data => {
       this.Marques = data.Marque;
+      this.pageSlice=this.Marques.slice(0,10);
       console.log(this.Marques)
     }); 
   }
@@ -38,23 +41,16 @@ export class MarqueComponent implements OnInit {
         }, error => console.log(error));
   }
 
- 
-  // openSnackBar() {
-  //   this._snackBar.open("Add well", "Cancel", {
-  //     duration: 3000,
-  //   });
-  // }
-
-  // openSnackBar_2() {
-  //   this._snackBar.open("Delete well", "Cancel", {
-  //     duration: 3000,
-  //   });
-  // }
-
-  // openSnackBar_3() {
-  //   this._snackBar.open("Impossible, It has to be at least one role", "Cancel", {
-  //     duration: 3000,
-  //   });
-  // }
+  OnPageChange(event : PageEvent)
+  {
+      console.log(event)
+      const startIndex = event.pageIndex * event.pageSize;
+      let endIndex = startIndex + event.pageSize;
+      if(endIndex > this.Marques.length)
+      {
+          endIndex = this.Marques.length;
+      }
+      this.pageSlice=this.Marques.slice(startIndex,endIndex);
+  } 
 
 }

@@ -12,7 +12,7 @@ export class SupprimerAdminComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<SupprimerAdminComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {}
-
+ 
   onNoClick(): void {
     this.dialogRef.close();
   }

@@ -4,6 +4,8 @@ import { EditeurServiceService } from './editeur-service.service'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PageEvent} from '@angular/material/paginator'; 
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { SupprimerEditeurComponent} from './supprimer-editeur/supprimer-editeur.component'
 
 @Component({
   selector: 'app-editeur',
@@ -13,10 +15,11 @@ import {PageEvent} from '@angular/material/paginator';
 export class EditeurComponent implements OnInit {
 
   Users: User[]=[];
+  User:User={nom:"",prenom:""}
   private pageSlice=this.Users
 
   constructor(private EditeurService: EditeurServiceService,
-    private router: Router) { } 
+    private router: Router,public dialog: MatDialog) { } 
 
     ngOnInit(): void {
     this.getUsers();
@@ -38,7 +41,7 @@ export class EditeurComponent implements OnInit {
   }
 
   updateUsers(_id: number){ 
-    this.router.navigate(['dash/Users/modifier-bicyclette', _id]);
+    this.router.navigate(['dash/users/modifier-editeur', _id]);
   }
 
   OnPageChange(event : PageEvent)
@@ -52,5 +55,21 @@ export class EditeurComponent implements OnInit {
       }
       this.pageSlice=this.Users.slice(startIndex,endIndex);
   } 
+
+  DeleteByDialog(_id: number): void {
+    this.EditeurService.getEditeurById(_id).subscribe(data => {
+      this.User = data.User;
+      const dialogRef = this.dialog.open(SupprimerEditeurComponent, {
+        width: '400px',
+        data: this.User
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if(result)
+        {
+          this.deleteUsers(_id)
+        }
+      });
+    }, error => console.log(error));
+  }
 
 }

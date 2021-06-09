@@ -16,6 +16,14 @@ import { ModifierAccessoireVeloComponent } from './produit/accessoire-velo/modif
 import { AjouterAccessoireCyclisteComponent } from './produit/accessoire-cycliste/ajouter-accessoire-cycliste/ajouter-accessoire-cycliste.component'
 import { ModifierAccessoireCyclisteComponent } from './produit/accessoire-cycliste/modifier-accessoire-cycliste/modifier-accessoire-cycliste.component'
 import { UserPageComponent } from './users/user-page/user-page.component'
+import { AjouterAdminComponent } from './users/admin/ajouter-admin/ajouter-admin.component'
+import { AjouterEditeurComponent } from './users/editeur/ajouter-editeur/ajouter-editeur.component'
+import { AjouterLivreurComponent } from './users/livreur/ajouter-livreur/ajouter-livreur.component'
+import { AjouterSupportUserComponent } from './users/support-user/ajouter-support-user/ajouter-support-user.component'
+import { ModifierAdminComponent } from './users/admin/modifier-admin/modifier-admin.component'
+import { ModifierEditeurComponent } from './users/editeur/modifier-editeur/modifier-editeur.component'
+import { ModifierLivreurComponent } from './users/livreur/modifier-livreur/modifier-livreur.component'
+import { ModifierSupportUserComponent } from './users/support-user/modifier-support-user/modifier-support-user.component'
 
 const routes: Routes = [
   {
@@ -176,6 +184,86 @@ const routes: Routes = [
       {
         path:'dash',
         component:UserPageComponent
+      }
+    ] 
+  },
+  {
+    path:'users/ajouter-admin',
+    component:AjouterAdminComponent,
+    children:[
+      {
+        path:'dash',
+        component:AjouterAdminComponent
+      }
+    ] 
+  },
+  {
+    path:'users/ajouter-editeur',
+    component:AjouterEditeurComponent,
+    children:[
+      {
+        path:'dash',
+        component:AjouterEditeurComponent
+      }
+    ] 
+  },
+  {
+    path:'users/ajouter-livreur',
+    component:AjouterLivreurComponent,
+    children:[
+      {
+        path:'dash',
+        component:AjouterLivreurComponent
+      }
+    ] 
+  },
+  {
+    path:'users/ajouter-support-user',
+    component:AjouterSupportUserComponent,
+    children:[
+      {
+        path:'dash',
+        component:AjouterSupportUserComponent
+      }
+    ] 
+  },
+  {
+    path:'users/modifier-admin/:_id',
+    component:ModifierAdminComponent,
+    children:[
+      {
+        path:'dash',
+        component:ModifierAdminComponent
+      }
+    ] 
+  },
+  {
+    path:'users/modifier-editeur/:_id',
+    component:ModifierEditeurComponent,
+    children:[
+      {
+        path:'dash',
+        component:ModifierEditeurComponent
+      }
+    ] 
+  },
+  {
+    path:'users/modifier-livreur/:_id',
+    component:ModifierLivreurComponent,
+    children:[
+      {
+        path:'dash',
+        component:ModifierLivreurComponent
+      }
+    ] 
+  },
+  {
+    path:'users/modifier-support-user/:_id',
+    component:ModifierSupportUserComponent,
+    children:[
+      {
+        path:'dash',
+        component:ModifierSupportUserComponent
       }
     ] 
   }

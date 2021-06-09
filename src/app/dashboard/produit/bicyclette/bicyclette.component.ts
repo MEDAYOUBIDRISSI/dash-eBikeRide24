@@ -4,6 +4,8 @@ import { BicyletteServiceService } from './bicylette-service.service'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PageEvent} from '@angular/material/paginator'; 
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { SupprimerProduitComponent} from '../supprimer-produit/supprimer-produit.component'
 
 @Component({
   selector: 'app-bicyclette',
@@ -13,10 +15,11 @@ import {PageEvent} from '@angular/material/paginator';
 export class BicycletteComponent implements OnInit {
 
   Produits: Produit[]=[];
+  Produit: Produit={}
   private pageSlice=this.Produits
 
   constructor(private BicyletteService: BicyletteServiceService,
-    private router: Router) { } 
+    private router: Router,public dialog: MatDialog) { } 
 
     ngOnInit(): void {
     this.getProduits();
@@ -39,7 +42,7 @@ export class BicycletteComponent implements OnInit {
 
   updateProduit(_id: number){ 
     this.router.navigate(['dash/produits/modifier-bicyclette', _id]);
-  }
+  } 
 
   OnPageChange(event : PageEvent)
   {
@@ -52,5 +55,21 @@ export class BicycletteComponent implements OnInit {
       }
       this.pageSlice=this.Produits.slice(startIndex,endIndex);
   } 
+
+  DeleteByDialog(_id: number): void {
+    this.BicyletteService.getBicycletteById(_id).subscribe(data => {
+      this.Produit = data.product;
+      const dialogRef = this.dialog.open(SupprimerProduitComponent, {
+        width: '400px',
+        data: this.Produit
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if(result)
+        {
+          this.deleteProduit(_id)
+        }
+      });
+    }, error => console.log(error));
+  }
   
 }

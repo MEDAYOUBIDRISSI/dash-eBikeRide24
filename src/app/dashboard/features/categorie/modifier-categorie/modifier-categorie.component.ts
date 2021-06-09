@@ -10,7 +10,7 @@ import { ActivatedRoute,Router } from '@angular/router';
 })
 export class ModifierCategorieComponent implements OnInit {
 
-  
+   
   _id: number=-1;
   public Categorie: Categorie={_id: -1, libelle:'',description:''}
   constructor(private CategorieService: CategorieServiceService,

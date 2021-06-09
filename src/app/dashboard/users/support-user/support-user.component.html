@@ -4,7 +4,7 @@
             <i class="fa fa-fw" aria-hidden="true" title="Copy to use podcast"></i>{{ 'SUPPORT-USERLIST' | translate }}
         </div>
         <div class="btn-actions-pane-right">
-            <button type="button" routerLink="/dash/feature-add-Categorie" class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
+            <button type="button" routerLink="/dash/users/ajouter-support-user" class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
                 {{ 'ADD' | translate }}
                 <span class="pl-2 align-middle opacity-7">
                     <i class="fa fa-fw" aria-hidden="true" title="Copy to use plus"></i>
@@ -17,7 +17,7 @@
             <thead>
                 <tr role="row">
                     <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
-                        #ID
+                        Picture
                     </th>
                     <th class="text-center" aria-controls="example" rowspan="1" colspan="1" >
                         nom
@@ -32,32 +32,46 @@
                         Tel
                     </th>
                     <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
+                        Etat
+                    </th>
+                    <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
                         {{ 'UPDATE_DELETE' | translate }}
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr role="row" class="odd" *ngFor = "let user of Users">
-                    <td class="text-center" class="sorting_1 dtr-control">{{ user._id }}</td>
+                    <td class="text-center" class="sorting_1 dtr-control">
+                        <div class="avatar-icon-wrapper">
+                            <div class="avatar-icon rounded">
+                                <img [src]="user.imgProfile" alt="">
+                            </div>
+                        </div>
+                    </td>
                     <td class="text-center">{{ user.nom }}</td>
                     <td class="text-center">{{ user.prenom }}</td>
                     <td class="text-center">{{ user.email }}</td>
                     <td class="text-center">{{ user.tel }}</td>
                     <td class="text-center">
-                        <div role="group" class="btn-group-sm btn-group">
+                        <div *ngIf="user.etat == true" class="mb-2 mr-2 badge badge-pill badge-success">Working</div>
+                        <div *ngIf="user.etat == false" class="mb-2 mr-2 badge badge-pill badge-danger">Suspended</div>
+                    </td>
+                    <td class="text-center">
+                        <div role="group" class="btn-group-sm btn-group text-white">
                             <a (click) = "updateUsers(user._id)"  class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
-                            <a (click) = "deleteUsers(user._id)"  class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
+                            <a (click) = "DeleteByDialog(user._id)"  class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
                         </div>
                     </td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <th class="text-center" rowspan="1" colspan="1">#ID</th>
+                    <th class="text-center" rowspan="1" colspan="1">Picture</th>
                     <th class="text-center" rowspan="1" colspan="1">Nom</th>
                     <th class="text-center" rowspan="1" colspan="1">Prenom</th>
                     <th class="text-center" rowspan="1" colspan="1">Email</th>
                     <th class="text-center" rowspan="1" colspan="1">Tel</th>
+                    <th class="text-center" rowspan="1" colspan="1">Etat</th>
                     <th class="text-center" rowspan="1" colspan="1">{{ 'UPDATE_DELETE' | translate }}</th>
                 </tr>
             </tfoot>

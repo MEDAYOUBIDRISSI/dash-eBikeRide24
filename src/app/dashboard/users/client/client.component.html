@@ -17,7 +17,7 @@
             <thead>
                 <tr role="row">
                     <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
-                        #ID
+                        Picture
                     </th>
                     <th class="text-center" aria-controls="example" rowspan="1" colspan="1" >
                         nom
@@ -32,33 +32,47 @@
                         Tel
                     </th>
                     <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
-                        {{ 'UPDATE_DELETE' | translate }}
+                        Etat
+                    </th>
+                    <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
+                        {{ 'Detail_changeStatus' | translate }}
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr role="row" class="odd" *ngFor = "let user of Users">
-                    <td class="text-center" class="sorting_1 dtr-control">{{ user._id }}</td>
+                    <td class="text-center" class="sorting_1 dtr-control">
+                        <div class="avatar-icon-wrapper">
+                            <div class="avatar-icon rounded">
+                                <img [src]="user.imgProfile" alt="">
+                            </div>
+                        </div>
+                    </td>
                     <td class="text-center">{{ user.nom }}</td>
                     <td class="text-center">{{ user.prenom }}</td>
                     <td class="text-center">{{ user.email }}</td>
                     <td class="text-center">{{ user.tel }}</td>
                     <td class="text-center">
-                        <div role="group" class="btn-group-sm btn-group">
-                            <a (click) = "updateUsers(user._id)"  class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
-                            <a (click) = "deleteUsers(user._id)"  class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
+                        <div *ngIf="user.etat == true" class="mb-2 mr-2 badge badge-pill badge-success">Working</div>
+                        <div *ngIf="user.etat == false" class="mb-2 mr-2 badge badge-pill badge-danger">Suspended</div>
+                    </td>
+                    <td class="text-center">
+                        <div role="group" class="btn-group-sm btn-group text-white">
+                            <a  class="btn-shadow btn btn-info">{{ 'Detail' | translate }}</a>
+                            <a  class="btn-shadow btn btn-danger">{{ 'Status change' | translate }}</a>
                         </div>
                     </td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <th class="text-center" rowspan="1" colspan="1">#ID</th>
+                    <th class="text-center" rowspan="1" colspan="1">Picture</th>
                     <th class="text-center" rowspan="1" colspan="1">Nom</th>
                     <th class="text-center" rowspan="1" colspan="1">Prenom</th>
                     <th class="text-center" rowspan="1" colspan="1">Email</th>
                     <th class="text-center" rowspan="1" colspan="1">Tel</th>
-                    <th class="text-center" rowspan="1" colspan="1">{{ 'UPDATE_DELETE' | translate }}</th>
+                    <th class="text-center" rowspan="1" colspan="1">Etat</th>
+                    <th class="text-center" rowspan="1" colspan="1">{{ 'Detail_changeStatus' | translate }}</th>
                 </tr>
             </tfoot>
         </table>

@@ -4,19 +4,22 @@ import { SupportUserServiceService } from './support-user-service.service'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PageEvent} from '@angular/material/paginator'; 
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { SupprimerSupportUserComponent} from './supprimer-support-user/supprimer-support-user.component'
 
 @Component({
   selector: 'app-support-user',
-  templateUrl: './support-user.component.html',
+  templateUrl: './support-user.component.html', 
   styleUrls: ['./support-user.component.css']
 })
 export class SupportUserComponent implements OnInit {
 
   Users: User[]=[];
+  User:User={nom:"",prenom:""}
   private pageSlice=this.Users
 
   constructor(private SupportUserServiceService: SupportUserServiceService,
-    private router: Router) { } 
+    private router: Router,public dialog: MatDialog) { } 
 
     ngOnInit(): void {
     this.getUsers();
@@ -38,7 +41,7 @@ export class SupportUserComponent implements OnInit {
   }
 
   updateUsers(_id: number){ 
-    this.router.navigate(['dash/Users/modifier-bicyclette', _id]);
+    this.router.navigate(['dash/users/modifier-support-user', _id]);
   }
 
   OnPageChange(event : PageEvent)
@@ -52,5 +55,21 @@ export class SupportUserComponent implements OnInit {
       }
       this.pageSlice=this.Users.slice(startIndex,endIndex);
   } 
+
+  DeleteByDialog(_id: number): void {
+    this.SupportUserServiceService.getSupportUserById(_id).subscribe(data => {
+      this.User = data.User;
+      const dialogRef = this.dialog.open(SupprimerSupportUserComponent, {
+        width: '400px',
+        data: this.User
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if(result)
+        {
+          this.deleteUsers(_id)
+        }
+      });
+    }, error => console.log(error));
+  }
 
 }

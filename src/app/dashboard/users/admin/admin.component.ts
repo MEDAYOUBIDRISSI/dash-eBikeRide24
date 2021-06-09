@@ -6,6 +6,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {PageEvent} from '@angular/material/paginator'; 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { SupprimerAdminComponent} from './supprimer-admin/supprimer-admin.component'
+import { AjouterAdminComponent} from './ajouter-admin/ajouter-admin.component'
 
 @Component({
   selector: 'app-admin',
@@ -41,7 +42,7 @@ export class AdminComponent implements OnInit {
   }
 
   updateUsers(_id: number){ 
-    this.router.navigate(['dash/Users/modifier-bicyclette', _id]);
+    this.router.navigate(['dash/users/modifier-admin', _id]);
   }
 
   OnPageChange(event : PageEvent)
@@ -56,7 +57,7 @@ export class AdminComponent implements OnInit {
       this.pageSlice=this.Users.slice(startIndex,endIndex);
   } 
 
-  openDialog(_id: number): void {
+  DeleteByDialog(_id: number): void {
     this.AdminService.getAdminById(_id).subscribe(data => {
       this.User = data.User;
       const dialogRef = this.dialog.open(SupprimerAdminComponent, {
@@ -68,10 +69,13 @@ export class AdminComponent implements OnInit {
         {
           this.deleteUsers(_id)
         }
-        
       });
     }, error => console.log(error));
-   
+  }
+
+  AjouterByDialog()
+  {
+    this.dialog.open(AjouterAdminComponent);
   }
 
 }

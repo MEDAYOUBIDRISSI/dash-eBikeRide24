@@ -4,6 +4,8 @@ import { LivreurServiceService } from './livreur-service.service'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PageEvent} from '@angular/material/paginator'; 
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { SupprimerLivreurComponent} from './supprimer-livreur/supprimer-livreur.component'
 
 @Component({
   selector: 'app-livreur',
@@ -13,10 +15,11 @@ import {PageEvent} from '@angular/material/paginator';
 export class LivreurComponent implements OnInit {
 
   Users: User[]=[];
+  User:User={nom:"",prenom:""}
   private pageSlice=this.Users
 
   constructor(private LivreurService: LivreurServiceService,
-    private router: Router) { } 
+    private router: Router,public dialog: MatDialog) { } 
 
     ngOnInit(): void {
     this.getUsers();
@@ -38,7 +41,7 @@ export class LivreurComponent implements OnInit {
   }
 
   updateUsers(_id: number){ 
-    this.router.navigate(['dash/Users/modifier-bicyclette', _id]);
+    this.router.navigate(['dash/users/modifier-livreur', _id]);
   }
 
   OnPageChange(event : PageEvent)
@@ -52,5 +55,21 @@ export class LivreurComponent implements OnInit {
       }
       this.pageSlice=this.Users.slice(startIndex,endIndex);
   } 
+
+  DeleteByDialog(_id: number): void {
+    this.LivreurService.getLivreurById(_id).subscribe(data => {
+      this.User = data.User;
+      const dialogRef = this.dialog.open(SupprimerLivreurComponent, {
+        width: '400px',
+        data: this.User
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if(result)
+        {
+          this.deleteUsers(_id)
+        }
+      });
+    }, error => console.log(error));
+  }
 
 }

@@ -21,14 +21,14 @@ export class LivreurServiceService {
   }
 
   getLivreurById(_id: number): Observable<User>{
-    return this.httpClient.get<User>(`${this.baseURL}/user/${_id}`);
+    return this.httpClient.get<User>(`${this.baseURL}/user/edite/${_id}`);
   }
 
   updateLivreur(_id: number, User: User): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/user/update?userID=${_id}`, User);
+    return this.httpClient.put(`${this.baseURL}/user/update?UserID=${_id}`, User);
   }
 
   deleteLivreur(_id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/user/delete?userID=${_id}`);
+    return this.httpClient.delete(`${this.baseURL}/user/delete?UserID=${_id}`);
   }
 }

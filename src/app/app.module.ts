@@ -41,6 +41,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { CookieService } from 'ngx-cookie-service';
 import { LogoutComponent } from './layouts/masterPage/logout/logout.component';
 
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 export function HttpLoaderFactory(http:HttpClient)
 {
   return new TranslateHttpLoader(http);
@@ -83,6 +85,7 @@ export function HttpLoaderFactory(http:HttpClient)
     MatMenuModule,
     MatDialogModule,
     MatPaginatorModule,
+    MatProgressBarModule,
     TranslateModule.forRoot({
       loader:{
         provide:TranslateLoader,

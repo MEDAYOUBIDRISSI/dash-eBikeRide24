@@ -9,7 +9,7 @@ import { MarqueServiceService } from '../../../features/marque/marque-service.se
 import { CategorieServiceService } from '../../../features/categorie/categorie-service.service'
 import { UniverServiceService } from '../../../features/univer/univer-service.service'
 import { Router } from '@angular/router';
-
+ 
 @Component({
   selector: 'app-ajouter-bicyclette',
   templateUrl: './ajouter-bicyclette.component.html',

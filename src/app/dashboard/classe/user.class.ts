@@ -13,4 +13,5 @@ export interface User
     salaire?:number;
     dateEmbouche?:Date;
     etat?:boolean;
+    imgProfile?:string;
 }

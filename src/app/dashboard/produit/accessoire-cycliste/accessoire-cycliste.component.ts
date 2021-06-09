@@ -4,6 +4,8 @@ import { AccessoireCyclisteServiceService } from './accessoire-cycliste-service.
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PageEvent} from '@angular/material/paginator';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { SupprimerProduitComponent} from '../supprimer-produit/supprimer-produit.component'
 
 @Component({
   selector: 'app-accessoire-cycliste',
@@ -13,10 +15,11 @@ import {PageEvent} from '@angular/material/paginator';
 export class AccessoireCyclisteComponent implements OnInit {
 
   Produits: Produit[]=[];
+  Produit: Produit={}
   private pageSlice=this.Produits
 
   constructor(private AccessoireCyclisteService: AccessoireCyclisteServiceService,
-    private router: Router) { } 
+    private router: Router,public dialog: MatDialog) { } 
 
   ngOnInit(): void {
     this.getProduits();
@@ -52,4 +55,20 @@ export class AccessoireCyclisteComponent implements OnInit {
       }
       this.pageSlice=this.Produits.slice(startIndex,endIndex);
   } 
+
+  DeleteByDialog(_id: number): void {
+    this.AccessoireCyclisteService.getAccessoireCyclisteById(_id).subscribe(data => {
+      this.Produit = data.product;
+      const dialogRef = this.dialog.open(SupprimerProduitComponent, {
+        width: '400px',
+        data: this.Produit
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if(result)
+        {
+          this.deleteProduit(_id)
+        }
+      });
+    }, error => console.log(error));
+  }
 }

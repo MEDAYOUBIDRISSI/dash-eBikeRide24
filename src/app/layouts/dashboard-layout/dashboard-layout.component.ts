@@ -16,5 +16,6 @@ export class DashboardLayoutComponent implements OnInit {
       this.router.navigate(['auth/login']);
     }
   }
+  //Designe
 
 }

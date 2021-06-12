@@ -14,4 +14,5 @@ export class MasterServiceService {
   getUserAuth(_id: any): Observable<User>{
     return this.httpClient.get<User>(`${this.baseURL}/user/auth/${_id}`);
   }
+  //set Information in html
 }

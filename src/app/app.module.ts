@@ -38,8 +38,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 import { CookieService } from 'ngx-cookie-service';
 import { LogoutComponent } from './layouts/masterPage/logout/logout.component';
+import {MatTableModule} from '@angular/material/table';
 
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
@@ -86,6 +88,8 @@ export function HttpLoaderFactory(http:HttpClient)
     MatDialogModule,
     MatPaginatorModule,
     MatProgressBarModule,
+    MatTableModule,
+    MatSortModule,
     TranslateModule.forRoot({
       loader:{
         provide:TranslateLoader,

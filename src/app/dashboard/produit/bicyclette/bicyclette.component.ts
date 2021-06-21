@@ -17,6 +17,7 @@ export class BicycletteComponent implements OnInit {
   Produits: Produit[]=[];
   Produit: Produit={}
   private pageSlice=this.Produits
+  SearchThings:any
 
   constructor(private BicyletteService: BicyletteServiceService,
     private router: Router,public dialog: MatDialog) { } 
@@ -31,6 +32,11 @@ export class BicycletteComponent implements OnInit {
       this.pageSlice=this.Produits.slice(0,10);
       console.log(this.Produits)
     }); 
+  }
+
+  getSilcePage()
+  {
+    this.pageSlice=this.Produits.slice(0,10);
   }
 
   deleteProduit(_id: number){
@@ -71,5 +77,35 @@ export class BicycletteComponent implements OnInit {
       });
     }, error => console.log(error));
   }
+
+  
+  Search()
+  {
+    if(this.SearchThings == "")
+    {
+      this.ngOnInit()
+    }
+    else{
+      this.Produits=this.Produits.filter(res=>{
+        if (res.libelle != "") {
+           return res.libelle.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase()); 
+          } 
+          else 
+          { 
+            return []; 
+          }
+      })
+      this.getSilcePage()
+    }
+  }
+
+  key:string='id'
+  reverse:boolean=false
+  Sort(key:string)
+  {
+    this.key=key
+    this.reverse=!this.reverse
+  }
+
   
 }

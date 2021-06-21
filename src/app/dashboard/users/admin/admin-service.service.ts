@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../../classe/user.class';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 export class AdminServiceService {
 

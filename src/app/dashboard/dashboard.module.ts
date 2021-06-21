@@ -8,7 +8,6 @@ import { MarqueComponent } from './features/marque/marque.component';
 import { FeaturePageComponent } from './features/feature-page/feature-page.component';
 import { AjouterMarqueComponent } from './features/marque/ajouter-marque/ajouter-marque.component';
 import { ModifierMarqueComponent } from './features/marque/modifier-marque/modifier-marque.component';
-import {MatPaginatorModule} from '@angular/material/paginator';
 
 import {FormsModule} from '@angular/forms';
 import { CategorieComponent } from './features/categorie/categorie.component';
@@ -54,8 +53,7 @@ import { SupprimerProduitComponent } from './produit/supprimer-produit/supprimer
     CommonModule,
     DashboardRoutingModule,
     TranslateModule,
-    FormsModule,
-    MatPaginatorModule
+    FormsModule
   ]
 })
 export class DashboardModule { }

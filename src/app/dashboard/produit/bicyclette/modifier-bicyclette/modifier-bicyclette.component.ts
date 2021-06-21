@@ -9,7 +9,7 @@ import { Image } from "../../../classe/image.class";
 import { MarqueServiceService } from '../../../features/marque/marque-service.service'
 import { CategorieServiceService } from '../../../features/categorie/categorie-service.service'
 import { UniverServiceService } from '../../../features/univer/univer-service.service'
-
+ 
 @Component({
   selector: 'app-modifier-bicyclette',
   templateUrl: './modifier-bicyclette.component.html',

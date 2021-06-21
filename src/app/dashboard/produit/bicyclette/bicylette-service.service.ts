@@ -12,7 +12,7 @@ export class BicyletteServiceService {
   private baseURL = "http://localhost:5000";
 
   constructor(private httpClient: HttpClient) { }
-
+ 
   getBicyclettesList(): Observable<Produit[]>{
     return this.httpClient.get<Produit[]>(`${this.baseURL}/product/bicyclette/all`);
   }

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./ajouter-admin.component.css']
 })
 export class AjouterAdminComponent implements OnInit {
-
+ 
   public User: User={nom:"",prenom:"",typeUser:"Admin",etat:false}
 
   constructor(private AdminService: AdminServiceService,

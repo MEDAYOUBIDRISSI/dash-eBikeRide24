@@ -3,14 +3,14 @@
         <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
             <i class="fa fa-fw" aria-hidden="true" title="Copy to use podcast"></i>{{ 'CLIENTLIST' | translate }}
         </div>
-        <div class="btn-actions-pane-right">
+        <!-- <div class="btn-actions-pane-right">
             <button type="button" routerLink="/dash/feature-add-Categorie" class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
                 {{ 'ADD' | translate }}
                 <span class="pl-2 align-middle opacity-7">
                     <i class="fa fa-fw" aria-hidden="true" title="Copy to use plus"></i>
                 </span>
             </button>
-        </div>
+        </div> -->
     </div>
     <div class="card-body">
         <table class="mb-0 table table-striped">
@@ -53,13 +53,13 @@
                     <td class="text-center">{{ user.email }}</td>
                     <td class="text-center">{{ user.tel }}</td>
                     <td class="text-center">
-                        <div *ngIf="user.etat == true" class="mb-2 mr-2 badge badge-pill badge-success">Working</div>
+                        <div *ngIf="user.etat == true" class="mb-2 mr-2 badge badge-pill badge-success">Allow</div>
                         <div *ngIf="user.etat == false" class="mb-2 mr-2 badge badge-pill badge-danger">Suspended</div>
                     </td>
                     <td class="text-center">
                         <div role="group" class="btn-group-sm btn-group text-white">
-                            <a  class="btn-shadow btn btn-info">{{ 'Detail' | translate }}</a>
-                            <a  class="btn-shadow btn btn-danger">{{ 'Status change' | translate }}</a>
+                            <a (click) = "editeClient(user._id)" class="btn-shadow btn btn-info">{{ 'Detail' | translate }}</a>
+                            <a (click) = "ChangeByDialog(user._id)" class="btn-shadow btn btn-danger">{{ 'Status change' | translate }}</a>
                         </div>
                     </td>
                 </tr>

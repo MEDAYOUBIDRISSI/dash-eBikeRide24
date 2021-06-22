@@ -24,6 +24,7 @@ import { ModifierAdminComponent } from './users/admin/modifier-admin/modifier-ad
 import { ModifierEditeurComponent } from './users/editeur/modifier-editeur/modifier-editeur.component'
 import { ModifierLivreurComponent } from './users/livreur/modifier-livreur/modifier-livreur.component'
 import { ModifierSupportUserComponent } from './users/support-user/modifier-support-user/modifier-support-user.component'
+import { ClientDetailComponent } from './users/client/client-detail/client-detail.component'
 
 const routes: Routes = [
   {
@@ -264,6 +265,16 @@ const routes: Routes = [
       {
         path:'dash',
         component:ModifierSupportUserComponent
+      }
+    ] 
+  },
+  {
+    path:'users/clientDetail/:_id',
+    component:ClientDetailComponent,
+    children:[
+      {
+        path:'dash',
+        component:ClientDetailComponent
       }
     ] 
   }

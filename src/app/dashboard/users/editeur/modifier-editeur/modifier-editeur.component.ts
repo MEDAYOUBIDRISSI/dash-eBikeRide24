@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EditeurServiceService } from '../editeur-service.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from '../../../classe/user.class';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-modifier-editeur',

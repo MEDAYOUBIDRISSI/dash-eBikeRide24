@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../classe/user.class'
 import { ClientServiceService } from './client-service.service'
 import { Router } from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PageEvent} from '@angular/material/paginator'; 
+import { ClientStatusComponent} from './client-status/client-status.component'
 
 @Component({
   selector: 'app-client',
@@ -13,10 +15,11 @@ import {PageEvent} from '@angular/material/paginator';
 export class ClientComponent implements OnInit {
 
   Users: User[]=[];
+  User:User={nom:"",prenom:""}
   private pageSlice=this.Users
 
   constructor(private ClientService: ClientServiceService,
-    private router: Router) { } 
+    private router: Router,public dialog: MatDialog) { } 
 
     ngOnInit(): void {
     this.getUsers();
@@ -30,9 +33,11 @@ export class ClientComponent implements OnInit {
     }); 
   }
 
-  deleteUsers(_id: number){
-    this.ClientService.deleteClient(_id).subscribe( data => {
-      console.log(data);
+  changeStatusOfUser(_id: number){
+    this.User.etat=!this.User.etat
+    console.log(this.User.etat)
+    console.log(!this.User.etat)
+    this.ClientService.updateClient(_id, this.User).subscribe( data =>{
       this.getUsers();
     }, error => console.log(error));
   }
@@ -52,5 +57,26 @@ export class ClientComponent implements OnInit {
       }
       this.pageSlice=this.Users.slice(startIndex,endIndex);
   } 
+
+  editeClient(_id:number)
+  {
+    this.router.navigate(['dash/users/clientDetail', _id]);
+  }
+
+  ChangeByDialog(_id: number): void {
+    this.ClientService.getClientById(_id).subscribe(data => {
+      this.User = data.User;
+      const dialogRef = this.dialog.open(ClientStatusComponent, {
+        width: '400px',
+        data: this.User
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if(result)
+        {
+          this.changeStatusOfUser(_id)
+        }
+      });
+    }, error => console.log(error));
+  }
 
 }

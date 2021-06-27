@@ -25,6 +25,7 @@ import { ModifierEditeurComponent } from './users/editeur/modifier-editeur/modif
 import { ModifierLivreurComponent } from './users/livreur/modifier-livreur/modifier-livreur.component'
 import { ModifierSupportUserComponent } from './users/support-user/modifier-support-user/modifier-support-user.component'
 import { ClientDetailComponent } from './users/client/client-detail/client-detail.component'
+import { InboxComponent } from './inbox/inbox.component'
 
 const routes: Routes = [
   {
@@ -275,6 +276,16 @@ const routes: Routes = [
       {
         path:'dash',
         component:ClientDetailComponent
+      }
+    ] 
+  },
+  {
+    path:'inbox',
+    component:InboxComponent,
+    children:[
+      {
+        path:'dash',
+        component:InboxComponent
       }
     ] 
   }

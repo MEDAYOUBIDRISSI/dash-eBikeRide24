@@ -26,6 +26,7 @@ import { ModifierLivreurComponent } from './users/livreur/modifier-livreur/modif
 import { ModifierSupportUserComponent } from './users/support-user/modifier-support-user/modifier-support-user.component'
 import { ClientDetailComponent } from './users/client/client-detail/client-detail.component'
 import { InboxComponent } from './inbox/inbox.component'
+import { ChatComponent } from './inbox/chat/chat.component'
 
 const routes: Routes = [
   {
@@ -286,6 +287,16 @@ const routes: Routes = [
       {
         path:'dash',
         component:InboxComponent
+      }
+    ] 
+  },
+  {
+    path:'chat',
+    component:ChatComponent,
+    children:[
+      {
+        path:'dash',
+        component:ChatComponent
       }
     ] 
   }

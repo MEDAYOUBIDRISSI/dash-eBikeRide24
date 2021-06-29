@@ -19,7 +19,10 @@ export class InboxComponent implements OnInit {
   chats: Chat[]=[];
   chats_display: Chat[]=[];
   private pageSlice=this.chats
-  distinctThings:any
+  distinctChatsToUser:any
+  distinctChatsFromUser:any
+  distinctChats_display:any
+  distinctChats:any
   public User: User={nom:'',prenom:''}
   _id: any;
 
@@ -35,7 +38,8 @@ export class InboxComponent implements OnInit {
   getChatForInboxs(){
     this.InboxService.getChatForInbox(this._id).subscribe(data => {
       this.chats = data.chat;
-      this.test()
+      this.getInboxUserValue()
+      this.displayDistinctChat()
     }); 
   }
 
@@ -44,11 +48,11 @@ export class InboxComponent implements OnInit {
       console.log(event)
       const startIndex = event.pageIndex * event.pageSize;
       let endIndex = startIndex + event.pageSize;
-      if(endIndex > this.distinctThings.length)
+      if(endIndex > this.distinctChats.length)
       {
-          endIndex = this.distinctThings.length;
+          endIndex = this.distinctChats.length;
       }
-      this.pageSlice=this.distinctThings.slice(startIndex,endIndex);
+      this.pageSlice=this.distinctChats.slice(startIndex,endIndex);
   } 
 
   getUserAuth(){
@@ -57,11 +61,28 @@ export class InboxComponent implements OnInit {
     }); 
   }
 
-  test(){
-      this.distinctThings = this.chats.filter(
-      (thing, i, arr) => arr.findIndex(t => t.toUser._id === thing.toUser._id) === i
-    );
-    this.pageSlice=this.distinctThings.slice(0,10);
+  getInboxUserValue()
+  {
+    for (var i = 0; i < this.chats.length; i++) {
+      if(this.chats[i].fromUser._id == this.User._id)
+      {
+        this.chats[i].inboxUser=this.chats[i].toUser
+      }
+      else if(this.chats[i].fromUser._id != this.User._id)
+      {
+        this.chats[i].inboxUser=this.chats[i].fromUser
+      }
+    }
+
+   // console.log(this.chats)
+  }
+
+  displayDistinctChat(){
+      this.distinctChats = this.chats.filter(
+      (thing, i, arr) => arr.findIndex(t => t.inboxUser._id === thing.inboxUser._id) === i);
+      
+    //console.log(this.distinctChats)
+    this.pageSlice=this.distinctChats.slice(0,10);
   }
 
 

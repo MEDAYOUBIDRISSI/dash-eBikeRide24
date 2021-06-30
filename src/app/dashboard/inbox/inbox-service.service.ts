@@ -22,6 +22,10 @@ export class InboxServiceService {
     return this.httpClient.get<Chat>(`${this.baseURL}/chat/inbox/${_id}`);
   }
 
+  getChatFromUserToUser(_idFromUser: any,_idToUser:any): Observable<Chat>{
+    return this.httpClient.get<Chat>(`${this.baseURL}/chat/inbox/${_idFromUser}/${_idToUser}`);
+  }
+
   updateChat(_id: number, Chat: Chat): Observable<Object>{
     return this.httpClient.put(`${this.baseURL}/chat/update?chatID=${_id}`, Chat);
   }

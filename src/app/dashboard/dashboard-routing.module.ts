@@ -291,7 +291,7 @@ const routes: Routes = [
     ] 
   },
   {
-    path:'chat',
+    path:'chat/:_id',
     component:ChatComponent,
     children:[
       {

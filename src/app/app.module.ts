@@ -42,7 +42,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { CookieService } from 'ngx-cookie-service';
 import { LogoutComponent } from './layouts/masterPage/logout/logout.component';
 import {MatTableModule} from '@angular/material/table';
-
+import { CommonModule } from "@angular/common";
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 export function HttpLoaderFactory(http:HttpClient)
@@ -90,6 +90,7 @@ export function HttpLoaderFactory(http:HttpClient)
     MatProgressBarModule,
     MatTableModule,
     MatSortModule,
+    CommonModule,
     TranslateModule.forRoot({
       loader:{
         provide:TranslateLoader,

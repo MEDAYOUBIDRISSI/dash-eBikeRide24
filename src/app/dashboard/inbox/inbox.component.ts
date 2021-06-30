@@ -6,8 +6,6 @@ import { Chat } from '../classe/chat.class'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PageEvent} from '@angular/material/paginator';
-import { of } from 'rxjs';
-import { distinct } from 'rxjs/operators';
 
 @Component({
   selector: 'app-inbox',
@@ -19,8 +17,6 @@ export class InboxComponent implements OnInit {
   chats: Chat[]=[];
   chats_display: Chat[]=[];
   private pageSlice=this.chats
-  distinctChatsToUser:any
-  distinctChatsFromUser:any
   distinctChats_display:any
   distinctChats:any
   public User: User={nom:'',prenom:''}
@@ -39,7 +35,7 @@ export class InboxComponent implements OnInit {
     this.InboxService.getChatForInbox(this._id).subscribe(data => {
       this.chats = data.chat;
       this.getInboxUserValue()
-      this.displayDistinctChat()
+      
     }); 
   }
 
@@ -74,16 +70,20 @@ export class InboxComponent implements OnInit {
       }
     }
 
-   // console.log(this.chats)
+    this.displayDistinctChat()
   }
 
   displayDistinctChat(){
       this.distinctChats = this.chats.filter(
       (thing, i, arr) => arr.findIndex(t => t.inboxUser._id === thing.inboxUser._id) === i);
+      this.pageSlice=this.distinctChats.slice(0,10);
       
-    //console.log(this.distinctChats)
-    this.pageSlice=this.distinctChats.slice(0,10);
   }
+
+  goToChat(_id: number){ 
+    this.router.navigate(['dash/chat', _id]);
+  }
+
 
 
 }

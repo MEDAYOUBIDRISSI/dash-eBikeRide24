@@ -31,7 +31,7 @@
                                 <tbody>
                                     <tr *ngFor = "let user of pageSlice">
                                         <td>
-                                            <div class="widget-content p-0" *ngIf="user.toUser._id != User._id">
+                                            <div class="widget-content p-0" *ngIf="user.toUser._id != User._id" (click) = "goToChat(user.toUser._id)">
                                                 <div class="widget-content-wrapper">
                                                     <div class="widget-content-left mr-3">
                                                         <img width="42" class="rounded-circle" [src]="user.toUser.imgProfile" alt="">
@@ -42,7 +42,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="widget-content p-0" *ngIf="user.toUser._id == User._id">
+                                            <div class="widget-content p-0" *ngIf="user.toUser._id == User._id" (click) = "goToChat(user.fromUser._id)">
                                                 <div class="widget-content-wrapper">
                                                     <div class="widget-content-left mr-3">
                                                         <img width="42" class="rounded-circle" [src]="user.fromUser.imgProfile" alt="">

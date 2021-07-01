@@ -90,7 +90,6 @@ export function HttpLoaderFactory(http:HttpClient)
     MatProgressBarModule,
     MatTableModule,
     MatSortModule,
-    CommonModule,
     TranslateModule.forRoot({
       loader:{
         provide:TranslateLoader,

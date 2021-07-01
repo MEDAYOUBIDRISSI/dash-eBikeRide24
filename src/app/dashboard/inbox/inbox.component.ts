@@ -54,6 +54,7 @@ export class InboxComponent implements OnInit {
   getUserAuth(){
     this.MasterService.getUserAuth(this._id).subscribe(data => {
       this.User = data.User;
+      console.log(this.User)
     }); 
   }
 

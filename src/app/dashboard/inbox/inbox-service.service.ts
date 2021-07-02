@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { Chat } from '../classe/chat.class';
+import { User } from '../classe/user.class';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,9 @@ export class InboxServiceService {
 
   deleteChat(_id: number): Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/chat/delete?chatID=${_id}`);
+  }
+
+  getUsersList(): Observable<User[]>{
+    return this.httpClient.get<User[]>(`${this.baseURL}/user/all`);
   }
 }

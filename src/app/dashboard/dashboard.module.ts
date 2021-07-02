@@ -50,15 +50,18 @@ import { ClientDetailComponent } from './users/client/client-detail/client-detai
 import { ClientStatusComponent } from './users/client/client-status/client-status.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { ChatComponent } from './inbox/chat/chat.component';
+import { NewChatComponent } from './inbox/new-chat/new-chat.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [SupportComponent, MarqueComponent, FeaturePageComponent, AjouterMarqueComponent, ModifierMarqueComponent, CategorieComponent, UniverComponent, AjouterCategorieComponent, ModifierCategorieComponent, AjouterUniverComponent, ModifierUniverComponent, ProduitComponent, BicycletteComponent, AccessoireCyclisteComponent, AccessoireVeloComponent, AjouterBicycletteComponent, ModifierBicycletteComponent, AjouterAccessoireCyclisteComponent, ModifierAccessoireCyclisteComponent, AjouterAccessoireVeloComponent, ModifierAccessoireVeloComponent, AdminComponent, EditeurComponent, LivreurComponent, UserPageComponent, ClientComponent, SupportUserComponent, SupprimerAdminComponent, AjouterAdminComponent, AjouterEditeurComponent, AjouterLivreurComponent, AjouterSupportUserComponent, ModifierAdminComponent, ModifierEditeurComponent, ModifierLivreurComponent, ModifierSupportUserComponent, SupprimerEditeurComponent, SupprimerSupportUserComponent, SupprimerLivreurComponent, SupprimerProduitComponent, ClientDetailComponent, ClientStatusComponent, InboxComponent, ChatComponent],
+  declarations: [SupportComponent, MarqueComponent, FeaturePageComponent, AjouterMarqueComponent, ModifierMarqueComponent, CategorieComponent, UniverComponent, AjouterCategorieComponent, ModifierCategorieComponent, AjouterUniverComponent, ModifierUniverComponent, ProduitComponent, BicycletteComponent, AccessoireCyclisteComponent, AccessoireVeloComponent, AjouterBicycletteComponent, ModifierBicycletteComponent, AjouterAccessoireCyclisteComponent, ModifierAccessoireCyclisteComponent, AjouterAccessoireVeloComponent, ModifierAccessoireVeloComponent, AdminComponent, EditeurComponent, LivreurComponent, UserPageComponent, ClientComponent, SupportUserComponent, SupprimerAdminComponent, AjouterAdminComponent, AjouterEditeurComponent, AjouterLivreurComponent, AjouterSupportUserComponent, ModifierAdminComponent, ModifierEditeurComponent, ModifierLivreurComponent, ModifierSupportUserComponent, SupprimerEditeurComponent, SupprimerSupportUserComponent, SupprimerLivreurComponent, SupprimerProduitComponent, ClientDetailComponent, ClientStatusComponent, InboxComponent, ChatComponent, NewChatComponent],
   imports: [ 
     CommonModule,
     DashboardRoutingModule,
     TranslateModule,
     FormsModule,
+    ReactiveFormsModule,
     MatPaginatorModule
   ]
 })

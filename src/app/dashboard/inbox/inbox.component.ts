@@ -5,7 +5,9 @@ import { User } from '../classe/user.class'
 import { Chat } from '../classe/chat.class'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
 import {PageEvent} from '@angular/material/paginator';
+import { NewChatComponent } from './new-chat/new-chat.component'
 
 @Component({
   selector: 'app-inbox',
@@ -21,9 +23,10 @@ export class InboxComponent implements OnInit {
   distinctChats:any
   public User: User={nom:'',prenom:''}
   _id: any;
+  SearchThings:any
 
   constructor(private InboxService: InboxServiceService,private MasterService: MasterServiceService,
-    private router: Router) { } 
+    private router: Router,public dialog: MatDialog) { } 
 
   ngOnInit(): void {
     this._id = localStorage.getItem('jwt-IDUser')
@@ -54,7 +57,6 @@ export class InboxComponent implements OnInit {
   getUserAuth(){
     this.MasterService.getUserAuth(this._id).subscribe(data => {
       this.User = data.User;
-      console.log(this.User)
     }); 
   }
 
@@ -85,6 +87,46 @@ export class InboxComponent implements OnInit {
     this.router.navigate(['dash/chat', _id]);
   }
 
+  getSilcePage()
+  {
+    this.pageSlice=this.distinctChats.slice(0,10);
+  }
+
+  Search()
+  {
+    if(this.SearchThings == "")
+    {
+      this.displayDistinctChat()
+    }
+    else{
+      this.distinctChats=this.distinctChats.filter(res=>{
+          if (res.toUser.nom != "" && res.fromUser.nom != "") {
+            const fuulnameDirect_To = res.toUser.nom +" "+res.toUser.prenom
+            const fuulnameDirect_From = res.fromUser.nom +" "+res.fromUser.prenom
+            const fuulnameInDirect_To = res.toUser.prenom +" "+res.toUser.nom
+            const fuulnameInDirect_From = res.fromUser.prenom +" "+res.fromUser.nom
+           return fuulnameDirect_To.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())
+           || fuulnameDirect_From.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())
+           || fuulnameInDirect_To.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())
+           || fuulnameInDirect_From.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase()); 
+          } 
+          else 
+          { 
+            return []; 
+          }
+      })
+      this.getSilcePage()
+    }
+  }
+
+
+  writeNewEmailByDialog() {
+    const dialogRef = this.dialog.open(NewChatComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
 
 }

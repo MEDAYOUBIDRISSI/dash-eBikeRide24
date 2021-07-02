@@ -21,7 +21,7 @@
                                         <i class="fa fa-search fa-w-16 "></i>
                                     </div>
                                 </div>
-                                <input placeholder="Search..." type="text" class="form-control">
+                                <input name="SearchThings" [(ngModel)]="SearchThings" (ngModelChange)="Search()" placeholder="Search..." type="text" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -33,8 +33,16 @@
                                         <td>
                                             <div class="widget-content p-0" *ngIf="user.toUser._id != User._id" (click) = "goToChat(user.toUser._id)">
                                                 <div class="widget-content-wrapper">
-                                                    <div class="widget-content-left mr-3">
-                                                        <img width="42" class="rounded-circle" [src]="user.toUser.imgProfile" alt="">
+                                                    <div class="avatar-icon-wrapper">
+                                                        <div *ngIf="user.toUser.typeUser == 'superAdmin'" class="badge badge-success badge-dot badge-dot-lg"></div>
+                                                        <div *ngIf="user.toUser.typeUser == 'Admin'" class="badge badge-danger badge-dot badge-dot-lg"></div>
+                                                        <div *ngIf="user.toUser.typeUser == 'Livreur'" class="badge badge-warning badge-dot badge-dot-lg"></div>
+                                                        <div *ngIf="user.toUser.typeUser == 'Editeur'" class="badge badge-info badge-dot badge-dot-lg"></div>
+                                                        <div *ngIf="user.toUser.typeUser == 'Client'" class="badge badge-primary badge-dot badge-dot-lg"></div>
+                                                        <div *ngIf="user.toUser.typeUser == 'Support-User'" class="badge badge-secondary badge-dot badge-dot-lg"></div>
+                                                        <div class="avatar-icon">
+                                                            <img [src]="user.toUser.imgProfile" alt="">
+                                                        </div>
                                                     </div>
                                                     <div class="widget-content-left">
                                                         <div class="widget-heading">{{ user.toUser.nom}} {{ user.toUser.prenom}}</div>
@@ -44,20 +52,24 @@
                                             </div>
                                             <div class="widget-content p-0" *ngIf="user.toUser._id == User._id" (click) = "goToChat(user.fromUser._id)">
                                                 <div class="widget-content-wrapper">
-                                                    <div class="widget-content-left mr-3">
-                                                        <img width="42" class="rounded-circle" [src]="user.fromUser.imgProfile" alt="">
+                                                    <div class="avatar-icon-wrapper">
+                                                        <div *ngIf="user.fromUser.typeUser == 'superAdmin'" class="badge badge-success badge-dot badge-dot-lg"></div>
+                                                        <div *ngIf="user.fromUser.typeUser == 'Admin'" class="badge badge-danger badge-dot badge-dot-lg"></div>
+                                                        <div *ngIf="user.fromUser.typeUser == 'Livreur'" class="badge badge-warning badge-dot badge-dot-lg"></div>
+                                                        <div *ngIf="user.fromUser.typeUser == 'Editeur'" class="badge badge-info badge-dot badge-dot-lg"></div>
+                                                        <div *ngIf="user.fromUser.typeUser == 'Client'" class="badge badge-primary badge-dot badge-dot-lg"></div>
+                                                        <div *ngIf="user.fromUser.typeUser == 'Support-User'" class="badge badge-secondary badge-dot badge-dot-lg"></div>
+                                                        <div class="avatar-icon">
+                                                            <img [src]="user.fromUser.imgProfile" alt="">
+                                                        </div>
                                                     </div>
                                                     <div class="widget-content-left">
                                                         <div class="widget-heading">{{ user.fromUser.nom}} {{ user.fromUser.prenom}}</div>
                                                         <div class="widget-subheading">
-                                                            <i class="icon ion-android-checkmark-circle"></i>
-                                                        {{user.message}}</div>
+                                                            <i class="icon ion-android-checkmark-circle"></i>{{user.message}}</div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td>
-                                            <i class="fa fa-tags fa-w-20 opacity-4"></i>
                                         </td>
                                         <td class="text-right">
                                             <i class="fa fa-calendar-alt opacity-4 mr-2"></i>
@@ -82,61 +94,7 @@
             <div class="app-inner-layout__sidebar card">
                 <ul class="nav flex-column">
                     <li class="pt-4 pl-3 pr-3 pb-3 nav-item">
-                        <button class="btn-pill btn-shadow btn btn-primary btn-block">Write New Email</button>
-                    </li>
-                    <li class="nav-item-divider nav-item"></li>
-                    <li class="nav-item-header nav-item">Online Friends</li>
-                    <li class="text-center p-2 nav-item">
-                        <div>
-                            <div class="avatar-icon-wrapper">
-                                <div class="badge badge-primary badge-dot badge-dot-lg"></div>
-                                <div class="avatar-icon">
-                                    <img src="assets/images/avatars/1.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="avatar-icon-wrapper">
-                                <div class="badge badge-focus badge-dot badge-dot-lg"></div>
-                                <div class="avatar-icon">
-                                    <img src="assets/images/avatars/2.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="avatar-icon-wrapper">
-                                <div class="badge badge-warning badge-dot badge-dot-lg"></div>
-                                <div class="avatar-icon">
-                                    <img src="assets/images/avatars/3.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="avatar-icon-wrapper">
-                                <div class="badge badge-danger badge-dot badge-dot-lg"></div>
-                                <div class="avatar-icon">
-                                    <img src="assets/images/avatars/4.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="avatar-icon-wrapper">
-                                <div class="badge badge-info badge-dot badge-dot-lg"></div>
-                                <div class="avatar-icon">
-                                    <img src="assets/images/avatars/5.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="avatar-icon-wrapper">
-                                <div class="badge badge-success badge-dot badge-dot-lg"></div>
-                                <div class="avatar-icon">
-                                    <img src="assets/images/avatars/6.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="avatar-icon-wrapper">
-                                <div class="badge badge-secondary badge-dot badge-dot-lg"></div>
-                                <div class="avatar-icon">
-                                    <img src="assets/images/avatars/7.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="avatar-icon-wrapper">
-                                <div class="badge badge-warning badge-dot badge-dot-lg"></div>
-                                <div class="avatar-icon">
-                                    <img src="assets/images/avatars/8.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
+                        <button (click)="writeNewEmailByDialog()" class="btn-pill btn-shadow btn btn-primary btn-block">Write New Email</button>
                     </li>
                     <li class="nav-item-divider nav-item"></li>
                     <li class="nav-item-header nav-item">Tags
@@ -145,20 +103,28 @@
                     <li class="nav-item">
                         <button type="button" tabindex="0" class="d-flex align-items-center dropdown-item">
                             <div class="badge ml-0 mr-3 badge-dot badge-dot-xl badge-success">Dark</div>
-                            Important
+                            Supper Admins
                         </button>
                         <button type="button" tabindex="0" class="d-flex align-items-center dropdown-item">
                             <div class="badge ml-0 mr-3 badge-dot badge-dot-xl badge-danger">Dark</div>
-                            Favourites
+                            Admins
+                        </button>
+                        <button type="button" tabindex="0" class="d-flex align-items-center dropdown-item">
+                            <div class="badge ml-0 mr-3 badge-dot badge-dot-xl badge-secondary">Dark</div>
+                            Support Users
+                        </button>
+                        <button type="button" tabindex="0" class="d-flex align-items-center dropdown-item">
+                            <div class="badge ml-0 mr-3 badge-dot badge-dot-xl badge-info">Dark</div>
+                            Editeurs
                         </button>
                         <button type="button" tabindex="0" class="d-flex align-items-center dropdown-item">
                             <div class="badge ml-0 mr-3 badge-dot badge-dot-xl badge-warning">Dark</div>
-                            Actions
+                            Livreurs
                         </button>
                         <div tabindex="-1" class="dropdown-divider"></div>
                         <button type="button" tabindex="0" class="d-flex align-items-center dropdown-item">
                             <div class="badge ml-0 mr-3 badge-dot badge-dot-xl badge-primary">Dark</div>
-                            Other Tags
+                            Clients
                         </button>
                     </li>
                 </ul>

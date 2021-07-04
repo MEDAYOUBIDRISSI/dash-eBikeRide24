@@ -5,6 +5,9 @@ import { User } from '../../classe/user.class'
 import { Chat } from '../../classe/chat.class'
 import { Router } from '@angular/router'
 import {MatSnackBar} from '@angular/material/snack-bar'
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-chat',
@@ -15,15 +18,27 @@ export class NewChatComponent implements OnInit {
 
   Users:User[]=[]
   User: User={nom:'',prenom:''}
+  UserSelected: User={nom:'',prenom:''}
   _id: any;
+  stateCtrl = new FormControl();
+  filteredStates: Observable<User[]>;
+  selectedValue: string="";
+  selected2:any
 
   constructor(private InboxService: InboxServiceService,private MasterService: MasterServiceService,
-    private router: Router) { } 
+    private router: Router) { 
+      this.getUsers()
+      this.filteredStates = this.stateCtrl.valueChanges
+    .pipe(
+      startWith(''),
+      map(user => user ? this._filterStates(user) : this.Users.slice())
+    );
+    } 
 
   ngOnInit(): void {
     this._id = localStorage.getItem('jwt-IDUser')
     this.getUserAuth()
-    this.getUsers()
+   
   } 
 
   getUserAuth(){
@@ -37,8 +52,18 @@ export class NewChatComponent implements OnInit {
       this.Users = data.Users;
       console.log(this.Users)
     }); 
+    // this.getFlterPip()
   }
 
+  private _filterStates(value: string): User[] {
+    const filterValue = value.toLowerCase();
 
+    return this.Users.filter(user => user.nom.toLowerCase().includes(filterValue));
+  }
+
+  getUserSelected(user:any){
+    this.UserSelected=user
+    console.log(this.UserSelected);
+  }
 
 } 

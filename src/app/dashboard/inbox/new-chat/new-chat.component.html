@@ -1,0 +1,20 @@
+<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Users</mat-label>
+      <input matInput
+             aria-label="State"
+             [matAutocomplete]="auto"
+             [formControl]="stateCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let user of filteredStates | async" [value]="user.nom +' '+ user.prenom" (onSelectionChange)="getUserSelected(user)">
+          <img class="example-option-img" aria-hidden [src]="user?.imgProfile" height="25">
+          <span>{{user?.nom}} {{user?.prenom}}</span> |
+          <small>Role: {{user?.typeUser}}</small>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Message</mat-label>
+        <textarea matInput></textarea>
+    </mat-form-field>
+</form>

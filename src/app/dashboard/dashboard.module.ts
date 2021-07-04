@@ -52,6 +52,7 @@ import { InboxComponent } from './inbox/inbox.component';
 import { ChatComponent } from './inbox/chat/chat.component';
 import { NewChatComponent } from './inbox/new-chat/new-chat.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TranslateModule,
     FormsModule,
     ReactiveFormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatAutocompleteModule
   ]
 })
 export class DashboardModule { }

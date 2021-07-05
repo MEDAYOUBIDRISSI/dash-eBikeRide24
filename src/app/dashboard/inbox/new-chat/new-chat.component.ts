@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InboxServiceService } from '../inbox-service.service'
 import { MasterServiceService } from '../../../layouts/masterPage/nave-bare/master-service.service'
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { User } from '../../classe/user.class'
 import { Chat } from '../../classe/chat.class'
 import { Router } from '@angular/router'
@@ -19,6 +20,7 @@ export class NewChatComponent implements OnInit {
   Users:User[]=[]
   User: User={nom:'',prenom:''}
   UserSelected: User={nom:'',prenom:''}
+  newChat:Chat={}
   _id: any;
   stateCtrl = new FormControl();
   filteredStates: Observable<User[]>;
@@ -26,7 +28,7 @@ export class NewChatComponent implements OnInit {
   selected2:any
 
   constructor(private InboxService: InboxServiceService,private MasterService: MasterServiceService,
-    private router: Router) { 
+    private router: Router,public dialogRef: MatDialogRef<NewChatComponent>) { 
       this.getUsers()
       this.filteredStates = this.stateCtrl.valueChanges
     .pipe(
@@ -44,6 +46,7 @@ export class NewChatComponent implements OnInit {
   getUserAuth(){
     this.MasterService.getUserAuth(this._id).subscribe(data => {
       this.User = data.User;
+      this.newChat.fromUser=this.User
     }); 
   }
 
@@ -62,8 +65,21 @@ export class NewChatComponent implements OnInit {
   }
 
   getUserSelected(user:any){
-    this.UserSelected=user
-    console.log(this.UserSelected);
+    this.newChat.toUser=user
   }
 
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  sendMessage()
+  {
+    this.InboxService.createChat(this.newChat).subscribe( data =>{
+      console.log(data);
+      this.dialogRef.close("created")
+    },
+    error => console.log(error));
+
+    console.log(this.newChat)
+  }
 } 

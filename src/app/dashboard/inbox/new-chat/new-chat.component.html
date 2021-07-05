@@ -1,4 +1,4 @@
-<form class="example-form">
+<!-- <form class="example-form">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Users</mat-label>
       <input matInput
@@ -13,8 +13,68 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Message</mat-label>
-        <textarea matInput></textarea>
-    </mat-form-field>
-</form>
+</form> -->
+
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="fa fa-fw" aria-hidden="true" title="Copy to use podcast"></i>
+                </div>
+                <div>{{ 'NEWMESSAGE' | translate }}</div> 
+            </div>
+            <div class="page-title-actions">
+                <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
+                    class="btn-shadow mr-3 btn btn-dark">
+                    <i class="fa fa-star"></i>
+                </button>
+            </div>    
+        </div>
+    </div>        
+    <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+        <li class="nav-item">
+            <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
+                <span>{{ 'New' | translate }}</span>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">{{ 'TO' | translate }}</label>
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <input matInput
+                                               aria-label="State"
+                                               [matAutocomplete]="auto"
+                                               [formControl]="stateCtrl" class="form-control">
+                                        <mat-autocomplete #auto="matAutocomplete">
+                                          <mat-option *ngFor="let user of filteredStates | async" [value]="user.nom +' '+ user.prenom" (onSelectionChange)="getUserSelected(user)">
+                                            <img class="example-option-img" aria-hidden [src]="user?.imgProfile" height="25">
+                                            <span>{{user?.nom}} {{user?.prenom}}</span> |
+                                            <small>Role: {{user?.typeUser}}</small>
+                                          </mat-option>
+                                        </mat-autocomplete>
+                                      </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label for="exampleDescription"class="">{{ 'MESSAGE' | translate }}</label>
+                            <textarea name="message" [(ngModel)] = "newChat.message" id="exampleDescription" placeholder="Message ......." class="form-control"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-block text-right card-footer">
+    <button (click)="onNoClick()" class="btn btn-light btn-lg">Cancel</button>
+    <button (click)="sendMessage()" class="btn btn-info btn-lg">Send</button>
+</div>

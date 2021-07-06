@@ -1,4 +1,4 @@
-<!-- <div class="app-main__inner p-0">
+<div class="app-main__inner p-0">
     <div class="app-inner-layout chat-layout">
         <div class="app-inner-layout__wrapper">
             <div class="app-inner-layout__content card">
@@ -16,97 +16,106 @@
                                 <div class="badge badge-bottom btn-shine badge-success badge-dot badge-dot-lg">
                                 </div>
                                 <div class="avatar-icon avatar-icon-xl rounded">
-                                    <img width="82" src="assets/images/avatars/1.jpg" alt="">
+                                    <img width="82" [src]="toUser.imgProfile" alt="">
                                 </div>
                             </div>
-                            <h4 class="mb-0 text-nowrap">Chad Evans
+                            <h4 class="mb-0 text-nowrap">{{ toUser.nom }} {{ toUser.prenom }}
                                 <div class="opacity-7">Last Seen Online:
                                     <span class="opacity-8">10 minutes ago</span>
                                 </div>
                             </h4>
                         </div>
                     </div>
-                    <div class="chat-wrapper" class="ex1" id="mydiv">
-                        <div *ngFor = "let chat of chats">
-                            <div class="float-right" *ngIf="chat.verification == 'to'">
-                                <div class="chat-box-wrapper chat-box-wrapper-right">
-                                    <div>
-                                        <div class="chat-box">{{chat.message}}.</div>
-                                        <small class="opacity-6">
-                                            <i class="fa fa-calendar-alt mr-1"></i>
-                                            11:01 AM | Yesterday
-                                        </small>
+                    <div class="chat-wrapper" *ngFor = "let chat of chats">
+                        <div class="chat-box-wrapper" *ngIf="chat.fromUser._id == toUser._id">
+                            <div>
+                                <div class="avatar-icon-wrapper mr-1">
+                                    <div class="badge badge-bottom btn-shine badge-success badge-dot badge-dot-lg">
                                     </div>
-                                    <div>
-                                        <div class="avatar-icon-wrapper ml-1">
-                                            <div class="badge badge-bottom btn-shine badge-success badge-dot badge-dot-lg"></div>
-                                            <div class="avatar-icon avatar-icon-lg rounded">
-                                                <img [src]="chat.toUser.imgProfile" alt="">
-                                            </div>
-                                        </div>
+                                    <div class="avatar-icon avatar-icon-lg rounded">
+                                        <img [src]="chat.fromUser.imgProfile" alt="">
                                     </div>
                                 </div>
                             </div>
-                            <div class="float-right" *ngIf="chat.verification == 'from'">
-                                <div class="chat-box-wrapper chat-box-wrapper-right">
-                                    <div>
-                                        <div class="chat-box">{{chat.message}}.</div>
-                                        <small class="opacity-6">
-                                            <i class="fa fa-calendar-alt mr-1"></i>
-                                            11:01 AM | Yesterday
-                                        </small>
+                            <div>
+                                <div class="chat-box">{{chat.message}}.</div>
+                                <small class="opacity-6">
+                                    <i class="fa fa-calendar-alt mr-1"></i>
+                                    11:01 AM | Yesterday
+                                </small>
+                            </div>
+                        </div>
+                        <div class="chat-box-wrapper" *ngIf="chat.toUser._id == toUser._id">
+                            <div>
+                                <div class="avatar-icon-wrapper mr-1">
+                                    <div class="badge badge-bottom btn-shine badge-success badge-dot badge-dot-lg">
                                     </div>
-                                    <div>
-                                        <div class="avatar-icon-wrapper ml-1">
-                                            <div class="badge badge-bottom btn-shine badge-success badge-dot badge-dot-lg"></div>
-                                            <div class="avatar-icon avatar-icon-lg rounded">
-                                                <img [src]="chat.fromUser.imgProfile" alt="">
-                                            </div>
-                                        </div>
+                                    <div class="avatar-icon avatar-icon-lg rounded">
+                                        <img [src]="chat.toUser.imgProfile" alt="">
                                     </div>
                                 </div>
                             </div>
-                            <div class="chat-box-wrapper" *ngIf="chat.verification == 'to'">
+                            <div>
+                                <div class="chat-box">{{chat.message}}.</div>
+                                <small class="opacity-6">
+                                    <i class="fa fa-calendar-alt mr-1"></i>
+                                    11:01 AM | Yesterday
+                                </small>
+                            </div>
+                        </div>
+                        <div class="float-right" *ngIf="chat.fromUser._id == User._id">
+                            <div class="chat-box-wrapper chat-box-wrapper-right">
                                 <div>
-                                    <div class="avatar-icon-wrapper mr-1">
-                                        <div class="badge badge-bottom btn-shine badge-success badge-dot badge-dot-lg"></div>
+                                    <div class="chat-box">{{chat.message}}.</div>
+                                    <small class="opacity-6">
+                                        <i class="fa fa-calendar-alt mr-1"></i>
+                                        11:01 AM | Yesterday
+                                    </small>
+                                </div>
+                                <div>
+                                    <div class="avatar-icon-wrapper ml-1">
+                                        <div class="badge badge-bottom btn-shine badge-success badge-dot badge-dot-lg">
+                                        </div>
                                         <div class="avatar-icon avatar-icon-lg rounded">
                                             <img [src]="chat.fromUser.imgProfile" alt="">
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="float-right" *ngIf="chat.toUser._id == User._id">
+                            <div class="chat-box-wrapper chat-box-wrapper-right">
                                 <div>
-                                    <div class="chat-box">{{chat.message}}</div>
+                                    <div class="chat-box">{{chat.message}}.</div>
                                     <small class="opacity-6">
                                         <i class="fa fa-calendar-alt mr-1"></i>
                                         11:01 AM | Yesterday
                                     </small>
                                 </div>
-                            </div>
-                            <div class="chat-box-wrapper" *ngIf="chat.verification == 'from'">
                                 <div>
-                                    <div class="avatar-icon-wrapper mr-1">
-                                        <div class="badge badge-bottom btn-shine badge-success badge-dot badge-dot-lg"></div>
+                                    <div class="avatar-icon-wrapper ml-1">
+                                        <div class="badge badge-bottom btn-shine badge-success badge-dot badge-dot-lg">
+                                        </div>
                                         <div class="avatar-icon avatar-icon-lg rounded">
                                             <img [src]="chat.toUser.imgProfile" alt="">
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="chat-box">{{chat.message}}</div>
-                                    <small class="opacity-6">
-                                        <i class="fa fa-calendar-alt mr-1"></i>
-                                        11:01 AM | Yesterday
-                                    </small>
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="app-inner-layout__bottom-pane d-block text-center">
-                        <div class="mb-0 position-relative row form-group">
-                            <div class="col-sm-12">
-                                <input name="message" [(ngModel)] = "chat.message" placeholder="Write here and hit enter to send..." type="text" class="form-control-lg form-control">
-                                <butto (click)="saveChat()"  class="btn-wide btn-pill btn btn-success btn-sm">Send</button>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="app-inner-layout__bottom-pane d-block text-center">
+                            <div class="mb-0 position-relative row">
+                                <div class="col-md-10">
+                                    <input name="message" [(ngModel)] = "chat.message" placeholder="Write here and hit enter to send..." type="text" class="form-control-lg form-control">
+                                </div>
+                                <div class="col-md-2">
+                                    <button (click)="saveChat()" class="mb-2 mr-2 btn-icon btn-icon-only btn btn-info">Send</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -114,6 +123,4 @@
             </div>
         </div>
     </div>
-</div> -->
-
-<p>ff</p>
+</div>

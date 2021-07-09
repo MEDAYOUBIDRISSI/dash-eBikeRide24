@@ -13,6 +13,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 export class ChatComponent implements OnInit {
 
   chats: Chat[]=[];
+  chats_display: Chat[]=[];
   chat:Chat={}
   public User: User={nom:'',prenom:''}
   public toUser: User={nom:'',prenom:''}
@@ -39,6 +40,7 @@ export class ChatComponent implements OnInit {
     this.chat.fromUser=this.User
     this.chat.toUser=this.toUser
     this.InboxService.createChat(this.chat).subscribe( data =>{
+      this.chat.message =""
       this.getChats()
     },
     error => console.log(error));
@@ -54,7 +56,6 @@ export class ChatComponent implements OnInit {
   getChats(){
     this.InboxService.getChatFromUserToUser(this.User._id,this.toUser._id).subscribe(data => {
       this.chats = data.chat;
-      console.log(this.chats)
     }); 
   }
 

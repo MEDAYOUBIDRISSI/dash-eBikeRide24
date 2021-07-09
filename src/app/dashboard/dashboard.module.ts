@@ -54,10 +54,17 @@ import { NewChatComponent } from './inbox/new-chat/new-chat.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { TotalsComponent } from './statistics/totals/totals.component';
+import { SellingProductsComponent } from './statistics/selling-products/selling-products.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { TopsellersComponent } from './statistics/topsellers/topsellers.component';
+import { TopSellingProductComponent } from './statistics/top-selling-product/top-selling-product.component';
+import { ProductByTypeComponent } from './statistics/product-by-type/product-by-type.component';
+import { SalesByUniversComponent } from './statistics/sales-by-univers/sales-by-univers.component';
 
 
 @NgModule({
-  declarations: [SupportComponent, MarqueComponent, FeaturePageComponent, AjouterMarqueComponent, ModifierMarqueComponent, CategorieComponent, UniverComponent, AjouterCategorieComponent, ModifierCategorieComponent, AjouterUniverComponent, ModifierUniverComponent, ProduitComponent, BicycletteComponent, AccessoireCyclisteComponent, AccessoireVeloComponent, AjouterBicycletteComponent, ModifierBicycletteComponent, AjouterAccessoireCyclisteComponent, ModifierAccessoireCyclisteComponent, AjouterAccessoireVeloComponent, ModifierAccessoireVeloComponent, AdminComponent, EditeurComponent, LivreurComponent, UserPageComponent, ClientComponent, SupportUserComponent, SupprimerAdminComponent, AjouterAdminComponent, AjouterEditeurComponent, AjouterLivreurComponent, AjouterSupportUserComponent, ModifierAdminComponent, ModifierEditeurComponent, ModifierLivreurComponent, ModifierSupportUserComponent, SupprimerEditeurComponent, SupprimerSupportUserComponent, SupprimerLivreurComponent, SupprimerProduitComponent, ClientDetailComponent, ClientStatusComponent, InboxComponent, ChatComponent, NewChatComponent, StatisticsComponent],
+  declarations: [SupportComponent, MarqueComponent, FeaturePageComponent, AjouterMarqueComponent, ModifierMarqueComponent, CategorieComponent, UniverComponent, AjouterCategorieComponent, ModifierCategorieComponent, AjouterUniverComponent, ModifierUniverComponent, ProduitComponent, BicycletteComponent, AccessoireCyclisteComponent, AccessoireVeloComponent, AjouterBicycletteComponent, ModifierBicycletteComponent, AjouterAccessoireCyclisteComponent, ModifierAccessoireCyclisteComponent, AjouterAccessoireVeloComponent, ModifierAccessoireVeloComponent, AdminComponent, EditeurComponent, LivreurComponent, UserPageComponent, ClientComponent, SupportUserComponent, SupprimerAdminComponent, AjouterAdminComponent, AjouterEditeurComponent, AjouterLivreurComponent, AjouterSupportUserComponent, ModifierAdminComponent, ModifierEditeurComponent, ModifierLivreurComponent, ModifierSupportUserComponent, SupprimerEditeurComponent, SupprimerSupportUserComponent, SupprimerLivreurComponent, SupprimerProduitComponent, ClientDetailComponent, ClientStatusComponent, InboxComponent, ChatComponent, NewChatComponent, StatisticsComponent, TotalsComponent, SellingProductsComponent, TopsellersComponent, TopSellingProductComponent, ProductByTypeComponent, SalesByUniversComponent],
   imports: [ 
     CommonModule,
     DashboardRoutingModule,
@@ -65,7 +72,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
     FormsModule,
     ReactiveFormsModule,
     MatPaginatorModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    NgxChartsModule
   ]
 })
 export class DashboardModule { }

@@ -1,1 +1,130 @@
-<p>statistics works!</p>
+<div class="app-main__inner">
+    <div class="app-inner-layout">          
+        <app-totals></app-totals>
+        <div class="row">
+            <div class="col-lg-6 col-xl-4">
+                <app-topsellers></app-topsellers>
+            </div>
+            <div class="col-lg-6 col-xl-4">
+                <app-top-selling-product></app-top-selling-product>
+            </div>
+            <div class="col-lg-12 col-xl-4">
+                <div class="mb-3 card">
+                    <div class="rm-border pb-0 responsive-center card-header">
+                        <div>
+                            <h5 class="menu-header-title text-capitalize">Portfolio Performance</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-xl-12">
+                            <div class="no-shadow rm-border bg-transparent widget-chart text-left card">
+                                <div class="progress-circle-wrapper">
+                                    <div class="circle-progress circle-progress-gradient-lg">
+                                        <small></small>
+                                    </div>
+                                </div>
+                                <div class="widget-chart-content">
+                                    <div class="widget-subheading">Capital Gains</div>
+                                    <div class="widget-numbers text-success"><span>$563</span></div>
+                                    <div class="widget-description text-focus">
+                                        Increased by
+                                        <span class="text-warning pl-1">
+                                            <i class="fa fa-angle-up"></i>
+                                            <span class="pl-1">7.35%</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-12">
+                            <div class="card no-shadow rm-border bg-transparent widget-chart text-left mt-2">
+                                <div class="progress-circle-wrapper">
+                                    <div class="circle-progress circle-progress-gradient-alt-lg">
+                                        <small></small>
+                                    </div>
+                                </div>
+                                <div class="widget-chart-content">
+                                    <div class="widget-subheading">Withdrawals</div>
+                                    <div class="widget-numbers text-danger"><span>$194</span></div>
+                                    <div class="widget-description opacity-8 text-focus">
+                                        Down by
+                                        <span class="text-success pl-1 pr-1">
+                                            <i class="fa fa-angle-down"></i>
+                                            <span class="pl-1">21.8%</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mx-auto mt-3">
+                        <div role="group" class="btn-group-sm btn-group nav">
+                            <a class="btn-shadow pl-3 pr-3 active btn btn-primary" data-toggle="tab" href="#sales-tab-1">Income</a>
+                            <a class="btn-shadow pr-3 pl-3  btn btn-primary" data-toggle="tab" href="#sales-tab-2">Expenses</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="sales-tab-1">
+                                <div class="text-center">
+                                    <h5 class="menu-header-title">Target Sales</h5>
+                                    <h6 class="menu-header-subtitle opacity-6">Total performance for this month</h6>
+                                </div>
+                                <div id="dashboard-sparklines-primary"></div>
+                            </div>
+                            <div class="tab-pane fade" id="sales-tab-2">
+                                <div class="text-center">
+                                    <h5 class="menu-header-title">Tabbed Content</h5>
+                                    <h6 class="menu-header-subtitle opacity-6">Example of various options built with ArchitectUI</h6>
+                                </div>
+                                <div
+                                    class="card-hover-shadow-2x widget-chart widget-chart2 bg-premium-dark text-left mt-3 card">
+                                    <div class="widget-chart-content text-white">
+                                        <div class="widget-chart-flex">
+                                            <div class="widget-title">Sales</div>
+                                            <div class="widget-subtitle opacity-7">Monthly Goals</div>
+                                        </div>
+                                        <div class="widget-chart-flex">
+                                            <div class="widget-numbers text-success">
+                                                <small>$</small>
+                                                <span>976</span>
+                                                <small class="opacity-8 pl-2">
+                                                    <i class="fa fa-angle-up"></i>
+                                                </small>
+                                            </div>
+                                            <div class="widget-description ml-auto opacity-7">
+                                                <i class="fa fa-angle-up"></i>
+                                                <span class="pl-1">175%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <button class="btn-pill btn-shadow btn-wide fsize-1 btn btn-success btn-lg">
+                                        <span class="mr-2 opacity-7">
+                                            <i class="icon icon-anim-pulse ion-ios-analytics-outline"></i>
+                                        </span>
+                                        <span class="mr-1">View Complete Report</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xl-6">
+                <app-product-by-type></app-product-by-type>
+            </div>
+            <div class="col-lg-6 col-xl-6">
+                <app-selling-products></app-selling-products>
+            </div>
+            <div class="col-lg-6 col-xl-4">
+                
+            </div>
+        </div>
+        <app-sales-by-univers></app-sales-by-univers>
+        
+        
+        
+    </div>
+</div>

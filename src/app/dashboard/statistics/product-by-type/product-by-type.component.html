@@ -1,0 +1,38 @@
+<div class="card-shadow-primary card-border mb-3 card">
+  <div class="dropdown-menu-header">
+      <div class="dropdown-menu-header-inner bg-primary">
+          <div class="menu-header-image opacity-4" style="background-image: url('assets/images/dropdown-header/abstract2.jpg');"></div>
+          <div class="menu-header-content">
+              <h5 class="menu-header-title text-capitalize mb-0 fsize-3">Top Sellers</h5>
+              <h6 class="menu-header-subtitle mb-3">Yet another Example of Card Boxes</h6>
+              <div role="group" class="mb-0 btn-group">
+                  <p>...</p>
+              </div>
+          </div>
+      </div>
+  </div>
+  <ul class="list-group list-group-flush">
+      <li class="p-0 list-group-item">
+          <div class="row">
+              <div class="center-elem col-md-12">
+                  <div class="center-elem w-100"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                      <ngx-charts-pie-chart
+                        [view]="view"
+                        [scheme]="colorScheme"
+                        [results]="NoteResult"
+                        [gradient]="gradient"
+                        [legend]="showLegend"
+                        [legendPosition]="legendPosition"
+                        [labels]="showLabels"
+                        [doughnut]="isDoughnut"
+                        (select)="onSelect($event)"
+                        (activate)="onActivate($event)"
+                        (deactivate)="onDeactivate($event)"
+                        >
+                      </ngx-charts-pie-chart>
+                  </div>
+              </div>
+          </div>
+      </li>
+  </ul>
+</div>

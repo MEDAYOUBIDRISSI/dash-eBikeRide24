@@ -1,0 +1,20 @@
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <div class="tab-content">
+            <div class="tab-pane active fade show" id="tab-content-income" role="tabpanel">
+                <h5 class="menu-header-title">Target Sales</h5>
+                <h6 class="menu-header-subtitle opacity-6">Total performance for this month</h6>
+                <div class="mt-3 row">
+                    <div class="mt-3 row">
+                        <ngx-charts-pie-grid
+                            [view]="view"
+                            [scheme]="colorScheme"
+                            [results]="NoteResult"
+                            (select)="onSelect($event)">
+                        </ngx-charts-pie-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

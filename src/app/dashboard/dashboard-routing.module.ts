@@ -28,6 +28,7 @@ import { ClientDetailComponent } from './users/client/client-detail/client-detai
 import { InboxComponent } from './inbox/inbox.component'
 import { ChatComponent } from './inbox/chat/chat.component'
 import { NewChatComponent } from './inbox/new-chat/new-chat.component'
+import { StatisticsComponent } from './statistics/statistics.component'
 
 const routes: Routes = [
   {
@@ -308,6 +309,16 @@ const routes: Routes = [
       {
         path:'dash',
         component:NewChatComponent
+      }
+    ] 
+  },
+  {
+    path:'staitstic',
+    component:StatisticsComponent,
+    children:[
+      {
+        path:'dash',
+        component:StatisticsComponent
       }
     ] 
   }

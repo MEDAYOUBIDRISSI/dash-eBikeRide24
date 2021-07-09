@@ -1,0 +1,35 @@
+<div class="mb-3 card">
+  <div class="card-header-tab card-header">
+      <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+          <i class="header-icon lnr-cloud-download icon-gradient bg-happy-itmeo"> </i>
+          Technical Support
+      </div>
+  </div>
+  <div class="p-0 card-body">
+      <div class="dropdown-menu-header mt-0 mb-0">
+          <div class="dropdown-menu-header-inner bg-heavy-rain">
+              <div class="menu-header-image opacity-1" style="background-image: url('assets/images/dropdown-header/city3.jpg');"></div>
+              <div class="menu-header-content text-dark">
+                  <h5 class="menu-header-title">Notifications</h5>
+                  <h6 class="menu-header-subtitle">
+                      You have
+                      <b class="text-danger">21 </b>
+                      unread messages
+                  </h6>
+              </div>
+          </div>
+      </div>
+      <div class="tab-content">
+        <ngx-charts-advanced-pie-chart
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="NoteResult"
+            [gradient]="gradient"
+            (select)="onSelect($event)"
+            (activate)="onActivate($event)"
+            (deactivate)="onDeactivate($event)"
+            >
+          </ngx-charts-advanced-pie-chart>
+      </div>
+  </div>
+</div>

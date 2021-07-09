@@ -6,8 +6,6 @@ export interface Chat
     fromUser:User;
     toUser:User;
     inboxUser:User;
-    chatFrom?:User;
-    chatTo?:User;
     verification?:string;
     message:string;
     updatedAt?:any;

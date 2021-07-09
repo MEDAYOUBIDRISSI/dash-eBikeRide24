@@ -45,6 +45,7 @@ import {MatTableModule} from '@angular/material/table';
 import { CommonModule } from "@angular/common";
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 export function HttpLoaderFactory(http:HttpClient)
 {
@@ -92,6 +93,7 @@ export function HttpLoaderFactory(http:HttpClient)
     MatTableModule,
     MatSortModule,
     MatAutocompleteModule,
+    NgxChartsModule,
     TranslateModule.forRoot({
       loader:{
         provide:TranslateLoader,

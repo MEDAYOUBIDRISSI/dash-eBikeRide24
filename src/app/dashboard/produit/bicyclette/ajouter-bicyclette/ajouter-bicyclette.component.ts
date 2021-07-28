@@ -48,7 +48,7 @@ export class AjouterBicycletteComponent implements OnInit {
         this.imagesUpload.push(this.urls[i])
       }
       this.Produit.Image=this.imagesUpload;
-    }
+    } 
 
     createProduct()
     {

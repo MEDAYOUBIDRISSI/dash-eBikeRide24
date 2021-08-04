@@ -20,6 +20,10 @@ export class ChatComponent implements OnInit {
   _idFromUser: any;
   _idToUser: any;
 
+  // public users: any = 0;
+  // public message: string = '';
+  // public messages: any[] = [];
+
   constructor(private InboxService: InboxServiceService,private MasterService: MasterServiceService,private route: ActivatedRoute,
     private router: Router) { } 
 
@@ -27,6 +31,13 @@ export class ChatComponent implements OnInit {
     this._idFromUser = localStorage.getItem('jwt-IDUser')
     this._idToUser = this.route.snapshot.params['_id'];
     this.getUserAuth()
+    // this.InboxService.receiveChat().subscribe(message => {
+    //   this.messages.push(message);
+    // });
+
+    // this.InboxService.getUsers().subscribe(users => {
+    //   this.users = users;
+    // });
   }
 
   getUserAuth(){
@@ -58,6 +69,12 @@ export class ChatComponent implements OnInit {
       this.chats = data.chat;
     }); 
   }
+
+  // addChat(){
+  //   this.messages.push(this.message);
+  //   this.InboxService.sendChat(this.message);
+  //   this.message = '';
+  // }
 
 
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { Chat } from '../classe/chat.class';
 import { User } from '../classe/user.class';
+// import { Socket } from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +39,14 @@ export class InboxServiceService {
   getUsersList(): Observable<User[]>{
     return this.httpClient.get<User[]>(`${this.baseURL}/user/all`);
   }
+
+  // sendChat(message:any){
+  //   this.socket.emit('chat', message);
+  // }
+  // receiveChat(){
+  //   return this.socket.fromEvent('chat');
+  // }
+  // getUsers(){
+  //   return this.socket.fromEvent('users');
+  // }
 }

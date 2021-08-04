@@ -47,6 +47,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+// const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
+
 export function HttpLoaderFactory(http:HttpClient)
 {
   return new TranslateHttpLoader(http);
@@ -94,6 +97,7 @@ export function HttpLoaderFactory(http:HttpClient)
     MatSortModule,
     MatAutocompleteModule,
     NgxChartsModule,
+    // SocketIoModule.forRoot(config),
     TranslateModule.forRoot({
       loader:{
         provide:TranslateLoader,

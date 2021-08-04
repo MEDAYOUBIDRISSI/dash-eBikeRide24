@@ -29,6 +29,7 @@ import { InboxComponent } from './inbox/inbox.component'
 import { ChatComponent } from './inbox/chat/chat.component'
 import { NewChatComponent } from './inbox/new-chat/new-chat.component'
 import { StatisticsComponent } from './statistics/statistics.component'
+import { WebSocketChatComponent } from './inbox/web-socket-chat/web-socket-chat.component'
 
 const routes: Routes = [
   {
@@ -319,6 +320,16 @@ const routes: Routes = [
       {
         path:'dash',
         component:StatisticsComponent
+      }
+    ] 
+  },
+  {
+    path:'websocket',
+    component:WebSocketChatComponent,
+    children:[
+      {
+        path:'dash',
+        component:WebSocketChatComponent
       }
     ] 
   }

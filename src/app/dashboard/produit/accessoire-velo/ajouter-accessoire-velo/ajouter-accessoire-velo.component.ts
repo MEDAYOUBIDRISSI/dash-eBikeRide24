@@ -8,6 +8,7 @@ import { MarqueServiceService } from '../../../features/marque/marque-service.se
 import { CategorieServiceService } from '../../../features/categorie/categorie-service.service'
 import { UniverServiceService } from '../../../features/univer/univer-service.service'
 import { Router } from '@angular/router';
+import { Image } from 'src/app/dashboard/classe/image.class';
 
 @Component({
   selector: 'app-ajouter-accessoire-velo',
@@ -18,7 +19,7 @@ export class AjouterAccessoireVeloComponent implements OnInit {
 
   public Produit: Produit={codeBare:'',libelle:'',hideline:'',description:'',prixAchat:0,prixVent:0,qteStock:0,anneModel:'',etat:false,typeProduct:'AccessoireVelo'};
 
-  urls=[];
+  urls:any[]=[];
 
   imagesUpload:string[]=[]
   imagesInsert:string[]=[]
@@ -105,9 +106,25 @@ export class AjouterAccessoireVeloComponent implements OnInit {
       this.saveProduit();
     }
 
-    selectFiles(e)
+    selectFiles(e:any)
     {
       this.urls=[]
+      if(e.target.files)
+      {
+        for(var i=0;i<File.length;i++)
+        {
+          var reader=new FileReader()
+          reader.readAsDataURL(e.target.files[i])
+          reader.onload=(events:any)=>{
+            this.urls.push(events.target.result)
+          }
+        }
+      }
+      console.log(this.urls)
+    }
+
+    AddselectFiles(e:any)
+    {
       if(e.target.files)
       {
         for(var i=0;i<File.length;i++)
@@ -126,5 +143,35 @@ export class AjouterAccessoireVeloComponent implements OnInit {
     {
         const index: number = this.urls.indexOf(url);
         this.urls.splice(index, 1);
+    }
+    files: File[] = [];
+
+    onSelect(event:any) {
+      this.files.push(...event.addedFiles);
+      const formData = new FormData();  
+      var a:any;  
+      let b:any[]=[];
+      if(b.length!=0){
+        b=[];
+      }
+    for (var i = 0; i < this.files.length; i++) {   
+      formData.append("file[]", this.files[i]);  
+      let reader = new FileReader();
+      reader.readAsDataURL(this.files[0]);
+      reader.onload = function () {
+        a=(reader.result.toString().split("base64,", 3))[1];      
+        b.push(a);
+        
+      };
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+      };
+    }
+      console.log(b);
+    }
+
+    onRemove(event:any) {
+      console.log(event);
+      this.files.splice(this.files.indexOf(event), 1);
     }
 }

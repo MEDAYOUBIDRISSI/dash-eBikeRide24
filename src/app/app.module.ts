@@ -46,6 +46,7 @@ import { CommonModule } from "@angular/common";
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 // const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
@@ -97,6 +98,7 @@ export function HttpLoaderFactory(http:HttpClient)
     MatSortModule,
     MatAutocompleteModule,
     NgxChartsModule,
+    NgxDropzoneModule,
     // SocketIoModule.forRoot(config),
     TranslateModule.forRoot({
       loader:{

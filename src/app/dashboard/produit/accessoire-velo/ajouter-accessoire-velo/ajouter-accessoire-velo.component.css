@@ -1,0 +1,52 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+.button-wrapper {
+  position: relative;
+  width: 150px;
+  text-align: center;
+  /* margin: 7% auto; */
+}
+
+.button-wrapper span.label {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  width: 70%;
+  background: #00bfff;
+  cursor: pointer;
+  color: #fff;
+  padding: 10px 0;
+  text-transform:uppercase;
+  font-size:12px;
+}
+
+#upload {
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 30px;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+ngx-dropzone,
+.custom-dropzone {
+  margin: 20px;
+}
+
+.custom-dropzone {
+	height: 250px;
+	background: #DCDCDC;
+	color: #fff;
+	border: 5px dashed #B0C4DE;
+	border-radius: 5px;
+	font-size: 20px;
+}
+
+.custom-dropzone.ngx-dz-hovered {
+  border: 5px solid #B0C4DE;
+}

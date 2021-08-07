@@ -62,7 +62,7 @@ import { TopSellingProductComponent } from './statistics/top-selling-product/top
 import { ProductByTypeComponent } from './statistics/product-by-type/product-by-type.component';
 import { SalesByUniversComponent } from './statistics/sales-by-univers/sales-by-univers.component';
 import { WebSocketChatComponent } from './inbox/web-socket-chat/web-socket-chat.component';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   declarations: [SupportComponent, MarqueComponent, FeaturePageComponent, AjouterMarqueComponent, ModifierMarqueComponent, CategorieComponent, UniverComponent, AjouterCategorieComponent, ModifierCategorieComponent, AjouterUniverComponent, ModifierUniverComponent, ProduitComponent, BicycletteComponent, AccessoireCyclisteComponent, AccessoireVeloComponent, AjouterBicycletteComponent, ModifierBicycletteComponent, AjouterAccessoireCyclisteComponent, ModifierAccessoireCyclisteComponent, AjouterAccessoireVeloComponent, ModifierAccessoireVeloComponent, AdminComponent, EditeurComponent, LivreurComponent, UserPageComponent, ClientComponent, SupportUserComponent, SupprimerAdminComponent, AjouterAdminComponent, AjouterEditeurComponent, AjouterLivreurComponent, AjouterSupportUserComponent, ModifierAdminComponent, ModifierEditeurComponent, ModifierLivreurComponent, ModifierSupportUserComponent, SupprimerEditeurComponent, SupprimerSupportUserComponent, SupprimerLivreurComponent, SupprimerProduitComponent, ClientDetailComponent, ClientStatusComponent, InboxComponent, ChatComponent, NewChatComponent, StatisticsComponent, TotalsComponent, SellingProductsComponent, TopsellersComponent, TopSellingProductComponent, ProductByTypeComponent, SalesByUniversComponent, WebSocketChatComponent],
@@ -74,7 +74,8 @@ import { WebSocketChatComponent } from './inbox/web-socket-chat/web-socket-chat.
     ReactiveFormsModule,
     MatPaginatorModule,
     MatAutocompleteModule,
-    NgxChartsModule
+    NgxChartsModule,
+    NgxDropzoneModule
   ]
 })
 export class DashboardModule { }

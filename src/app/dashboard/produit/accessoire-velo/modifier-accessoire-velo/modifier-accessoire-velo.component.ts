@@ -19,7 +19,7 @@ export class ModifierAccessoireVeloComponent implements OnInit {
 
   _id: number=-1;
   public Produit: Produit={codeBare:'',libelle:'',hideline:'',description:'',prixAchat:0,prixVent:0,qteStock:0,anneModel:'',etat:false,typeProduct:'AccessoireVelo'};
-  urls:string[]=[];
+  urls:any[]=[];
 
   imagesUpload:string[]=[]
   imagesInsert:string[]=[]
@@ -41,7 +41,8 @@ export class ModifierAccessoireVeloComponent implements OnInit {
 
     this.AccessoireVeloService.getAccessoireVeloById(this._id).subscribe(data => {
       this.Produit = data.product;
-      this.urls=this.Produit.Image
+      // this.urls=this.Produit.Image
+      console.log(this.Produit)
     }, error => console.log(error));
   } 
 

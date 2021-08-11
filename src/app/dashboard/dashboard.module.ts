@@ -63,9 +63,21 @@ import { ProductByTypeComponent } from './statistics/product-by-type/product-by-
 import { SalesByUniversComponent } from './statistics/sales-by-univers/sales-by-univers.component';
 import { WebSocketChatComponent } from './inbox/web-socket-chat/web-socket-chat.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { CouponComponent } from './features/coupon/coupon.component';
+import { AjouterCouponComponent } from './features/coupon/ajouter-coupon/ajouter-coupon.component';
+import { ModifierCouponComponent } from './features/coupon/modifier-coupon/modifier-coupon.component';
+import {
+  NbChatModule,
+  NbDatepickerModule,
+  NbDialogModule,
+  NbMenuModule,
+  NbSidebarModule,
+  NbToastrModule,
+  NbWindowModule,
+} from '@nebular/theme';
 
 @NgModule({
-  declarations: [SupportComponent, MarqueComponent, FeaturePageComponent, AjouterMarqueComponent, ModifierMarqueComponent, CategorieComponent, UniverComponent, AjouterCategorieComponent, ModifierCategorieComponent, AjouterUniverComponent, ModifierUniverComponent, ProduitComponent, BicycletteComponent, AccessoireCyclisteComponent, AccessoireVeloComponent, AjouterBicycletteComponent, ModifierBicycletteComponent, AjouterAccessoireCyclisteComponent, ModifierAccessoireCyclisteComponent, AjouterAccessoireVeloComponent, ModifierAccessoireVeloComponent, AdminComponent, EditeurComponent, LivreurComponent, UserPageComponent, ClientComponent, SupportUserComponent, SupprimerAdminComponent, AjouterAdminComponent, AjouterEditeurComponent, AjouterLivreurComponent, AjouterSupportUserComponent, ModifierAdminComponent, ModifierEditeurComponent, ModifierLivreurComponent, ModifierSupportUserComponent, SupprimerEditeurComponent, SupprimerSupportUserComponent, SupprimerLivreurComponent, SupprimerProduitComponent, ClientDetailComponent, ClientStatusComponent, InboxComponent, ChatComponent, NewChatComponent, StatisticsComponent, TotalsComponent, SellingProductsComponent, TopsellersComponent, TopSellingProductComponent, ProductByTypeComponent, SalesByUniversComponent, WebSocketChatComponent],
+  declarations: [SupportComponent, MarqueComponent, FeaturePageComponent, AjouterMarqueComponent, ModifierMarqueComponent, CategorieComponent, UniverComponent, AjouterCategorieComponent, ModifierCategorieComponent, AjouterUniverComponent, ModifierUniverComponent, ProduitComponent, BicycletteComponent, AccessoireCyclisteComponent, AccessoireVeloComponent, AjouterBicycletteComponent, ModifierBicycletteComponent, AjouterAccessoireCyclisteComponent, ModifierAccessoireCyclisteComponent, AjouterAccessoireVeloComponent, ModifierAccessoireVeloComponent, AdminComponent, EditeurComponent, LivreurComponent, UserPageComponent, ClientComponent, SupportUserComponent, SupprimerAdminComponent, AjouterAdminComponent, AjouterEditeurComponent, AjouterLivreurComponent, AjouterSupportUserComponent, ModifierAdminComponent, ModifierEditeurComponent, ModifierLivreurComponent, ModifierSupportUserComponent, SupprimerEditeurComponent, SupprimerSupportUserComponent, SupprimerLivreurComponent, SupprimerProduitComponent, ClientDetailComponent, ClientStatusComponent, InboxComponent, ChatComponent, NewChatComponent, StatisticsComponent, TotalsComponent, SellingProductsComponent, TopsellersComponent, TopSellingProductComponent, ProductByTypeComponent, SalesByUniversComponent, WebSocketChatComponent, CouponComponent, AjouterCouponComponent, ModifierCouponComponent],
   imports: [ 
     CommonModule,
     DashboardRoutingModule,
@@ -75,7 +87,15 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     MatPaginatorModule,
     MatAutocompleteModule,
     NgxChartsModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    NbChatModule,
+    NbDatepickerModule,
+    NbDialogModule,
+    NbMenuModule,
+    NbSidebarModule,
+    NbToastrModule,
+    NbWindowModule,
   ]
 })
 export class DashboardModule { }
+

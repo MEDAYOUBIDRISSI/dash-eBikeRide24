@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MENU_ITEMS } from './pages-menu';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 export class DashboardLayoutComponent implements OnInit {
 
   constructor(private router: Router) { }
+  menu = MENU_ITEMS;
 
   ngOnInit(): void {
     // if(!localStorage.getItem('jwt-IDUser') || !localStorage.getItem('jwt-Token'))

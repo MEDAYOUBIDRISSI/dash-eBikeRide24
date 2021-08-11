@@ -30,6 +30,9 @@ import { ChatComponent } from './inbox/chat/chat.component'
 import { NewChatComponent } from './inbox/new-chat/new-chat.component'
 import { StatisticsComponent } from './statistics/statistics.component'
 import { WebSocketChatComponent } from './inbox/web-socket-chat/web-socket-chat.component'
+import { CouponComponent } from './features/coupon/coupon.component'
+import { AjouterCouponComponent } from './features/coupon/ajouter-coupon/ajouter-coupon.component'
+import { ModifierCouponComponent } from './features/coupon/modifier-coupon/modifier-coupon.component'
 
 const routes: Routes = [
   {
@@ -330,6 +333,36 @@ const routes: Routes = [
       {
         path:'dash',
         component:WebSocketChatComponent
+      }
+    ] 
+  },
+  {
+    path:'coupon',
+    component:CouponComponent,
+    children:[
+      {
+        path:'dash',
+        component:CouponComponent
+      }
+    ] 
+  },
+  {
+    path:'coupon/ajouter-coupon',
+    component:AjouterCouponComponent,
+    children:[
+      {
+        path:'dash',
+        component:AjouterCouponComponent
+      }
+    ] 
+  },
+  {
+    path:'coupon/modifier-coupon/:_id',
+    component:ModifierCouponComponent,
+    children:[
+      {
+        path:'dash',
+        component:ModifierCouponComponent
       }
     ] 
   }

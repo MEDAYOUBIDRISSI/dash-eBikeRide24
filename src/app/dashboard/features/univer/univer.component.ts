@@ -14,6 +14,7 @@ export class UniverComponent implements OnInit {
 
   Univers: Univer[]=[];
   private pageSlice=this.Univers
+  SearchThings:any 
 
   constructor(private univerService: UniverServiceService,
     private router: Router) { } 
@@ -34,6 +35,11 @@ export class UniverComponent implements OnInit {
     this.router.navigate(['dash/feature-update-Univer', _id]);
   }
 
+  getSilcePage()
+  {
+    this.pageSlice=this.Univers.slice(0,10);
+  }
+
   deleteUniver(_id: number){
         this.univerService.deleteUniver(_id).subscribe( data => {
           console.log(data);
@@ -52,5 +58,26 @@ export class UniverComponent implements OnInit {
       }
       this.pageSlice=this.Univers.slice(startIndex,endIndex);
   } 
+
+  Search()
+  {
+    if(this.SearchThings == "")
+    {
+      this.ngOnInit()
+    }
+    else{
+      this.Univers=this.Univers.filter(res=>{
+        if (res.libelle != "" || res.description != "") {
+           return res.libelle.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                  res.description.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())
+          } 
+          else 
+          { 
+            return []; 
+          }
+      })
+      this.getSilcePage()
+    }
+  }
 
 }

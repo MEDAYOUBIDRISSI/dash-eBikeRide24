@@ -14,6 +14,7 @@ export class MarqueComponent implements OnInit {
 
   Marques: Marque[]=[];
   private pageSlice=this.Marques
+  SearchThings:any 
 
   constructor(private marqueService: MarqueServiceService,
     private router: Router) { } 
@@ -28,6 +29,11 @@ export class MarqueComponent implements OnInit {
       this.pageSlice=this.Marques.slice(0,10);
       console.log(this.Marques)
     }); 
+  }
+
+  getSilcePage()
+  {
+    this.pageSlice=this.Marques.slice(0,10);
   }
 
   updateMarque(_id: number){ 
@@ -52,5 +58,26 @@ export class MarqueComponent implements OnInit {
       }
       this.pageSlice=this.Marques.slice(startIndex,endIndex);
   } 
+
+  Search()
+  {
+    if(this.SearchThings == "")
+    {
+      this.ngOnInit()
+    }
+    else{
+      this.Marques=this.Marques.filter(res=>{
+        if (res.libelle != "" || res.description != "") {
+           return res.libelle.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                  res.description.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())
+          } 
+          else 
+          { 
+            return []; 
+          }
+      })
+      this.getSilcePage()
+    }
+  }
 
 }

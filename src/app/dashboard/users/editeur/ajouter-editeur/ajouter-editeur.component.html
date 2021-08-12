@@ -53,7 +53,7 @@
                             <div class="col-md-4">
                                 <div class="position-relative form-group">
                                     <label for="exampleLibelle" class="">{{ 'TELEPHONE' | translate }}</label>
-                                    <input name="tel" [(ngModel)] = "User.tel" placeholder="+212+###########" type="text" class="form-control">
+                                    <input name="tel" [(ngModel)] = "User.tel" placeholder="+212 ##########" type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -114,12 +114,12 @@
             </div>
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title">Images</h5>
+                    <h5 class="card-title">Image</h5>
                     <div>
                         <div class="form-row">
                             <div class="col-md-4">
                                 <div class="position-relative form-group">
-                                    <label for="exampleLibelle" class="">Choiser les images</label>
+                                    <label for="exampleLibelle" class="">Choiser l'image</label>
                                     <div class="form-row">
                                         <div class="col-md-12">
                                             <input type="file" (change)="selectFiles($event)" >
@@ -156,7 +156,6 @@
             </div>
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title">Inline</h5>
                     <div>
                         <div class="form-row">
                             <a (click)="saveUser()" class="mt-2 btn btn-primary" style="color: white;">Ajouter</a>

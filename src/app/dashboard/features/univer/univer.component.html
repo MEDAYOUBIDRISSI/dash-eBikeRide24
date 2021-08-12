@@ -12,6 +12,15 @@
             </button>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
+                <label for="exampleEmail22" class="mr-sm-2"></label>
+                <input class="form-control" type="text" name="SearchThings" [(ngModel)]="SearchThings" (ngModelChange)="Search()" placeholder="Search">
+            </div>
+        </div>
+    </div>
     <div class="card-body">
         <table class="mb-0 table table-striped">
             <thead>
@@ -31,14 +40,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr role="row" class="odd" *ngFor = "let univer of Univers">
+                <tr role="row" class="odd" *ngFor = "let univer of pageSlice">
                     <td class="text-center" class="sorting_1 dtr-control">{{ univer._id }}</td>
                     <td class="text-center">{{ univer.libelle }}</td>
                     <td class="text-center">{{ univer.description }}</td>
                     <td class="text-center">
                         <div role="group" class="btn-group-sm btn-group">
-                            <a (click) = "updateUniver(univer._id)"  class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
-                            <a (click) = "deleteUniver(univer._id)"  class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
+                            <a (click) = "updateUniver(univer._id)" style="color: white;" class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
+                            <a (click) = "deleteUniver(univer._id)" style="color: white;" class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
                         </div>
                     </td>
                 </tr>

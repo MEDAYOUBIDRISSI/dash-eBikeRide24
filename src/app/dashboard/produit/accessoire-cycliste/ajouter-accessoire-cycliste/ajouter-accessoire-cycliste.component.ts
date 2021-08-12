@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class AjouterAccessoireCyclisteComponent implements OnInit {
 
-  public Produit: Produit={codeBare:'',libelle:'',hideline:'',description:'',prixAchat:0,prixVent:0,qteStock:0,anneModel:'',etat:false,typeProduct:'AccessoireCycliste'};
+  public Produit: Produit={codeBare:'',libelle:'',hideline:'',description:'',anneModel:'',etat:true,typeProduct:'AccessoireCycliste'};
 
   urls=[];
 
@@ -36,26 +36,8 @@ export class AjouterAccessoireCyclisteComponent implements OnInit {
       this.getCategories()
     }
   
-    async saveProduit(){
-      this.charge_Images()
-      await this.createProduct()
-      
-    }
-    charge_Images()
-    {
-      for(var i=0;i<this.urls.length;i++)
-      {
-        this.imagesUpload.push(this.urls[i])
-      }
-      // for(var i=0;i<this.imagesUpload.length;i++)
-      // {
-      //     this.BicyletteService.createImage(this.imagesUpload[i]).subscribe( data =>{
-      //       console.log(data);
-      //       this.imagesInsert.push(data.Image)
-      //     },
-      //     error => console.log(error));
-      // }   
-      this.Produit.Image=this.imagesUpload;
+    saveProduit(){
+      this.createProduct()  
     }
 
     createProduct()
@@ -105,27 +87,58 @@ export class AjouterAccessoireCyclisteComponent implements OnInit {
       this.saveProduit();
     }
 
-    selectFiles(e)
-    {
-      this.urls=[]
-      if(e.target.files)
-      {
-        for(var i=0;i<File.length;i++)
-        {
-          var reader=new FileReader()
-          reader.readAsDataURL(e.target.files[i])
-          reader.onload=(events:any)=>{
-            this.urls.push(events.target.result)
-          }
+    files: File[] = [];
+
+    onSelect(event:any) {
+      console.log(event);
+      this.files.push(...event.addedFiles);
+      
+      const formData = new FormData();  
+        var a:any;  
+        let b:any[]=[];
+        if(b.length!=0){
+          b=[];
         }
+        for (var i = 0; i < this.files.length; i++) {   
+        formData.append("file[]", this.files[i]);  
+        let reader = new FileReader();
+        reader.readAsDataURL(this.files[i]);
+        reader.onload=(events:any)=>{
+          b.push(events.target.result)
+        }
+  
+        reader.onerror = function (error) {
+          console.log('Error: ', error);
+        };
       }
-      console.log(this.urls)
+        this.Produit.Image=b
+        console.log(this.Produit.Image);
     }
-
-    delete_img(url:any)
-    {
-        const index: number = this.urls.indexOf(url);
-        this.urls.splice(index, 1);
+  
+    onRemove(event:any) {
+      console.log(event);
+      this.files.splice(this.files.indexOf(event), 1);
+      
+      const formData = new FormData();  
+        var a:any;  
+        let b:any[]=[];
+        if(b.length!=0){
+          b=[];
+        }
+      for (var i = 0; i < this.files.length; i++) {   
+        formData.append("file[]", this.files[i]);  
+        let reader = new FileReader();
+        reader.readAsDataURL(this.files[i]);
+        reader.onload = function () {
+          a=(reader.result.toString().split("base64,", 3))[1];      
+          b.push(a);
+          
+        };
+        reader.onerror = function (error) {
+          console.log('Error: ', error);
+        };
+      }
+        console.log(this.Produit.Image);
+        this.Produit.Image=b
     }
-
 }

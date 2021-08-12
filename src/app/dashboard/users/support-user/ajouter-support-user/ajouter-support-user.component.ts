@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AjouterSupportUserComponent implements OnInit {
 
-  public User: User={nom:"",prenom:"",typeUser:"Support-User",etat:false}
+  public User: User={nom:"",prenom:"",typeUser:"Support-User",etat:false,imgProfile:"assets/images/avatar/inconnu.jpg"}
 
   constructor(private SupportUserService: SupportUserServiceService,
     private router: Router) { }
@@ -32,10 +32,10 @@ export class AjouterSupportUserComponent implements OnInit {
       this.router.navigate(['dash/users']);
     }
 
-    urls:string="";
+    urls:string="assets/images/avatar/inconnu.jpg";
     selectFiles(e)
     {
-      this.urls=""
+      this.urls="assets/images/avatar/inconnu.jpg"
       var reader=new FileReader()
       reader.readAsDataURL(e.target.files[0])
       reader.onload=(event:any)=>{
@@ -47,7 +47,7 @@ export class AjouterSupportUserComponent implements OnInit {
 
     delete_img()
     {
-        this.urls="";
+        this.urls="assets/images/avatar/inconnu.jpg";
     }
 
 }

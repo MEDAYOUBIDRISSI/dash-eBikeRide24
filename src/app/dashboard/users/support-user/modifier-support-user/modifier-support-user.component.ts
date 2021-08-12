@@ -3,6 +3,7 @@ import { SupportUserServiceService } from '../support-user-service.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from '../../../classe/user.class';
 import { ActivatedRoute,Router } from '@angular/router';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-modifier-support-user',
@@ -16,13 +17,16 @@ export class ModifierSupportUserComponent implements OnInit {
   public User: User={nom:'',prenom:''}
   constructor(private SupportUserService: SupportUserServiceService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    public datepipe: DatePipe) { }
 
     ngOnInit(): void {
       this._id = this.route.snapshot.params['_id'];
   
       this.SupportUserService.getSupportUserById(this._id).subscribe(data => {
         this.User = data.User;
+        this.User.dateNaissance=this.datepipe.transform(this.User.dateNaissance, 'yyyy-MM-dd');
+        this.User.dateEmbouche=this.datepipe.transform(this.User.dateEmbouche, 'yyyy-MM-dd');
       }, error => console.log(error));
     } 
    
@@ -49,7 +53,7 @@ export class ModifierSupportUserComponent implements OnInit {
 
     delete_img()
     {
-        this.User.imgProfile="";
+        this.User.imgProfile="assets/images/avatar/inconnu.jpg";
     }
 
 }

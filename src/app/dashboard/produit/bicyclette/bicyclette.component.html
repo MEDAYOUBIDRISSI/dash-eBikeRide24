@@ -11,7 +11,7 @@
                 </span>
             </button>
         </div>
-    </div>
+    </div> 
     <div class="row">
         <div class="col-md-8"></div>
         <div class="col-md-4">
@@ -26,7 +26,7 @@
             <thead>
                 <tr role="row">
                     <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
-                        #ID <i class="fa fa-sort>"></i>
+                        Captures <i class="fa fa-sort>"></i>
                     </th>
                     <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
                         Code Bare
@@ -44,21 +44,29 @@
             </thead>
             <tbody>
                 <tr role="row" class="odd" *ngFor = "let produite of pageSlice">
-                    <td class="text-center">{{ produite._id }}</td>
+                    <td class="text-center">
+                        <div class="avatar-wrapper avatar-wrapper-overlap">
+                            <div class="avatar-icon-wrapper" *ngFor = "let url of produite.Image">
+                                <div class="avatar-icon">
+                                    <img [src]="url" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                     <td class="text-center">{{ produite.codeBare }}</td>
                     <td class="text-center">{{ produite.libelle }}</td>
                     <td class="text-center">{{ produite.hideline }}</td>
                     <td class="text-center">
                         <div role="group" class="btn-group-sm btn-group">
-                            <a (click) = "updateProduit(produite._id)"  class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
-                            <a (click) = "DeleteByDialog(produite._id)"  class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
+                            <a (click) = "updateProduit(produite._id)" style="color: white;"  class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
+                            <a (click) = "DeleteByDialog(produite._id)" style="color: white;"  class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
                         </div>
                     </td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <th class="text-center" rowspan="1" colspan="1">#ID</th>
+                    <th class="text-center" rowspan="1" colspan="1">Captures</th>
                     <th class="text-center" rowspan="1" colspan="1">Code Bare</th>
                     <th class="text-center" rowspan="1" colspan="1">Libelle</th>
                     <th class="text-center" rowspan="1" colspan="1">Hide Line</th>

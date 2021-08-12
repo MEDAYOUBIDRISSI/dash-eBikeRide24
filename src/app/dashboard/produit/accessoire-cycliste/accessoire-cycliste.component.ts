@@ -17,6 +17,7 @@ export class AccessoireCyclisteComponent implements OnInit {
   Produits: Produit[]=[];
   Produit: Produit={}
   private pageSlice=this.Produits
+  SearchThings:any 
 
   constructor(private AccessoireCyclisteService: AccessoireCyclisteServiceService,
     private router: Router,public dialog: MatDialog) { } 
@@ -33,6 +34,11 @@ export class AccessoireCyclisteComponent implements OnInit {
     }); 
   }
 
+  getSilcePage()
+  {
+    this.pageSlice=this.Produits.slice(0,10);
+  }
+
   deleteProduit(_id: number){
     this.AccessoireCyclisteService.deleteAccessoireCycliste(_id).subscribe( data => {
       console.log(data);
@@ -43,7 +49,7 @@ export class AccessoireCyclisteComponent implements OnInit {
   updateProduit(_id: number){ 
     this.router.navigate(['dash/produits/modifier-accessoirecycliste', _id]);
   }
-
+ 
   OnPageChange(event : PageEvent)
   {
       console.log(event)
@@ -70,5 +76,27 @@ export class AccessoireCyclisteComponent implements OnInit {
         }
       });
     }, error => console.log(error));
+  }
+
+  Search()
+  {
+    if(this.SearchThings == "")
+    {
+      this.ngOnInit()
+    }
+    else{
+      this.Produits=this.Produits.filter(res=>{
+        if (res.libelle != "" || res.hideline != "" || res.codeBare != "") {
+          return res.libelle.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                 res.codeBare.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                 res.hideline.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase()); 
+         } 
+          else 
+          { 
+            return []; 
+          }
+      })
+      this.getSilcePage()
+    }
   }
 }

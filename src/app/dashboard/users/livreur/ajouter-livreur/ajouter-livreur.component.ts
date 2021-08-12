@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
 })
 export class AjouterLivreurComponent implements OnInit {
 
-  public User: User={nom:"",prenom:"",typeUser:"Livreur",etat:false}
+  public User: User={nom:"",prenom:"",typeUser:"Livreur",etat:false,imgProfile:"assets/images/avatar/inconnu.jpg"}
 
   constructor(private LivreurServiceService: LivreurServiceService,
-    private router: Router) { }
+    private router: Router) { } 
 
   ngOnInit(): void {
   }
@@ -32,10 +32,10 @@ export class AjouterLivreurComponent implements OnInit {
       this.router.navigate(['dash/users']);
     }
 
-    urls:string="";
+    urls:string="assets/images/avatar/inconnu.jpg";
     selectFiles(e)
     {
-      this.urls=""
+      this.urls="assets/images/avatar/inconnu.jpg"
       var reader=new FileReader()
       reader.readAsDataURL(e.target.files[0])
       reader.onload=(event:any)=>{
@@ -47,7 +47,7 @@ export class AjouterLivreurComponent implements OnInit {
 
     delete_img()
     {
-        this.urls="";
+        this.urls="assets/images/avatar/inconnu.jpg";
     }
 
 }

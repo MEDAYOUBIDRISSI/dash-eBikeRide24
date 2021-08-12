@@ -56,6 +56,7 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { DatePipe } from '@angular/common'
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 // const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
@@ -132,7 +133,8 @@ export function HttpLoaderFactory(http:HttpClient)
     multi:true
   },
   HttpClient,
-  CookieService
+  CookieService,
+  DatePipe
 ],
   bootstrap: [AppComponent]
 })

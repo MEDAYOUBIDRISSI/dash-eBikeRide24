@@ -6,7 +6,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {PageEvent} from '@angular/material/paginator';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { SupprimerProduitComponent} from '../supprimer-produit/supprimer-produit.component'
-
+ 
 @Component({
   selector: 'app-accessoire-velo',
   templateUrl: './accessoire-velo.component.html',
@@ -17,6 +17,7 @@ export class AccessoireVeloComponent implements OnInit {
   Produits: Produit[]=[];
   Produit: Produit={}
   private pageSlice=this.Produits
+  SearchThings:any 
 
   constructor(private AccessoireVeloService: AccessoireVeloServiceService,
     private router: Router,public dialog: MatDialog) { } 
@@ -31,6 +32,11 @@ export class AccessoireVeloComponent implements OnInit {
       this.pageSlice=this.Produits.slice(0,10);
       console.log(this.Produits)
     }); 
+  }
+
+  getSilcePage()
+  {
+    this.pageSlice=this.Produits.slice(0,10);
   }
 
   deleteProduit(_id: number){
@@ -70,6 +76,28 @@ export class AccessoireVeloComponent implements OnInit {
         }
       });
     }, error => console.log(error));
+  }
+
+  Search()
+  {
+    if(this.SearchThings == "")
+    {
+      this.ngOnInit()
+    }
+    else{
+      this.Produits=this.Produits.filter(res=>{
+        if (res.libelle != "" || res.hideline != "" || res.codeBare != "") {
+           return res.libelle.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                  res.codeBare.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                  res.hideline.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase()); 
+          } 
+          else 
+          { 
+            return []; 
+          }
+      })
+      this.getSilcePage()
+    }
   }
 
 }

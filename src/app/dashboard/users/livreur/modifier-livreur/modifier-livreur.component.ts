@@ -3,6 +3,7 @@ import { LivreurServiceService } from '../livreur-service.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from '../../../classe/user.class';
 import { ActivatedRoute,Router } from '@angular/router';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-modifier-livreur',
@@ -16,14 +17,17 @@ export class ModifierLivreurComponent implements OnInit {
   public User: User={nom:'',prenom:''}
   constructor(private LivreurService: LivreurServiceService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    public datepipe: DatePipe) { }
 
     ngOnInit(): void {
       this._id = this.route.snapshot.params['_id'];
   
       this.LivreurService.getLivreurById(this._id).subscribe(data => {
         this.User = data.User;
-        console.log(this.User)
+        this.User.dateNaissance=this.datepipe.transform(this.User.dateNaissance, 'yyyy-MM-dd');
+        this.User.dateEmbouche=this.datepipe.transform(this.User.dateEmbouche, 'yyyy-MM-dd');
+        console.log(this.User) 
       }, error => console.log(error));
     } 
    
@@ -50,7 +54,7 @@ export class ModifierLivreurComponent implements OnInit {
 
     delete_img()
     {
-        this.User.imgProfile="";
+        this.User.imgProfile="assets/images/avatar/inconnu.jpg";
     }
 
 }

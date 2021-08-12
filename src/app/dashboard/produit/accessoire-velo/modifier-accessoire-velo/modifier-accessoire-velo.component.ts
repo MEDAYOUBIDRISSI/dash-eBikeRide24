@@ -41,7 +41,7 @@ export class ModifierAccessoireVeloComponent implements OnInit {
 
     this.AccessoireVeloService.getAccessoireVeloById(this._id).subscribe(data => {
       this.Produit = data.product;
-      // this.urls=this.Produit.Image
+      this.urls=this.Produit.Image
       console.log(this.Produit)
     }, error => console.log(error));
   } 
@@ -91,9 +91,8 @@ export class ModifierAccessoireVeloComponent implements OnInit {
     {
       for(var i=0;i<this.urls.length;i++)
       {
-        this.imagesUpload.push(this.urls[i])
+        this.Produit.Image.push(this.urls[i])
       }
-      this.Produit.Image=this.imagesUpload;
     }
 
   selectFiles(e)
@@ -117,6 +116,60 @@ export class ModifierAccessoireVeloComponent implements OnInit {
     {
         const index: number = this.urls.indexOf(url);
         this.urls.splice(index, 1);
+    }
+
+    files: File[] = [];
+    onSelect(event:any) {
+      console.log(event);
+      this.files.push(...event.addedFiles);
+      
+      const formData = new FormData();  
+        var a:any;  
+        let b:any[]=[];
+        if(b.length!=0){
+          b=[];
+        }
+        for (var i = 0; i < this.files.length; i++) {   
+        formData.append("file[]", this.files[i]);  
+        let reader = new FileReader();
+        reader.readAsDataURL(this.files[i]);
+        reader.onload=(events:any)=>{
+          b.push(events.target.result)
+        }
+  
+        reader.onerror = function (error) {
+          console.log('Error: ', error);
+        };
+      }
+        this.Produit.Image=b
+        console.log(this.Produit.Image);
+    }
+  
+    onRemove(event:any) {
+      console.log(event);
+      this.files.splice(this.files.indexOf(event), 1);
+      
+      const formData = new FormData();  
+        var a:any;  
+        let b:any[]=[];
+        if(b.length!=0){
+          b=[];
+        }
+      for (var i = 0; i < this.files.length; i++) {   
+        formData.append("file[]", this.files[i]);  
+        let reader = new FileReader();
+        reader.readAsDataURL(this.files[i]);
+        reader.onload = function () {
+          a=(reader.result.toString().split("base64,", 3))[1];      
+          b.push(a);
+          
+        };
+        reader.onerror = function (error) {
+          console.log('Error: ', error);
+        };
+      }
+        console.log(this.Produit.Image);
+        this.Produit.Image=b
     }
 
 }

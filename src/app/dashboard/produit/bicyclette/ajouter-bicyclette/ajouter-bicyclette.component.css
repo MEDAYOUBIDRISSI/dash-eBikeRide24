@@ -1,0 +1,16 @@
+ngx-dropzone,
+.custom-dropzone {
+  margin: 0px;
+}
+
+.custom-dropzone {
+	height: 150px;
+	background: #DCDCDC;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 8px;
+}
+
+.custom-dropzone.ngx-dz-hovered {
+  border: 0px solid #B0C4DE;
+}

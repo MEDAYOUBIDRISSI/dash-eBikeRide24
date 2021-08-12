@@ -15,6 +15,7 @@ export class CategorieComponent implements OnInit {
   
   Categories: Categorie[]=[];
   private pageSlice=this.Categories
+  SearchThings:any 
 
   constructor(private categorieService: CategorieServiceService,
     private router: Router) { } 
@@ -29,6 +30,11 @@ export class CategorieComponent implements OnInit {
       this.pageSlice=this.Categories.slice(0,10);
       console.log(this.Categories)
     }); 
+  }
+
+  getSilcePage()
+  {
+    this.pageSlice=this.Categories.slice(0,10);
   }
 
   updateCategorie(_id: number){ 
@@ -53,4 +59,25 @@ export class CategorieComponent implements OnInit {
       }
       this.pageSlice=this.Categories.slice(startIndex,endIndex);
   } 
+
+  Search()
+  {
+    if(this.SearchThings == "")
+    {
+      this.ngOnInit()
+    }
+    else{
+      this.Categories=this.Categories.filter(res=>{
+        if (res.libelle != "" || res.description != "") {
+           return res.libelle.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                  res.description.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())
+          } 
+          else 
+          { 
+            return []; 
+          }
+      })
+      this.getSilcePage()
+    }
+  }
 }

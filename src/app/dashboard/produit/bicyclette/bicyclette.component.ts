@@ -17,7 +17,7 @@ export class BicycletteComponent implements OnInit {
   Produits: Produit[]=[];
   Produit: Produit={}
   private pageSlice=this.Produits
-  SearchThings:any
+  SearchThings:any 
 
   constructor(private BicyletteService: BicyletteServiceService,
     private router: Router,public dialog: MatDialog) { } 
@@ -87,8 +87,10 @@ export class BicycletteComponent implements OnInit {
     }
     else{
       this.Produits=this.Produits.filter(res=>{
-        if (res.libelle != "") {
-           return res.libelle.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase()); 
+        if (res.libelle != "" || res.hideline != "" || res.codeBare != "") {
+           return res.libelle.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                  res.codeBare.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                  res.hideline.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase()); 
           } 
           else 
           { 

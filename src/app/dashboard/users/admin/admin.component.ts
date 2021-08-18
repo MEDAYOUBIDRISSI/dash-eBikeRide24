@@ -43,7 +43,7 @@ export class AdminComponent implements OnInit {
 
   updateUsers(_id: number){ 
     this.router.navigate(['dash/users/modifier-admin', _id]);
-  }
+  } 
 
   OnPageChange(event : PageEvent)
   {

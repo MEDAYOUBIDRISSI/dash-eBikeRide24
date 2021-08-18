@@ -140,5 +140,6 @@ export class AjouterAccessoireCyclisteComponent implements OnInit {
       }
         console.log(this.Produit.Image);
         this.Produit.Image=b
+        
     }
 }

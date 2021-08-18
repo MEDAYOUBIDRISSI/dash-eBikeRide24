@@ -40,6 +40,7 @@ export class TotalsComponent implements OnInit {
     this.StatisticsService.getTotalOrdersPaid().subscribe(data => {
       this._totalOrdersPaid=data.totalOrders
       this._ordersAmount=(this._totalOrdersPaid*100)/this._totalOrders
+      this._ordersAmount=this._ordersAmount.toFixed(2)
     }); 
   }
 }

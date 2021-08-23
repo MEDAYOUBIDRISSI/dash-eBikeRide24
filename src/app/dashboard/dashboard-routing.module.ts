@@ -317,7 +317,7 @@ const routes: Routes = [
     ] 
   },
   {
-    path:'staitstic',
+    path:'statistic',
     component:StatisticsComponent,
     children:[
       {

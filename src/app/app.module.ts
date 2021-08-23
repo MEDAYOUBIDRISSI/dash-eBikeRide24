@@ -55,6 +55,7 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
+  NbCardModule
 } from '@nebular/theme';
 import { DatePipe } from '@angular/common'
 
@@ -92,6 +93,7 @@ export function HttpLoaderFactory(http:HttpClient)
     MatCheckboxModule,
     MatSlideToggleModule,
     FormsModule,
+    NbCardModule,
     HttpClientModule,
     ScrollingModule,
     MatToolbarModule,
@@ -102,6 +104,7 @@ export function HttpLoaderFactory(http:HttpClient)
     MatSelectModule,
     MatMenuModule,
     MatDialogModule,
+    MatSnackBarModule,
     MatPaginatorModule,
     MatProgressBarModule,
     MatTableModule,

@@ -9,6 +9,7 @@ import { Image } from "../../../classe/image.class";
 import { MarqueServiceService } from '../../../features/marque/marque-service.service'
 import { CategorieServiceService } from '../../../features/categorie/categorie-service.service'
 import { UniverServiceService } from '../../../features/univer/univer-service.service'
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modifier-accessoire-velo',
@@ -31,7 +32,8 @@ export class ModifierAccessoireVeloComponent implements OnInit {
   constructor(private AccessoireVeloService: AccessoireVeloServiceService,
     private MarqueService: MarqueServiceService,private UniverService: UniverServiceService,private CategorieService: CategorieServiceService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this._id = this.route.snapshot.params['_id'];
@@ -77,14 +79,33 @@ export class ModifierAccessoireVeloComponent implements OnInit {
   }
 
   onSubmit(){
-    this.charge_Images()
-    this.AccessoireVeloService.updateAccessoireVelo(this._id, this.Produit).subscribe( data =>{
-      this.goToProduitList();
-    }, error => console.log(error));
+    if(this.Produit.libelle =="" || this.Produit.description == ""
+    || this.Produit.hideline == "" || this.Produit.codeBare == "" 
+    || this.Produit.prixVent <= 0 || this.Produit.prixAchat <=0 
+    || this.Produit.qteStock <= 0 || this.Produit.anneModel == ""
+    || this.Produit.freins == "" || this.Produit.Marque == null || this.Produit.Univer == null || this.Produit.categorie == null)
+    {
+      this.ShowNotification('Please enter all information ','Close','4000',"custom-error-style")
+    }
+    else
+    {
+      if(this.Produit.prixVent <= this.Produit.prixAchat)
+      {
+        this.ShowNotification('The selling price must be greater than the purchase price','Close','4000',"custom-error-style")
+      }
+      else
+      {
+        this.charge_Images()
+        this.AccessoireVeloService.updateAccessoireVelo(this._id, this.Produit).subscribe( data =>{
+          this.goToProduitList();
+        }, error => console.log(error)); 
+      } 
+    }
   }
 
   goToProduitList(){
-    this.router.navigate(['dash/produits']);
+    this.ShowNotification('Product Updated well','Close','4000',"custom-success-style")
+    this.router.navigate(['dash/produits/accessoirevelo']);
   }
 
   charge_Images()
@@ -170,6 +191,17 @@ export class ModifierAccessoireVeloComponent implements OnInit {
       }
         console.log(this.Produit.Image);
         this.Produit.Image=b
+    }
+
+    ShowNotification(content:any, action:any, duration:any,type:any)
+    {
+      let sb = this.snackBar.open(content, action, {
+        duration: duration,
+        panelClass: [type]
+      });
+      sb.onAction().subscribe(() => {
+        sb.dismiss();
+      });
     }
 
 }

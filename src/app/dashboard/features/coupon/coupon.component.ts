@@ -14,9 +14,11 @@ export class CouponComponent implements OnInit {
 
   Coupons: Coupon[]=[];
   private pageSlice=this.Coupons
+  SearchThings:any 
 
   constructor(private couponService: CouponServiceService,
-    private router: Router) { } 
+    private router: Router,
+    private snackBar: MatSnackBar) { } 
 
   ngOnInit(): void {
     this.getCoupons();
@@ -38,6 +40,7 @@ export class CouponComponent implements OnInit {
         this.couponService.deleteCoupon(_id).subscribe( data => {
           console.log(data);
           this.getCoupons();
+          this.ShowNotification('Coupon deleted well','Close','4000',"custom-success-style")
         }, error => console.log(error));
   }
 
@@ -53,4 +56,40 @@ export class CouponComponent implements OnInit {
       this.pageSlice=this.Coupons.slice(startIndex,endIndex);
   } 
 
+  ShowNotification(content:any, action:any, duration:any,type:any)
+    {
+      let sb = this.snackBar.open(content, action, {
+        duration: duration,
+        panelClass: [type]
+      });
+      sb.onAction().subscribe(() => {
+        sb.dismiss();
+      });
+    }
+
+    Search()
+    {
+      if(this.SearchThings == "")
+      {
+        this.ngOnInit()
+      }
+      else{
+        this.Coupons=this.Coupons.filter(res=>{
+          if (res.libelle != "" || res.code != ""|| res.pourcentage != "") {
+             return res.libelle.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                    res.code.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                    res.pourcentage.toLocaleString().match(this.SearchThings.toLocaleString())
+            } 
+            else 
+            { 
+              return []; 
+            }
+        })
+        this.getSilcePage()
+      }
+    }
+    getSilcePage()
+    {
+      this.pageSlice=this.Coupons.slice(0,10);
+    }
 }

@@ -1,85 +1,116 @@
-<div class="card mb-3">
-    <div class="card-header-tab card-header">
-        <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-            <i class="fa fa-fw" aria-hidden="true" title="Copy to use podcast"></i>{{ 'LIVREURLIST' | translate }}
-        </div>
-        <div class="btn-actions-pane-right">
-            <button type="button" routerLink="/dash/users/ajouter-livreur" class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
-                {{ 'ADD' | translate }}
-                <span class="pl-2 align-middle opacity-7">
-                    <i class="fa fa-fw" aria-hidden="true" title="Copy to use plus"></i>
-                </span>
-            </button>
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="fa fa-fw" aria-hidden="true" title="Copy to use folder-open" style="color: #909599"></i>
+                </div> 
+                <div>{{ 'USERS_DASHBOARD' | translate }}
+                    <div class="page-title-subheading">{{ 'USER_DASHBOARD_TEXT' | translate }}.</div>
+                </div>
+            </div>
+            <div class="page-title-actions">
+                <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
+                    class="btn-shadow mr-3 btn btn-dark">
+                    <i class="fa fa-star"></i>
+                </button>
+            </div>    
         </div>
     </div>
-    <div class="card-body">
-        <table class="mb-0 table table-striped">
-            <thead>
-                <tr role="row">
-                    <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
-                        Picture
-                    </th>
-                    <th class="text-center" aria-controls="example" rowspan="1" colspan="1" >
-                        nom
-                    </th>
-                    <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
-                        prenom
-                    </th>
-                    <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
-                        Email
-                    </th>
-                    <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
-                        Tel
-                    </th>
-                    <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
-                        Etat
-                    </th>
-                    <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
-                        {{ 'UPDATE_DELETE' | translate }}
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr role="row" class="odd" *ngFor = "let user of pageSlice">
-                    <td class="text-center" class="sorting_1 dtr-control">
-                        <div class="avatar-icon-wrapper">
-                            <div class="avatar-icon rounded">
-                                <img [src]="user.imgProfile" alt="">
-                            </div>
-                        </div>
-                    </td>
-                    <td class="text-center">{{ user.nom }}</td>
-                    <td class="text-center">{{ user.prenom }}</td>
-                    <td class="text-center">{{ user.email }}</td>
-                    <td class="text-center">{{ user.tel }}</td>
-                    <td class="text-center">
-                        <div *ngIf="user.etat == true" class="mb-2 mr-2 badge badge-pill badge-success">Working</div>
-                        <div *ngIf="user.etat == false" class="mb-2 mr-2 badge badge-pill badge-danger">Suspended</div>
-                    </td>
-                    <td class="text-center">
-                        <div role="group" class="btn-group-sm btn-group text-white">
-                            <a (click) = "updateUsers(user._id)"  class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
-                            <a (click) = "DeleteByDialog(user._id)"  class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th class="text-center" rowspan="1" colspan="1">Picture</th>
-                    <th class="text-center" rowspan="1" colspan="1">Nom</th>
-                    <th class="text-center" rowspan="1" colspan="1">Prenom</th>
-                    <th class="text-center" rowspan="1" colspan="1">Email</th>
-                    <th class="text-center" rowspan="1" colspan="1">Tel</th>
-                    <th class="text-center" rowspan="1" colspan="1">Etat</th>
-                    <th class="text-center" rowspan="1" colspan="1">{{ 'UPDATE_DELETE' | translate }}</th>
-                </tr>
-            </tfoot>
-        </table>
-        <mat-paginator [length]="this.Users.length"
-                        [pageSize]="10"
-                        [pageSizeOptions]="[10, 20, 50, 100, 250, 500, 1000]"
-                        (page)="OnPageChange($event)">
-        </mat-paginator>
+    <div class="tabs-animation">
+        <div class="card mb-3">
+            <div class="card-header-tab card-header">
+                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                    <i class="fa fa-fw" aria-hidden="true" title="Copy to use podcast"></i>{{ 'LIVREURLIST' | translate }}
+                </div>
+                <div class="btn-actions-pane-right">
+                    <button type="button" routerLink="/dash/users/ajouter-livreur" class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
+                        {{ 'ADD' | translate }}
+                        <span class="pl-2 align-middle opacity-7">
+                            <i class="fa fa-fw" aria-hidden="true" title="Copy to use plus"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
+                        <label for="exampleEmail22" class="mr-sm-2"></label>
+                        <input class="form-control" type="text" name="SearchThings" [(ngModel)]="SearchThings" (ngModelChange)="Search()" placeholder="Search">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="mb-0 table table-striped">
+                    <thead>
+                        <tr role="row">
+                            <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
+                                Picture
+                            </th>
+                            <th class="text-center" aria-controls="example" rowspan="1" colspan="1" >
+                                nom
+                            </th>
+                            <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
+                                prenom
+                            </th>
+                            <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
+                                Email
+                            </th>
+                            <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
+                                Tel
+                            </th>
+                            <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
+                                Etat
+                            </th>
+                            <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
+                                {{ 'UPDATE_DELETE' | translate }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr role="row" class="odd" *ngFor = "let user of pageSlice">
+                            <td class="text-center" class="sorting_1 dtr-control">
+                                <div class="avatar-icon-wrapper">
+                                    <div class="avatar-icon rounded">
+                                        <img [src]="user.imgProfile" alt="">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">{{ user.nom }}</td>
+                            <td class="text-center">{{ user.prenom }}</td>
+                            <td class="text-center">{{ user.email }}</td>
+                            <td class="text-center">{{ user.tel }}</td>
+                            <td class="text-center">
+                                <div *ngIf="user.etat == true" class="mb-2 mr-2 badge badge-pill badge-success">Working</div>
+                                <div *ngIf="user.etat == false" class="mb-2 mr-2 badge badge-pill badge-danger">Suspended</div>
+                            </td>
+                            <td class="text-center">
+                                <div role="group" class="btn-group-sm btn-group text-white">
+                                    <a (click) = "updateUsers(user._id)"  class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
+                                    <a (click) = "DeleteByDialog(user._id)"  class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th class="text-center" rowspan="1" colspan="1">Picture</th>
+                            <th class="text-center" rowspan="1" colspan="1">Nom</th>
+                            <th class="text-center" rowspan="1" colspan="1">Prenom</th>
+                            <th class="text-center" rowspan="1" colspan="1">Email</th>
+                            <th class="text-center" rowspan="1" colspan="1">Tel</th>
+                            <th class="text-center" rowspan="1" colspan="1">Etat</th>
+                            <th class="text-center" rowspan="1" colspan="1">{{ 'UPDATE_DELETE' | translate }}</th>
+                        </tr>
+                    </tfoot>
+                </table>
+                <mat-paginator [length]="this.Users.length"
+                                [pageSize]="10"
+                                [pageSizeOptions]="[10, 20, 50, 100, 250, 500, 1000]"
+                                (page)="OnPageChange($event)">
+                </mat-paginator>
+            </div>
+        </div>
     </div>
 </div>

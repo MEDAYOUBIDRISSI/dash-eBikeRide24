@@ -7,6 +7,7 @@ import {PageEvent} from '@angular/material/paginator';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { SupprimerProduitComponent} from '../supprimer-produit/supprimer-produit.component'
  
+
 @Component({
   selector: 'app-accessoire-velo',
   templateUrl: './accessoire-velo.component.html',
@@ -20,7 +21,8 @@ export class AccessoireVeloComponent implements OnInit {
   SearchThings:any 
 
   constructor(private AccessoireVeloService: AccessoireVeloServiceService,
-    private router: Router,public dialog: MatDialog) { } 
+    private router: Router,public dialog: MatDialog,
+    private snackBar: MatSnackBar) { } 
 
   ngOnInit(): void {
     this.getProduits();
@@ -41,7 +43,7 @@ export class AccessoireVeloComponent implements OnInit {
 
   deleteProduit(_id: number){
     this.AccessoireVeloService.deleteAccessoireVelo(_id).subscribe( data => {
-      console.log(data);
+      this.ShowNotification('Product Deleted well','Close','4000',"custom-success-style")
       this.getProduits();
     }, error => console.log(error));
   }
@@ -99,5 +101,16 @@ export class AccessoireVeloComponent implements OnInit {
       this.getSilcePage()
     }
   }
+
+  ShowNotification(content:any, action:any, duration:any,type:any)
+    {
+      let sb = this.snackBar.open(content, action, {
+        duration: duration,
+        panelClass: [type]
+      });
+      sb.onAction().subscribe(() => {
+        sb.dismiss();
+      });
+    }
 
 }

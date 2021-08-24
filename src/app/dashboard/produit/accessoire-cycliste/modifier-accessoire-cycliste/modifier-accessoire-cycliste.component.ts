@@ -9,6 +9,7 @@ import { Image } from "../../../classe/image.class";
 import { MarqueServiceService } from '../../../features/marque/marque-service.service'
 import { CategorieServiceService } from '../../../features/categorie/categorie-service.service'
 import { UniverServiceService } from '../../../features/univer/univer-service.service'
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modifier-accessoire-cycliste',
@@ -31,17 +32,19 @@ export class ModifierAccessoireCyclisteComponent implements OnInit {
   constructor(private AccessoireCyclisteService: AccessoireCyclisteServiceService,
     private MarqueService: MarqueServiceService,private UniverService: UniverServiceService,private CategorieService: CategorieServiceService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this._id = this.route.snapshot.params['_id'];
-    this.getMarques()
+    
     this.getUnivers()
     this.getCategories()
 
     this.AccessoireCyclisteService.getAccessoireCyclisteById(this._id).subscribe(data => {
       this.Produit = data.product;
       this.urls=this.Produit.Image
+      this.getMarques()
     }, error => console.log(error));
   } 
 
@@ -76,14 +79,34 @@ export class ModifierAccessoireCyclisteComponent implements OnInit {
   }
 
   onSubmit(){
-    this.charge_Images()
-    this.AccessoireCyclisteService.updateAccessoireCycliste(this._id, this.Produit).subscribe( data =>{
-      this.goToProduitList();
-    }, error => console.log(error));
+    if(this.Produit.libelle =="" || this.Produit.description == ""
+    || this.Produit.hideline == "" || this.Produit.codeBare == "" 
+    || this.Produit.prixVent <= 0 || this.Produit.prixAchat <=0 
+    || this.Produit.qteStock <= 0 || this.Produit.anneModel == ""
+    || this.Produit.freins == "" || this.Produit.Marque == null || this.Produit.Univer == null || this.Produit.categorie == null)
+    {
+      this.ShowNotification('Please enter all information ','Close','4000',"custom-error-style")
+    }
+    else
+    {
+      if(this.Produit.prixVent <= this.Produit.prixAchat)
+      {
+        this.ShowNotification('The selling price must be greater than the purchase price','Close','4000',"custom-error-style")
+      }
+      else
+      {
+        this.charge_Images()
+        this.AccessoireCyclisteService.updateAccessoireCycliste(this._id, this.Produit).subscribe( data =>{
+          this.goToProduitList();
+        }, error => console.log(error)); 
+      } 
+    }
+    
   }
 
   goToProduitList(){
-    this.router.navigate(['dash/produits']);
+    this.ShowNotification('Product Updated well','Close','4000',"custom-success-style")
+    this.router.navigate(['dash/produits/accessoirecycliste']);
   }
 
   charge_Images()
@@ -94,7 +117,7 @@ export class ModifierAccessoireCyclisteComponent implements OnInit {
       }
     }
 
-  selectFiles(e)
+  selectFiles(e:any)
     {
       this.urls=[]
       if(e.target.files)
@@ -169,6 +192,17 @@ export class ModifierAccessoireCyclisteComponent implements OnInit {
       }
         console.log(this.Produit.Image);
         this.Produit.Image=b
+    }
+
+    ShowNotification(content:any, action:any, duration:any,type:any)
+    {
+      let sb = this.snackBar.open(content, action, {
+        duration: duration,
+        panelClass: [type]
+      });
+      sb.onAction().subscribe(() => {
+        sb.dismiss();
+      });
     }
 
 }

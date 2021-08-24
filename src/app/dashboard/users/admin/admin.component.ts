@@ -8,6 +8,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { SupprimerAdminComponent} from './supprimer-admin/supprimer-admin.component'
 import { AjouterAdminComponent} from './ajouter-admin/ajouter-admin.component'
 
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -19,8 +20,11 @@ export class AdminComponent implements OnInit {
   User:User={nom:"",prenom:""}
   private pageSlice=this.Users
 
+  SearchThings:any 
+
   constructor(private AdminService: AdminServiceService,
-    private router: Router,public dialog: MatDialog) { } 
+    private router: Router,public dialog: MatDialog,
+    private snackBar: MatSnackBar) { } 
 
     ngOnInit(): void {
     this.getUsers();
@@ -38,6 +42,7 @@ export class AdminComponent implements OnInit {
     this.AdminService.deleteAdmin(_id).subscribe( data => {
       console.log(data);
       this.getUsers();
+      this.ShowNotification('Admin Deleted well','Close','4000',"custom-success-style")
     }, error => console.log(error));
   }
 
@@ -76,6 +81,45 @@ export class AdminComponent implements OnInit {
   AjouterByDialog()
   {
     this.dialog.open(AjouterAdminComponent);
+  }
+
+  Search()
+  {
+    if(this.SearchThings == "")
+    {
+      this.ngOnInit()
+    }
+    else{
+      this.Users=this.Users.filter(res=>{
+        if (res.nom != "" || res.prenom != "" || res.tel != "" || res.email != "") {
+           return res.nom.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                  res.prenom.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                  res.tel.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                  res.email.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())
+          } 
+          else 
+          { 
+            return []; 
+          }
+      })
+      this.getSilcePage()
+    }
+  }
+
+  getSilcePage()
+  {
+    this.pageSlice=this.Users.slice(0,10);
+  }
+
+  ShowNotification(content:any, action:any, duration:any,type:any)
+  {
+    let sb = this.snackBar.open(content, action, {
+      duration: duration,
+      panelClass: [type]
+    });
+    sb.onAction().subscribe(() => {
+      sb.dismiss();
+    });
   }
 
 }

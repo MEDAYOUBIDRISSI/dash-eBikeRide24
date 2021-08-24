@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Categorie } from '../../../classe/categorie.class'
 import { CategorieServiceService } from '../categorie-service.service'
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-ajouter-categorie',
@@ -13,7 +14,8 @@ export class AjouterCategorieComponent implements OnInit {
   public Categorie: Categorie={libelle:'',description:''}
  
   constructor(private categorieService: CategorieServiceService,
-    private router: Router) { }
+    private router: Router,
+    private snackBar: MatSnackBar) { }
   
     ngOnInit(): void {
     }
@@ -27,12 +29,30 @@ export class AjouterCategorieComponent implements OnInit {
     }
   
     goToCategorieList(){
-      this.router.navigate(['dash/feature']);
+      this.ShowNotification('Categorie Add well','Close','4000',"custom-success-style")
+      this.router.navigate(['dash/feature/categorie']);
     }
     
     onSubmit(){
-      console.log(this.Categorie);
-      this.saveCategorie();
+      if(this.Categorie.libelle =="" || this.Categorie.description == "")
+      {
+        this.ShowNotification('Please enter all information ','Close','4000',"custom-error-style")
+      }
+      else
+      {
+        this.saveCategorie();
+      }
+    }
+
+    ShowNotification(content:any, action:any, duration:any,type:any)
+    {
+      let sb = this.snackBar.open(content, action, {
+        duration: duration,
+        panelClass: [type]
+      });
+      sb.onAction().subscribe(() => {
+        sb.dismiss();
+      });
     }
 
 }

@@ -3,6 +3,8 @@ import { EditeurServiceService } from '../editeur-service.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from '../../../classe/user.class';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-ajouter-editeur',
@@ -14,7 +16,8 @@ export class AjouterEditeurComponent implements OnInit {
   public User: User={nom:"",prenom:"",typeUser:"Editeur",etat:false,imgProfile:"assets/images/avatar/inconnu.jpg"}
 
   constructor(private EditeurService: EditeurServiceService,
-    private router: Router) { }
+    private router: Router,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +32,8 @@ export class AjouterEditeurComponent implements OnInit {
     }
 
     goToUserList(){
-      this.router.navigate(['dash/users']);
+      this.ShowNotification('Editeur Add well','Close','4000',"custom-success-style")
+      this.router.navigate(['dash/users/editeur']);
     }
 
     urls:string="assets/images/avatar/inconnu.jpg";
@@ -48,6 +52,17 @@ export class AjouterEditeurComponent implements OnInit {
     delete_img()
     {
         this.urls="assets/images/avatar/inconnu.jpg";
+    }
+
+    ShowNotification(content:any, action:any, duration:any,type:any)
+    {
+      let sb = this.snackBar.open(content, action, {
+        duration: duration,
+        panelClass: [type]
+      });
+      sb.onAction().subscribe(() => {
+        sb.dismiss();
+      });
     }
 
 }

@@ -17,7 +17,8 @@ export class UniverComponent implements OnInit {
   SearchThings:any 
 
   constructor(private univerService: UniverServiceService,
-    private router: Router) { } 
+    private router: Router,
+    private snackBar: MatSnackBar) { } 
 
   ngOnInit(): void {
     this.getUnivers();
@@ -44,6 +45,7 @@ export class UniverComponent implements OnInit {
         this.univerService.deleteUniver(_id).subscribe( data => {
           console.log(data);
           this.getUnivers();
+          this.ShowNotification('Univer deleted well','Close','4000',"custom-success-style")
         }, error => console.log(error));
   }
 
@@ -79,5 +81,16 @@ export class UniverComponent implements OnInit {
       this.getSilcePage()
     }
   }
+
+  ShowNotification(content:any, action:any, duration:any,type:any)
+    {
+      let sb = this.snackBar.open(content, action, {
+        duration: duration,
+        panelClass: [type]
+      });
+      sb.onAction().subscribe(() => {
+        sb.dismiss();
+      });
+    }
 
 }

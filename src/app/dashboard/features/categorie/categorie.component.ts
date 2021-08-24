@@ -4,7 +4,7 @@ import { CategorieServiceService } from './categorie-service.service'
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PageEvent} from '@angular/material/paginator';
- 
+  
 @Component({
   selector: 'app-categorie',
   templateUrl: './categorie.component.html',
@@ -18,7 +18,8 @@ export class CategorieComponent implements OnInit {
   SearchThings:any 
 
   constructor(private categorieService: CategorieServiceService,
-    private router: Router) { } 
+    private router: Router,
+    private snackBar: MatSnackBar) { } 
 
   ngOnInit(): void {
     this.getCategories();
@@ -45,6 +46,7 @@ export class CategorieComponent implements OnInit {
         this.categorieService.deleteCategorie(_id).subscribe( data => {
           console.log(data);
           this.getCategories();
+          this.ShowNotification('Categorie deleted well','Close','4000',"custom-success-style")
         }, error => console.log(error));
   }
 
@@ -80,4 +82,15 @@ export class CategorieComponent implements OnInit {
       this.getSilcePage()
     }
   }
-}
+
+  ShowNotification(content:any, action:any, duration:any,type:any)
+    {
+      let sb = this.snackBar.open(content, action, {
+        duration: duration,
+        panelClass: [type]
+      });
+      sb.onAction().subscribe(() => {
+        sb.dismiss();
+      });
+    }
+} 

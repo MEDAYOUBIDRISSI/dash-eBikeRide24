@@ -17,7 +17,8 @@ export class ClientComponent implements OnInit {
   Users: User[]=[];
   User:User={nom:"",prenom:""}
   private pageSlice=this.Users
-
+  SearchThings:any 
+  
   constructor(private ClientService: ClientServiceService,
     private router: Router,public dialog: MatDialog) { } 
 
@@ -77,6 +78,34 @@ export class ClientComponent implements OnInit {
         }
       });
     }, error => console.log(error));
+  }
+
+  Search()
+  {
+    if(this.SearchThings == "")
+    {
+      this.ngOnInit()
+    }
+    else{
+      this.Users=this.Users.filter(res=>{
+        if (res.nom != "" || res.prenom != "" || res.tel != "" || res.email != "") {
+           return res.nom.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                  res.prenom.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                  res.tel.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())||
+                  res.email.toLocaleLowerCase().match(this.SearchThings.toLocaleLowerCase())
+          } 
+          else 
+          { 
+            return []; 
+          }
+      })
+      this.getSilcePage()
+    }
+  }
+
+  getSilcePage()
+  {
+    this.pageSlice=this.Users.slice(0,10);
   }
 
 }

@@ -3,27 +3,38 @@ import { Routes, RouterModule } from '@angular/router';
 import { SupportComponent } from './support/support.component'
 import { FeaturePageComponent } from './features/feature-page/feature-page.component'
 import { ModifierMarqueComponent } from './features/marque/modifier-marque/modifier-marque.component'
+import { MarqueComponent } from './features/marque/marque.component'
 import { AjouterMarqueComponent } from './features/marque/ajouter-marque/ajouter-marque.component'
+import { CategorieComponent } from './features/categorie/categorie.component'
 import { ModifierCategorieComponent } from './features/categorie/modifier-categorie/modifier-categorie.component'
 import { AjouterCategorieComponent } from './features/categorie/ajouter-categorie/ajouter-categorie.component'
+import { UniverComponent } from './features/univer/univer.component'
 import { AjouterUniverComponent } from './features/univer/ajouter-univer/ajouter-univer.component'
 import { ModifierUniverComponent } from './features/univer/modifier-univer/modifier-univer.component'
 import { ProduitComponent } from './produit/produit.component'
+import { BicycletteComponent } from './produit/bicyclette/bicyclette.component'
 import { AjouterBicycletteComponent } from './produit/bicyclette/ajouter-bicyclette/ajouter-bicyclette.component'
 import { ModifierBicycletteComponent } from './produit/bicyclette/modifier-bicyclette/modifier-bicyclette.component'
+import { AccessoireVeloComponent } from './produit/accessoire-velo/accessoire-velo.component'
 import { AjouterAccessoireVeloComponent } from './produit/accessoire-velo/ajouter-accessoire-velo/ajouter-accessoire-velo.component'
 import { ModifierAccessoireVeloComponent } from './produit/accessoire-velo/modifier-accessoire-velo/modifier-accessoire-velo.component'
+import { AccessoireCyclisteComponent } from './produit/accessoire-cycliste/accessoire-cycliste.component'
 import { AjouterAccessoireCyclisteComponent } from './produit/accessoire-cycliste/ajouter-accessoire-cycliste/ajouter-accessoire-cycliste.component'
 import { ModifierAccessoireCyclisteComponent } from './produit/accessoire-cycliste/modifier-accessoire-cycliste/modifier-accessoire-cycliste.component'
 import { UserPageComponent } from './users/user-page/user-page.component'
+import { AdminComponent } from './users/admin/admin.component'
 import { AjouterAdminComponent } from './users/admin/ajouter-admin/ajouter-admin.component'
+import { EditeurComponent } from './users/editeur/editeur.component'
 import { AjouterEditeurComponent } from './users/editeur/ajouter-editeur/ajouter-editeur.component'
+import { LivreurComponent } from './users/livreur/livreur.component'
 import { AjouterLivreurComponent } from './users/livreur/ajouter-livreur/ajouter-livreur.component'
+import { SupportUserComponent } from './users/support-user/support-user.component'
 import { AjouterSupportUserComponent } from './users/support-user/ajouter-support-user/ajouter-support-user.component'
 import { ModifierAdminComponent } from './users/admin/modifier-admin/modifier-admin.component'
 import { ModifierEditeurComponent } from './users/editeur/modifier-editeur/modifier-editeur.component'
 import { ModifierLivreurComponent } from './users/livreur/modifier-livreur/modifier-livreur.component'
 import { ModifierSupportUserComponent } from './users/support-user/modifier-support-user/modifier-support-user.component'
+import { ClientComponent } from './users/client/client.component'
 import { ClientDetailComponent } from './users/client/client-detail/client-detail.component'
 import { InboxComponent } from './inbox/inbox.component'
 import { ChatComponent } from './inbox/chat/chat.component'
@@ -56,6 +67,16 @@ const routes: Routes = [
     ] 
   },
   {
+    path:'feature/brand',
+    component:MarqueComponent,
+    children:[
+      {
+        path:'dash',
+        component:MarqueComponent
+      }
+    ] 
+  },
+  {
     path:'feature-update-Marque/:_id',
     component:ModifierMarqueComponent,
     children:[
@@ -76,6 +97,16 @@ const routes: Routes = [
     ] 
   },
   {
+    path:'feature/categorie',
+    component:CategorieComponent,
+    children:[
+      {
+        path:'dash',
+        component:CategorieComponent
+      }
+    ] 
+  },
+  {
     path:'feature-update-Categorie/:_id',
     component:ModifierCategorieComponent,
     children:[
@@ -92,6 +123,16 @@ const routes: Routes = [
       {
         path:'dash',
         component:AjouterCategorieComponent
+      }
+    ] 
+  },
+  {
+    path:'feature/univer',
+    component:UniverComponent,
+    children:[
+      {
+        path:'dash',
+        component:UniverComponent
       }
     ] 
   },
@@ -127,6 +168,16 @@ const routes: Routes = [
     ] 
   },
   {
+    path:'produits/bicyclette',
+    component:BicycletteComponent,
+    children:[
+      {
+        path:'dash',
+        component:BicycletteComponent
+      }
+    ] 
+  },
+  {
     path:'produits/ajouter-bicyclette',
     component:AjouterBicycletteComponent,
     children:[
@@ -147,6 +198,16 @@ const routes: Routes = [
     ] 
   },
   {
+    path:'produits/accessoirevelo',
+    component:AccessoireVeloComponent,
+    children:[
+      {
+        path:'dash',
+        component:AccessoireVeloComponent
+      }
+    ] 
+  },
+  {
     path:'produits/ajouter-accessoirevelo',
     component:AjouterAccessoireVeloComponent,
     children:[
@@ -163,6 +224,16 @@ const routes: Routes = [
       {
         path:'dash',
         component:ModifierAccessoireVeloComponent
+      }
+    ] 
+  },
+  {
+    path:'produits/accessoirecycliste',
+    component:AccessoireCyclisteComponent,
+    children:[
+      {
+        path:'dash',
+        component:AccessoireCyclisteComponent
       }
     ] 
   },
@@ -197,12 +268,32 @@ const routes: Routes = [
     ] 
   },
   {
+    path:'users/admin',
+    component:AdminComponent,
+    children:[
+      {
+        path:'dash',
+        component:AdminComponent
+      }
+    ] 
+  },
+  {
     path:'users/ajouter-admin',
     component:AjouterAdminComponent,
     children:[
       {
         path:'dash',
         component:AjouterAdminComponent
+      }
+    ] 
+  },
+  {
+    path:'users/editeur',
+    component:EditeurComponent,
+    children:[
+      {
+        path:'dash',
+        component:EditeurComponent
       }
     ] 
   },
@@ -217,12 +308,32 @@ const routes: Routes = [
     ] 
   },
   {
+    path:'users/livreur',
+    component:LivreurComponent,
+    children:[
+      {
+        path:'dash',
+        component:LivreurComponent
+      }
+    ] 
+  },
+  {
     path:'users/ajouter-livreur',
     component:AjouterLivreurComponent,
     children:[
       {
         path:'dash',
         component:AjouterLivreurComponent
+      }
+    ] 
+  },
+  {
+    path:'users/support-user',
+    component:SupportUserComponent,
+    children:[
+      {
+        path:'dash',
+        component:SupportUserComponent
       }
     ] 
   },
@@ -273,6 +384,16 @@ const routes: Routes = [
       {
         path:'dash',
         component:ModifierSupportUserComponent
+      }
+    ] 
+  },
+  {
+    path:'users/client',
+    component:ClientComponent,
+    children:[
+      {
+        path:'dash',
+        component:ClientComponent
       }
     ] 
   },
@@ -337,7 +458,7 @@ const routes: Routes = [
     ] 
   },
   {
-    path:'coupon',
+    path:'feature/coupon',
     component:CouponComponent,
     children:[
       {

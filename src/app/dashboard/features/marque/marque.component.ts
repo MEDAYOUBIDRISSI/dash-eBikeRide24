@@ -17,7 +17,8 @@ export class MarqueComponent implements OnInit {
   SearchThings:any 
 
   constructor(private marqueService: MarqueServiceService,
-    private router: Router) { } 
+    private router: Router,
+    private snackBar: MatSnackBar) { } 
 
   ngOnInit(): void {
     this.getMarques();
@@ -44,6 +45,7 @@ export class MarqueComponent implements OnInit {
         this.marqueService.deleteMarque(_id).subscribe( data => {
           console.log(data);
           this.getMarques();
+          this.ShowNotification('Brand deleted well','Close','4000',"custom-success-style")
         }, error => console.log(error));
   }
 
@@ -79,5 +81,16 @@ export class MarqueComponent implements OnInit {
       this.getSilcePage()
     }
   }
+
+  ShowNotification(content:any, action:any, duration:any,type:any)
+    {
+      let sb = this.snackBar.open(content, action, {
+        duration: duration,
+        panelClass: [type]
+      });
+      sb.onAction().subscribe(() => {
+        sb.dismiss();
+      });
+    }
 
 }

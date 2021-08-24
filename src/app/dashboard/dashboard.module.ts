@@ -76,8 +76,7 @@ import {
   NbWindowModule,
   NbCardModule
 } from '@nebular/theme';
-
-
+ 
 @NgModule({
   declarations: [SupportComponent, MarqueComponent, FeaturePageComponent, AjouterMarqueComponent, ModifierMarqueComponent, CategorieComponent, UniverComponent, AjouterCategorieComponent, ModifierCategorieComponent, AjouterUniverComponent, ModifierUniverComponent, ProduitComponent, BicycletteComponent, AccessoireCyclisteComponent, AccessoireVeloComponent, AjouterBicycletteComponent, ModifierBicycletteComponent, AjouterAccessoireCyclisteComponent, ModifierAccessoireCyclisteComponent, AjouterAccessoireVeloComponent, ModifierAccessoireVeloComponent, AdminComponent, EditeurComponent, LivreurComponent, UserPageComponent, ClientComponent, SupportUserComponent, SupprimerAdminComponent, AjouterAdminComponent, AjouterEditeurComponent, AjouterLivreurComponent, AjouterSupportUserComponent, ModifierAdminComponent, ModifierEditeurComponent, ModifierLivreurComponent, ModifierSupportUserComponent, SupprimerEditeurComponent, SupprimerSupportUserComponent, SupprimerLivreurComponent, SupprimerProduitComponent, ClientDetailComponent, ClientStatusComponent, InboxComponent, ChatComponent, NewChatComponent, StatisticsComponent, TotalsComponent, SellingProductsComponent, TopsellersComponent, TopSellingProductComponent, ProductByTypeComponent, SalesByUniversComponent, WebSocketChatComponent, CouponComponent, AjouterCouponComponent, ModifierCouponComponent],
   imports: [ 

@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { User } from '../../../classe/user.class';
 import { ActivatedRoute,Router } from '@angular/router';
 import { DatePipe } from '@angular/common'
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modifier-livreur',
@@ -18,7 +19,8 @@ export class ModifierLivreurComponent implements OnInit {
   constructor(private LivreurService: LivreurServiceService,
     private route: ActivatedRoute,
     private router: Router,
-    public datepipe: DatePipe) { }
+    public datepipe: DatePipe,
+    private snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
       this._id = this.route.snapshot.params['_id'];
@@ -38,11 +40,12 @@ export class ModifierLivreurComponent implements OnInit {
     }
   
     goToUserList(){
-      this.router.navigate(['dash/users']);
+      this.ShowNotification('Livreur Update well','Close','4000',"custom-success-style")
+      this.router.navigate(['dash/users/livreur']);
     }
 
     
-    selectFiles(e)
+    selectFiles(e:any)
     {
       var reader=new FileReader()
       reader.readAsDataURL(e.target.files[0])
@@ -55,6 +58,17 @@ export class ModifierLivreurComponent implements OnInit {
     delete_img()
     {
         this.User.imgProfile="assets/images/avatar/inconnu.jpg";
+    }
+
+    ShowNotification(content:any, action:any, duration:any,type:any)
+    {
+      let sb = this.snackBar.open(content, action, {
+        duration: duration,
+        panelClass: [type]
+      });
+      sb.onAction().subscribe(() => {
+        sb.dismiss();
+      });
     }
 
 }

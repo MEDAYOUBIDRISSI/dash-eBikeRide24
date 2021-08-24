@@ -9,6 +9,7 @@ import { CategorieServiceService } from '../../../features/categorie/categorie-s
 import { UniverServiceService } from '../../../features/univer/univer-service.service'
 import { Router } from '@angular/router';
 import { Image } from 'src/app/dashboard/classe/image.class';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-ajouter-accessoire-velo',
@@ -29,7 +30,8 @@ export class AjouterAccessoireVeloComponent implements OnInit {
   categories: Categorie[]=[]; 
 
   constructor(private AccessoireVeloService: AccessoireVeloServiceService,private MarqueService: MarqueServiceService,private UniverService: UniverServiceService,private CategorieService: CategorieServiceService,
-    private router: Router) { }
+    private router: Router,
+    private snackBar: MatSnackBar) { }
   
     ngOnInit(): void {
       this.getMarques()
@@ -38,7 +40,25 @@ export class AjouterAccessoireVeloComponent implements OnInit {
     }
   
     saveProduit(){
-      this.createProduct() 
+      if(this.Produit.libelle =="" || this.Produit.description == ""
+      || this.Produit.hideline == "" || this.Produit.codeBare == "" 
+      || this.Produit.prixVent <= 0 || this.Produit.prixAchat <=0 
+      || this.Produit.qteStock <= 0 || this.Produit.anneModel == ""
+      || this.Produit.freins == "" || this.Produit.Marque == null || this.Produit.Univer == null || this.Produit.categorie == null)
+      {
+        this.ShowNotification('Please enter all information ','Close','4000',"custom-error-style")
+      }
+      else
+      {
+        if(this.Produit.prixVent <= this.Produit.prixAchat)
+        {
+          this.ShowNotification('The selling price must be greater than the purchase price','Close','4000',"custom-error-style")
+        }
+        else
+        {
+          this.createProduct() 
+        } 
+      }
     }
 
     createProduct()
@@ -80,11 +100,11 @@ export class AjouterAccessoireVeloComponent implements OnInit {
     }
   
     goToProduitList(){
-      this.router.navigate(['dash/produits']);
+      this.ShowNotification('Product Add well','Close','4000',"custom-success-style")
+      this.router.navigate(['dash/produits/accessoirevelo']);
     }
     
     onSubmit(){
-      console.log(this.Produit);
       this.saveProduit();
     }
 
@@ -138,5 +158,16 @@ export class AjouterAccessoireVeloComponent implements OnInit {
     }
       console.log(this.Produit.Image);
       this.Produit.Image=b
+    }
+
+    ShowNotification(content:any, action:any, duration:any,type:any)
+    {
+      let sb = this.snackBar.open(content, action, {
+        duration: duration,
+        panelClass: [type]
+      });
+      sb.onAction().subscribe(() => {
+        sb.dismiss();
+      });
     }
 }

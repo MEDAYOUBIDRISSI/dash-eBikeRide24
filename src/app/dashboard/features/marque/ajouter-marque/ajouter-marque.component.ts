@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Marque } from '../../../classe/marque.class'
 import { MarqueServiceService } from '../marque-service.service'
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({  
   selector: 'app-ajouter-marque',
@@ -13,7 +14,8 @@ export class AjouterMarqueComponent implements OnInit {
   public Marque: Marque={libelle:'',description:''}
  
   constructor(private MarqueService: MarqueServiceService,
-    private router: Router) { }
+    private router: Router,
+    private snackBar: MatSnackBar) { }
   
     ngOnInit(): void {
     }
@@ -27,12 +29,30 @@ export class AjouterMarqueComponent implements OnInit {
     }
   
     goToMarqueList(){
-      this.router.navigate(['dash/feature']);
+      this.ShowNotification('Brand Add well','Close','4000',"custom-success-style")
+      this.router.navigate(['dash/feature/brand']);
     }
     
     onSubmit(){
-      console.log(this.Marque);
+      if(this.Marque.libelle =="" || this.Marque.description == "")
+      {
+        this.ShowNotification('Please enter all information ','Close','4000',"custom-error-style")
+      }
+      else
+      {
       this.saveMarque();
+      }
+    }
+
+    ShowNotification(content:any, action:any, duration:any,type:any)
+    {
+      let sb = this.snackBar.open(content, action, {
+        duration: duration,
+        panelClass: [type]
+      });
+      sb.onAction().subscribe(() => {
+        sb.dismiss();
+      });
     }
 
 }

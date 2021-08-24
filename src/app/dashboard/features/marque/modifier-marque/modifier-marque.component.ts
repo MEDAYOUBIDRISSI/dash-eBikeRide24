@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Marque } from '../../../classe/marque.class'
 import { MarqueServiceService } from '../marque-service.service'
 import { ActivatedRoute,Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modifier-marque',
@@ -14,7 +15,8 @@ export class ModifierMarqueComponent implements OnInit {
   public Marque: Marque={_id: -1, libelle:'',description:''}
   constructor(private MarqueService: MarqueServiceService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this._id = this.route.snapshot.params['_id'];
@@ -25,13 +27,32 @@ export class ModifierMarqueComponent implements OnInit {
   } 
  
   onSubmit(){
-    this.MarqueService.updateMarque(this._id, this.Marque).subscribe( data =>{
-      this.goToMarqueList();
-    }, error => console.log(error));
+    if(this.Marque.libelle =="" || this.Marque.description == "")
+      {
+        this.ShowNotification('Please enter all information ','Close','4000',"custom-error-style")
+      }
+      else
+      {
+        this.MarqueService.updateMarque(this._id, this.Marque).subscribe( data =>{
+          this.goToMarqueList();
+        }, error => console.log(error));
+      }
   }
 
   goToMarqueList(){
-    this.router.navigate(['dash/feature']);
+    this.ShowNotification('Btand Update well','Close','4000',"custom-success-style")
+    this.router.navigate(['dash/feature/brand']);
+  }
+
+  ShowNotification(content:any, action:any, duration:any,type:any)
+  {
+    let sb = this.snackBar.open(content, action, {
+      duration: duration,
+      panelClass: [type]
+    });
+    sb.onAction().subscribe(() => {
+      sb.dismiss();
+    });
   }
 
 }

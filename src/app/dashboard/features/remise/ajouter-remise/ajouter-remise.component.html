@@ -1,0 +1,65 @@
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="fa fa-fw" aria-hidden="true" title="Copy to use podcast"></i>
+                </div>
+                <div>{{ 'REMISEADD' | translate }}
+                    <!-- <div class="page-title-subheading">Build whatever layout you need with our Architect framework.</div> -->
+                </div> 
+            </div>
+            <div class="page-title-actions">
+                <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom"
+                    class="btn-shadow mr-3 btn btn-dark">
+                    <i class="fa fa-star"></i>
+                </button>
+            </div>    
+        </div>
+    </div>        
+    <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+        <li class="nav-item">
+            <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
+                <span>{{ 'REMISENAME' | translate }}</span>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">{{ 'LEBELLE' | translate }}</label>
+                                    <input name="libelle" [(ngModel)] = "Remise.libelle" placeholder="Remise .." type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">{{ 'POURCENTAGE' | translate }}</label>
+                                    <input name="pourcentage" [(ngModel)] = "Remise.pourcentage" placeholder="30%" type="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">{{ 'DATEDEBUT' | translate }}</label>
+                                    <input name="dateDebut" [(ngModel)] = "Remise.dateDebut" type="date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">{{ 'DATEFINE' | translate }}</label>
+                                    <input name="dateFine" [(ngModel)] = "Remise.dateFine" type="date" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <a (click)="onSubmit()" style="color: white;" class="mt-2 btn btn-primary">{{ 'ADD' | translate }}</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -44,6 +44,9 @@ import { WebSocketChatComponent } from './inbox/web-socket-chat/web-socket-chat.
 import { CouponComponent } from './features/coupon/coupon.component'
 import { AjouterCouponComponent } from './features/coupon/ajouter-coupon/ajouter-coupon.component'
 import { ModifierCouponComponent } from './features/coupon/modifier-coupon/modifier-coupon.component'
+import { RemiseComponent } from './features/remise/remise.component'
+import { AjouterRemiseComponent } from './features/remise/ajouter-remise/ajouter-remise.component'
+import { ModifierRemiseComponent } from './features/remise/modifier-remise/modifier-remise.component'
 
 const routes: Routes = [
   {
@@ -123,6 +126,36 @@ const routes: Routes = [
       {
         path:'dash',
         component:AjouterCategorieComponent
+      }
+    ] 
+  },
+  {
+    path:'feature/remise',
+    component:RemiseComponent,
+    children:[
+      {
+        path:'dash',
+        component:RemiseComponent
+      }
+    ] 
+  },
+  {
+    path:'feature-update-Remise/:_id',
+    component:ModifierRemiseComponent,
+    children:[
+      {
+        path:'dash',
+        component:ModifierRemiseComponent
+      }
+    ] 
+  },
+  {
+    path:'feature-add-Remise',
+    component:AjouterRemiseComponent,
+    children:[
+      {
+        path:'dash',
+        component:AjouterRemiseComponent
       }
     ] 
   },

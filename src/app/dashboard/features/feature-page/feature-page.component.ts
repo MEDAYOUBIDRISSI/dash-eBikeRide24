@@ -10,6 +10,7 @@ export class FeaturePageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

@@ -24,8 +24,8 @@ export class ModifierRemiseComponent implements OnInit {
     this._id = this.route.snapshot.params['_id'];
 
     this.RemiseService.getRemiseById(this._id).subscribe(data => {
-      this.Remise = data.Remise;
-      this.Remise.dateDebut=this.datepipe.transform(this.Remise.dateDebut, 'yyyy-MM-dd');
+        this.Remise = data.Remise;
+        this.Remise.dateDebut=this.datepipe.transform(this.Remise.dateDebut, 'yyyy-MM-dd');
         this.Remise.dateFine=this.datepipe.transform(this.Remise.dateFine, 'yyyy-MM-dd');
     }, error => console.log(error)); 
   } 

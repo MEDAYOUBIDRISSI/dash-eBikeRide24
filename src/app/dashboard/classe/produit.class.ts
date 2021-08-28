@@ -1,9 +1,8 @@
 import { Categorie } from "../classe/categorie.class";
 import { Univer } from "../classe/univer.class";
-//import { Remise } from "src/feature/remise/schemas/remise.schema";
+import { Remise } from "../classe/remise.class";
 //import { Tage } from "src/feature/tage/schemas/tage.schema";
 import { Marque } from "../classe/marque.class";
-import { Image } from "../classe/image.class";
 export interface Produit{
     _id ?: number;
     codeBare?:string;
@@ -22,8 +21,8 @@ export interface Produit{
     materiau_de_lafourche?:string;
     freins?:string;
     categorie?:Categorie;
-    // Tage?:Tage[];
-    // Remise?:Remise;
+    Tage?:string[];
+    Remise?:Remise;
     Marque?:Marque;
     Univer?:Univer;
     Image?:string[];

@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="position-relative form-group">
                                     <label for="exampleLibelle" class="">Categorie</label>
                                     <div class="form-row">
@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="position-relative form-group">
                                     <label for="exampleLibelle" class="">Univer</label>
                                     <div class="form-row">
@@ -87,11 +87,42 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="position-relative form-group">
+                                    <label for="exampleLibelle" class="">Remise (Optional)</label>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <select class="form-control"  [(ngModel)] ="Produit.Remise"  (ngModelChange)="displyUniver($event)" [ngModelOptions]="{standalone: true}">
+                                                <option *ngFor="let remise of remises" [ngValue]="remise">{{ remise.libelle }} : {{ remise.pourcentage }}%</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="position-relative form-group">
+                                    <label for="exampleDescription"class="">{{ 'DESCRIPTION' | translate }}</label>
+                                    <textarea name="description" id="exampleDescription" [(ngModel)] = "Produit.description" placeholder="Description ......." class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-header"> 
+                                        <form class="form-inline">
+                                            <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
+                                                <label for="examplePassword22" class="mr-sm-2">New Tag</label>
+                                                <input name="tage" [(ngModel)] = "tage" id="examplePassword22" placeholder="Add new tage!" type="text" class="form-control">
+                                            </div>
+                                            <button (click)="addTage()" class="btn btn-primary">Add</button>
+                                        </form>
+                                    </div>
+                                    <div class="card-body">
+                                        <button *ngFor="let tage of tages" class="mb-2 mr-2 btn btn-light">#{{tage}}<span (click)="removeTege(tage)" class="badge badge-pill badge-light">x</span></button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="position-relative form-group">
-                            <label for="exampleDescription"class="">{{ 'DESCRIPTION' | translate }}</label>
-                            <textarea name="description" id="exampleDescription" [(ngModel)] = "Produit.description" placeholder="Description ......." class="form-control"></textarea>
-                        </div>
+                        
                         <div class="form-row">
                             <div class="col-md-6">
                                 <div class="position-relative form-group">

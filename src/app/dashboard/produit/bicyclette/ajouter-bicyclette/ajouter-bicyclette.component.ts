@@ -6,6 +6,8 @@ import { Univer } from '../../../classe/univer.class'
 import { Image } from "../../../classe/image.class";
 import { BicyletteServiceService } from '../bicylette-service.service'
 import { MarqueServiceService } from '../../../features/marque/marque-service.service'
+import { RemiseServiceService } from '../../../features/remise/remise-service.service'
+import { Remise } from '../../../classe/remise.class'
 import { CategorieServiceService } from '../../../features/categorie/categorie-service.service'
 import { UniverServiceService } from '../../../features/univer/univer-service.service'
 import { Router } from '@angular/router';
@@ -24,8 +26,11 @@ export class AjouterBicycletteComponent implements OnInit {
   marques: Marque[]=[];
   univers: Univer[]=[];
   categories: Categorie[]=[];
-
+  remises:Remise[]=[]
+  tage:string=""
+  tages:string[]=[] 
   constructor(private BicyletteService: BicyletteServiceService,private MarqueService: MarqueServiceService,private UniverService: UniverServiceService,private CategorieService: CategorieServiceService,
+    private RemiseService: RemiseServiceService,
     private router: Router,
     private snackBar: MatSnackBar) { }
   
@@ -33,6 +38,23 @@ export class AjouterBicycletteComponent implements OnInit {
       this.getMarques()
       this.getUnivers()
       this.getCategories()
+      this.getRemises()
+    }
+
+    addTage()
+    {
+      var index = this.tages.indexOf(this.tage);
+      if (index == -1) {
+        this.tages.push(this.tage)
+      }
+      this.tage=""
+    }
+    removeTege(tage:any)
+    {
+      var index = this.tages.indexOf(tage);
+      if (index !== -1) {
+        this.tages.splice(index, 1);
+      }
     }
   
     saveProduit(){
@@ -54,6 +76,7 @@ export class AjouterBicycletteComponent implements OnInit {
         }
         else
         {
+          this.Produit.Tage=this.tages
           this.createProduct() 
         } 
       }
@@ -83,6 +106,13 @@ export class AjouterBicycletteComponent implements OnInit {
       }, error => console.log(error));
     }
 
+    getRemises()
+    {
+      this.RemiseService.getRemisesList().subscribe(data => {
+        this.remises = data.Remises;
+      }, error => console.log(error));
+    }
+
     getCategories(){
       this.CategorieService.getCategoriesList().subscribe(data => {
         this.categories = data.categories;
@@ -96,6 +126,9 @@ export class AjouterBicycletteComponent implements OnInit {
     }
     displyCategorie(event:any){
       this.Produit.categorie=event
+    }
+    displyRemise(event:any){
+      this.Produit.Remise=event
     }
   
     goToProduitList(){

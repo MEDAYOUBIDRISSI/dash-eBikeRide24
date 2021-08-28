@@ -10,6 +10,8 @@ import { MarqueServiceService } from '../../../features/marque/marque-service.se
 import { CategorieServiceService } from '../../../features/categorie/categorie-service.service'
 import { UniverServiceService } from '../../../features/univer/univer-service.service'
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { RemiseServiceService } from '../../../features/remise/remise-service.service'
+import { Remise } from '../../../classe/remise.class'
 
 @Component({
   selector: 'app-modifier-accessoire-velo',
@@ -28,25 +30,47 @@ export class ModifierAccessoireVeloComponent implements OnInit {
   marques: Marque[]=[];
   univers: Univer[]=[];
   categories: Categorie[]=[];
+  remises:Remise[]=[]
+  tage:string=""
+  tages:string[]=[]
  
   constructor(private AccessoireVeloService: AccessoireVeloServiceService,
     private MarqueService: MarqueServiceService,private UniverService: UniverServiceService,private CategorieService: CategorieServiceService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private RemiseService: RemiseServiceService) { }
 
   ngOnInit(): void {
     this._id = this.route.snapshot.params['_id'];
     this.getMarques()
     this.getUnivers()
     this.getCategories()
+    this.getRemises()
 
     this.AccessoireVeloService.getAccessoireVeloById(this._id).subscribe(data => {
       this.Produit = data.product;
+      this.tages=this.Produit.Tage
       this.urls=this.Produit.Image
       console.log(this.Produit)
     }, error => console.log(error));
   } 
+
+  addTage()
+    {
+      var index = this.tages.indexOf(this.tage);
+      if (index == -1) {
+        this.tages.push(this.tage)
+      }
+      this.tage=""
+    }
+    removeTege(tage:any)
+    {
+      var index = this.tages.indexOf(tage);
+      if (index !== -1) {
+        this.tages.splice(index, 1);
+      }
+    }
 
   getMarques()
   {
@@ -68,14 +92,24 @@ export class ModifierAccessoireVeloComponent implements OnInit {
       this.categories = data.categories;
     }); 
   }
+  getRemises()
+    {
+      this.RemiseService.getRemisesList().subscribe(data => {
+        this.remises = data.Remises;
+      }, error => console.log(error));
+    }
+
   displyMarque(event:any){
     this.Produit.Marque=event
-  }
+  } 
   displyUniver(event:any){
     this.Produit.Univer=event
   }
   displyCategorie(event:any){
     this.Produit.categorie=event
+  }
+  displyRemise(event:any){
+    this.Produit.Remise=event
   }
 
   onSubmit(){
@@ -83,8 +117,9 @@ export class ModifierAccessoireVeloComponent implements OnInit {
     || this.Produit.hideline == "" || this.Produit.codeBare == "" 
     || this.Produit.prixVent <= 0 || this.Produit.prixAchat <=0 
     || this.Produit.qteStock <= 0 || this.Produit.anneModel == ""
-    || this.Produit.freins == "" || this.Produit.Marque == null || this.Produit.Univer == null || this.Produit.categorie == null)
+    || this.Produit.Marque == null || this.Produit.categorie == null)
     {
+      console.log(this.Produit)
       this.ShowNotification('Please enter all information ','Close','4000',"custom-error-style")
     }
     else

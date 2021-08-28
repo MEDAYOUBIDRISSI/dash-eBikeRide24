@@ -58,6 +58,9 @@
                                 Hide Line
                             </th>
                             <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
+                                Remise
+                            </th>
+                            <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
                                 {{ 'UPDATE_DELETE' | translate }}
                             </th>
                         </tr>
@@ -77,6 +80,14 @@
                             <td class="text-center">{{ produite.libelle }}</td>
                             <td class="text-center">{{ produite.hideline }}</td>
                             <td class="text-center">
+                                <div *ngIf="produite.Remise != null">
+                                    {{ produite.Remise?.pourcentage }}%
+                                </div>
+                                <div *ngIf="produite.Remise == null">
+                                    Remise pas Active
+                                </div>
+                            </td>
+                            <td class="text-center">
                                 <div role="group" class="btn-group-sm btn-group">
                                     <a (click) = "updateProduit(produite._id)" style="color: white;"  class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
                                     <a (click) = "DeleteByDialog(produite._id)" style="color: white;"  class="btn-shadow btn btn-danger">{{ 'DELETE' | translate }}</a>
@@ -90,6 +101,7 @@
                             <th class="text-center" rowspan="1" colspan="1">Code Bare</th>
                             <th class="text-center" rowspan="1" colspan="1">Libelle</th>
                             <th class="text-center" rowspan="1" colspan="1">Hide Line</th>
+                            <th class="text-center" rowspan="1" colspan="1">Remise</th>
                             <th class="text-center" rowspan="1" colspan="1">{{ 'UPDATE_DELETE' | translate }}</th>
                         </tr>
                     </tfoot>

@@ -21,7 +21,7 @@ export class ModifierEditeurComponent implements OnInit {
     private router: Router,
     public datepipe: DatePipe,
     private snackBar: MatSnackBar) { }
-
+ 
     ngOnInit(): void {
       this._id = this.route.snapshot.params['_id'];
   

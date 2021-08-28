@@ -10,6 +10,8 @@ import { UniverServiceService } from '../../../features/univer/univer-service.se
 import { Router } from '@angular/router';
 import { Image } from 'src/app/dashboard/classe/image.class';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { RemiseServiceService } from '../../../features/remise/remise-service.service'
+import { Remise } from '../../../classe/remise.class'
 
 @Component({
   selector: 'app-ajouter-accessoire-velo',
@@ -28,15 +30,36 @@ export class AjouterAccessoireVeloComponent implements OnInit {
   marques: Marque[]=[]; 
   univers: Univer[]=[];
   categories: Categorie[]=[]; 
+  remises:Remise[]=[]
+  tage:string=""
+  tages:string[]=[]
 
   constructor(private AccessoireVeloService: AccessoireVeloServiceService,private MarqueService: MarqueServiceService,private UniverService: UniverServiceService,private CategorieService: CategorieServiceService,
     private router: Router,
+    private RemiseService: RemiseServiceService,
     private snackBar: MatSnackBar) { }
   
     ngOnInit(): void {
       this.getMarques()
       this.getUnivers()
       this.getCategories()
+      this.getRemises()
+    }
+
+    addTage()
+    {
+      var index = this.tages.indexOf(this.tage);
+      if (index == -1) {
+        this.tages.push(this.tage)
+      }
+      this.tage=""
+    }
+    removeTege(tage:any)
+    {
+      var index = this.tages.indexOf(tage);
+      if (index !== -1) {
+        this.tages.splice(index, 1);
+      }
     }
   
     saveProduit(){
@@ -56,6 +79,7 @@ export class AjouterAccessoireVeloComponent implements OnInit {
         }
         else
         {
+          this.Produit.Tage=this.tages
           this.createProduct() 
         } 
       }
@@ -83,6 +107,12 @@ export class AjouterAccessoireVeloComponent implements OnInit {
         this.univers = data.univers;
       }, error => console.log(error));
     }
+    getRemises()
+    {
+      this.RemiseService.getRemisesList().subscribe(data => {
+        this.remises = data.Remises;
+      }, error => console.log(error));
+    }
 
     getCategories(){
       this.CategorieService.getCategoriesList().subscribe(data => {
@@ -97,6 +127,9 @@ export class AjouterAccessoireVeloComponent implements OnInit {
     }
     displyCategorie(event:any){
       this.Produit.categorie=event
+    }
+    displyRemise(event:any){
+      this.Produit.Remise=event
     }
   
     goToProduitList(){

@@ -14,3 +14,7 @@ ngx-dropzone,
 .custom-dropzone.ngx-dz-hovered {
   border: 0px solid #B0C4DE;
 }
+
+.example-chip-list {
+	width: 100%;
+  }

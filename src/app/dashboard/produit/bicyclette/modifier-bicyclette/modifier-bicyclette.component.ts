@@ -9,6 +9,8 @@ import { Image } from "../../../classe/image.class";
 import { MarqueServiceService } from '../../../features/marque/marque-service.service'
 import { CategorieServiceService } from '../../../features/categorie/categorie-service.service'
 import { UniverServiceService } from '../../../features/univer/univer-service.service'
+import { RemiseServiceService } from '../../../features/remise/remise-service.service'
+import { Remise } from '../../../classe/remise.class'
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -28,10 +30,14 @@ export class ModifierBicycletteComponent implements OnInit {
   marques: Marque[]=[];
   univers: Univer[]=[];
   categories: Categorie[]=[];
+  remises:Remise[]=[]
+  tage:string=""
+  tages:string[]=[]
  
   constructor(private BicyletteService: BicyletteServiceService,
     private MarqueService: MarqueServiceService,private UniverService: UniverServiceService,private CategorieService: CategorieServiceService,
     private route: ActivatedRoute,
+    private RemiseService: RemiseServiceService,
     private router: Router,
     private snackBar: MatSnackBar) { }
 
@@ -40,12 +46,30 @@ export class ModifierBicycletteComponent implements OnInit {
     this.getMarques()
     this.getUnivers()
     this.getCategories()
+    this.getRemises()
 
     this.BicyletteService.getBicycletteById(this._id).subscribe(data => {
       this.Produit = data.product;
+      this.tages=this.Produit.Tage
       this.urls=this.Produit.Image
     }, error => console.log(error));
   } 
+
+  addTage()
+    {
+      var index = this.tages.indexOf(this.tage);
+      if (index == -1) {
+        this.tages.push(this.tage)
+      }
+      this.tage=""
+    }
+    removeTege(tage:any)
+    {
+      var index = this.tages.indexOf(tage);
+      if (index !== -1) {
+        this.tages.splice(index, 1);
+      }
+    }
 
   getMarques()
   {
@@ -67,6 +91,14 @@ export class ModifierBicycletteComponent implements OnInit {
       this.categories = data.categories;
     }); 
   }
+
+  getRemises()
+    {
+      this.RemiseService.getRemisesList().subscribe(data => {
+        this.remises = data.Remises;
+      }, error => console.log(error));
+    }
+
   displyMarque(event:any){
     this.Produit.Marque=event
   }
@@ -76,6 +108,11 @@ export class ModifierBicycletteComponent implements OnInit {
   displyCategorie(event:any){
     this.Produit.categorie=event
   }
+  displyRemise(event:any){
+    this.Produit.Remise=event
+  }
+
+  
 
   onSubmit(){
     if(this.Produit.libelle =="" || this.Produit.description == ""

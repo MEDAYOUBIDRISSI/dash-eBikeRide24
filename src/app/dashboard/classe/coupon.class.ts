@@ -4,4 +4,4 @@ export interface Coupon{
     code?:string
     pourcentage:number
     etat?:boolean
-}
+} 

@@ -122,8 +122,8 @@ export class InboxComponent implements OnInit {
 
   writeNewEmailByDialog() {
     const dialogRef = this.dialog.open(NewChatComponent, {
-      width: '100%',
-      height:'90%'
+      width: '50%',
+      height:'50%'
     });
 
     dialogRef.afterClosed().subscribe(result => {

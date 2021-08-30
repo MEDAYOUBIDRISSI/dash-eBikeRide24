@@ -28,7 +28,7 @@ export class NewChatComponent implements OnInit {
   selected2:any
 
   constructor(private InboxService: InboxServiceService,private MasterService: MasterServiceService,
-    private router: Router,public dialogRef: MatDialogRef<NewChatComponent>) { 
+    private router: Router,public dialogRef: MatDialogRef<NewChatComponent>,private snackBar: MatSnackBar) { 
       this.getUsers()
       this.filteredStates = this.stateCtrl.valueChanges
     .pipe(
@@ -75,11 +75,23 @@ export class NewChatComponent implements OnInit {
   sendMessage()
   {
     this.InboxService.createChat(this.newChat).subscribe( data =>{
-      console.log(data);
+      this.ShowNotification('Message Send to : '+this.newChat.toUser.nom +" "+ this.newChat.toUser.prenom ,'Close','4000',"custom-plus-mins-style")
       this.dialogRef.close("created")
+
     },
     error => console.log(error));
 
     console.log(this.newChat)
   }
+
+  ShowNotification(content:any, action:any, duration:any,type:any)
+    {
+      let sb = this.snackBar.open(content, action, {
+        duration: duration,
+        panelClass: [type]
+      });
+      sb.onAction().subscribe(() => {
+        sb.dismiss();
+      });
+    }
 } 

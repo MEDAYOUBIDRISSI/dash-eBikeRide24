@@ -73,11 +73,11 @@
                                         </td>
                                         <td class="text-right">
                                             <i class="fa fa-calendar-alt opacity-4 mr-2"></i>
-                                            {{ user.updatedAt }}
+                                            {{user.updatedAt | date: 'dd-MM-yyyy HH:mm:ss'}}
                                         </td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table> 
                         </div>
                         <div class="app-inner-layout__bottom-pane d-block text-center">
                             <nav class="" aria-label="Page navigation example">

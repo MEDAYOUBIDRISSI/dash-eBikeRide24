@@ -21,10 +21,31 @@ export class LoginComponent implements OnInit {
 
   saveLogin(){
     this.LoginService.login(this.auth).subscribe( data =>{
-      //console.log(data);
-      localStorage.setItem("jwt-Token",data.jwt);
-      localStorage.setItem("jwt-IDUser",data.payload.id);
-      this.goToIndex();
+      if(data.payload.role=="Client")
+      {
+        this.ShowNotification('This application is prohibited for customers','Close','4000',"custom-error-style")
+      }
+      else
+      {
+        localStorage.setItem("jwt-Token",data.jwt);
+        localStorage.setItem("jwt-IDUser",data.payload.id);
+        localStorage.setItem("jwt-RoleUser",data.payload.role);
+        this.ShowNotification('Welcom in Dashboard ' + data.payload.fullName,'Close','4000',"custom-plus-mins-style")
+        if(data.payload.role=="Admin" || data.payload.role=="superAdmin")
+        {
+          this.router.navigate(['dash/statistic']);
+        }
+        else if(data.payload.role=="Support-User" || data.payload.role=="Livreur")
+        {
+          this.router.navigate(['dash/inbox']);
+        }
+        else if(data.payload.role=="Editeur")
+        {
+          this.router.navigate(['dash/produits']);
+        }
+      }
+
+      
     },
     error => this.ShowNotification('Email address or password is incorrect','Close','4000',"custom-error-style"));
   }

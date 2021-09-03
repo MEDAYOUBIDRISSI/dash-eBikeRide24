@@ -77,7 +77,6 @@ export class NewChatComponent implements OnInit {
     this.InboxService.createChat(this.newChat).subscribe( data =>{
       this.ShowNotification('Message Send to : '+this.newChat.toUser.nom +" "+ this.newChat.toUser.prenom ,'Close','4000',"custom-plus-mins-style")
       this.dialogRef.close("created")
-
     },
     error => console.log(error));
 

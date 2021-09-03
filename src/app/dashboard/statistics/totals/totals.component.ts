@@ -42,5 +42,5 @@ export class TotalsComponent implements OnInit {
       this._ordersAmount=(this._totalOrdersPaid*100)/this._totalOrders
       this._ordersAmount=this._ordersAmount.toFixed(2)
     }); 
-  }
+  } 
 }

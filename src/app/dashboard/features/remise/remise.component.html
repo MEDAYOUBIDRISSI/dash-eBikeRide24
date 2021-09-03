@@ -61,9 +61,6 @@
                                 Date Fine
                             </th>
                             <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
-                                Etat
-                            </th>
-                            <th class="text-center" aria-controls="example" rowspan="1" colspan="1">
                                 {{ 'UPDATE_DELETE' | translate }}
                             </th>
                         </tr>
@@ -72,17 +69,9 @@
                         <tr role="row" class="odd" *ngFor = "let remise of pageSlice">
                             <td class="text-center">{{ remise._id }}</td>
                             <td class="text-center">{{ remise.libelle }}</td>
-                            <td class="text-center">{{ remise.pourcentage }}</td>
+                            <td class="text-center">{{ remise.pourcentage }}%</td>
                             <td class="text-center">{{remise.dateDebut | date: 'dd-MM-yyyy'}}</td>
                             <td class="text-center">{{remise.dateFine | date: 'dd-MM-yyyy'}}</td>
-                            <td class="text-center">
-                                <!-- <div *ngIf="(remise.dateDebut | date:'yMMdd' == dateNow | date:'yMMdd')">
-                                    {{remise.dateDebut | date:'yMMdd'}} -- {{dateNow | date:'yMMdd'}}
-                                </div> -->
-                                <!-- <div *ngIf="remise.dateDebut | date: 'dd-MM-yyyy' <= dateNow | date: 'dd-MM-yyyy' && dateNow | date: 'dd-MM-yyyy' >= remise.dateFine | date: 'dd-MM-yyyy'" class="mb-2 mr-2 badge badge-pill badge-success">Allow</div>
-                                <div *ngIf="(remise.dateDebut | date:'yMMdd' == dateNow | date:'yMMdd')" class="mb-2 mr-2 badge badge-pill badge-danger">Suspended</div>
-                                <div *ngIf="remise.dateFine == false" class="mb-2 mr-2 badge badge-pill badge-info">still start</div> -->
-                            </td>
                             <td class="text-center">
                                 <div role="group" class="btn-group-sm btn-group">
                                     <a (click) = "updateRemise(remise._id)" style="color: white;" class="btn-shadow btn btn-warning">{{ 'UPDATE' | translate }}</a>
@@ -98,7 +87,6 @@
                             <th class="text-center" rowspan="1" colspan="1">Pourcentage</th>
                             <th class="text-center" rowspan="1" colspan="1">Date Debut</th>
                             <th class="text-center" rowspan="1" colspan="1">Date Fine</th>
-                            <th class="text-center" rowspan="1" colspan="1">Etat</th>
                             <th class="text-center" rowspan="1" colspan="1">{{ 'UPDATE_DELETE' | translate }}</th>
                         </tr>
                     </tfoot>
